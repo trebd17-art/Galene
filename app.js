@@ -1,0 +1,5 @@
+let selectedMood="";
+function showScreen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active")}
+function setMood(mood){selectedMood=mood}
+function recommend(){const anxiety=document.getElementById("anxietyRange").value;const concern=document.getElementById("concern").value;const moodText=selectedMood||"Not selected";document.getElementById("recommendation").innerHTML=`<strong>Your Calm Plan</strong><br><br>Mood: ${moodText}<br>Anxiety Level: ${anxiety}/10<br>Main Concern: ${concern}<br><br>Recommended next step: Take a 60-second breathing reset, then write one sentence about what you can control today.<br><br>XP Earned: +10`}
+function startBreathing(){const box=document.getElementById("breathing");const steps=["Breathe in...","Hold...","Breathe out...","Rest..."];let i=0;box.textContent=steps[i];const timer=setInterval(()=>{i++;if(i>=steps.length){clearInterval(timer);box.textContent="Reset complete. You earned +10 XP."}else{box.textContent=steps[i]}},3000)}
