@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SteadyMind</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="phone">
+    <section id="splash" class="screen active">
+      <div class="splash-container">
+        <img src="logo.png" class="splash-logo" alt="SteadyMind Logo">
+        <h1>STEADYMIND</h1>
+        <p class="tagline">Steady Your Mind Past The Storm</p>
+        <p class="loading-text">Loading your personalized path...</p>
+      </div>
+    </section>
+
+    <section id="welcome" class="screen">
+      <img src="logo.png" class="app-logo" alt="SteadyMind Logo">
+      <h1>STEADYMIND</h1>
+      <p class="tagline">Steady Your Mind Past The Storm</p>
+      <p class="intro">A personalized mental wellness app designed to help you build calm, confidence, focus, and resilience one steady step at a time.</p>
+      <button onclick="showScreen('auth')">Get Started</button>
+      <button class="secondary" onclick="showScreen('learn')">Learn More</button>
+    </section>
+
+    <section id="learn" class="screen">
+      <button class="text-back" onclick="showScreen('welcome')">← Back</button>
+      <h2>What is SteadyMind?</h2>
+      <p>SteadyMind helps you understand what is weighing on your mind, then builds a personalized path using daily check-ins, calming tools, education, games, and progress tracking.</p>
+      <div class="feature-card">Personalized mind profile</div>
+      <div class="feature-card">Daily calm and confidence plans</div>
+      <div class="feature-card">Games for focus, confidence, and resilience</div>
+      <div class="feature-card">Education for anxiety, sleep, stress, and overthinking</div>
+      <button onclick="showScreen('auth')">Continue</button>
+    </section>
+
+    <section id="auth" class="screen">
+      <button class="text-back" onclick="showScreen('welcome')">← Back</button>
+      <img src="logo.png" class="small-logo" alt="SteadyMind Logo">
+      <h2>Welcome to SteadyMind</h2>
+      <p class="intro">Begin your steady path today.</p>
+      <button onclick="showScreen('mainMenu')">Sign Up</button>
+      <button class="secondary" onclick="showScreen('mainMenu')">Log In</button>
+      <p class="legal">By continuing, you agree to our <a href="#" onclick="showScreen('terms')">Terms & Conditions</a> and <a href="#" onclick="showScreen('privacy')">Privacy Policy</a>.</p>
+    </section>
+
+    <section id="mainMenu" class="screen">
+      <div class="particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <img src="logo.png" class="small-logo menu-logo" alt="SteadyMind Logo">
+      <h2 class="center-title">Main Menu</h2>
+      <p class="intro compact">Choose where you want to begin.</p>
+      <div id="planStatus" class="plan-status">No plan built yet. Start with “Build My Plan.”</div>
+      <div class="menu-grid">
+        <button class="menu-card" onclick="showScreen('assessment')"><span>🧭</span>Build My Plan</button>
+        <button class="menu-card" onclick="continuePlan()"><span>🌤️</span>Continue Plan</button>
+        <button class="menu-card" onclick="showScreen('checkin')"><span>🧠</span>Daily Check-In</button>
+        <button class="menu-card emergency-menu" onclick="showScreen('tools')"><span>🚨</span>EMERGENCY CALMING TOOL</button>
+        <button class="menu-card" onclick="showScreen('games')"><span>🎮</span>Games</button>
+        <button class="menu-card" onclick="showScreen('education')"><span>📚</span>Education</button>
+        <button class="menu-card" onclick="showScreen('journal')"><span>✍️</span>Reflection Journal</button>
+        <button class="menu-card" onclick="showScreen('weekly')"><span>📈</span>Progress</button>
+      </div>
+      <button class="secondary" onclick="showScreen('settings')">Settings</button>
+    </section>
+
+    <section id="assessment" class="screen">
+      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
+      <div class="progress"><span class="active-step">1</span><span>2</span><span>3</span><span>4</span></div>
+      <h2>Steady Your Mind Past The Storm</h2>
+
+      <label>Which best describes you?</label>
+      <select id="userType">
+        <option>Shift Worker</option><option>Student</option><option>Parent</option><option>Working Professional</option><option>Young Adult</option><option>Senior</option>
+      </select>
+
+      <label>What Would You Most Like To Improve?</label>
+      <p class="prompt-hint">Choose all that apply. Your answers help build your profile.</p>
+      <button type="button" class="dropdown-toggle" onclick="toggleImproveOptions()">Select improvement areas</button>
+      <div id="selectedImprovements" class="selected-chips compact-chip-row">No areas selected yet.</div>
+      <div id="improveOptions" class="choices multi hidden">
+        <label><input type="checkbox" value="Anxiety" onchange="updateImproveButton()"> Anxiety</label>
+        <label><input type="checkbox" value="Work stress" onchange="updateImproveButton()"> Work stress</label>
+        <label><input type="checkbox" value="Sleep trouble" onchange="updateImproveButton()"> Sleep trouble</label>
+        <label><input type="checkbox" value="Performance anxiety" onchange="updateImproveButton()"> Performance anxiety</label>
+        <label><input type="checkbox" value="Overthinking" onchange="updateImproveButton()"> Overthinking</label>
+        <label><input type="checkbox" value="Negative Thinking" onchange="updateImproveButton()"> Negative Thinking</label>
+        <label><input type="checkbox" value="Focus" onchange="updateImproveButton()"> Focus</label>
+        <label><input type="checkbox" value="Confidence" onchange="updateImproveButton()"> Confidence</label>
+        <label><input type="checkbox" value="Stress" onchange="updateImproveButton()"> Stress</label>
+        <label><input type="checkbox" value="Motivation" onchange="updateImproveButton()"> Motivation</label>
+      </div>
+
+      <label>What Challenge Affects You Most?</label>
+      <select id="challenge">
+        <option>Racing thoughts</option><option>Panic attacks</option><option>Difficulty sleeping</option><option>Social anxiety</option><option>Low confidence</option><option>Burnout</option><option>Work stress</option><option>Loneliness</option>
+      </select>
+
+      <label>How Much Time Can You Commit Per Day?</label>
+      <select id="timeCommitment"><option>5 minutes</option><option>10 minutes</option><option>15 minutes</option><option>20+ minutes</option></select>
+
+      <label>If SteadyMind worked perfectly, what would you want to feel?</label>
+      <select id="hope"><option>Calm</option><option>Confident</option><option>Focused</option><option>Energized</option><option>Happy</option></select>
+      <button id="buildPlanButton" onclick="buildPlanAndSave()">Build My Plan</button>
+    </section>
+
+    <section id="dashboard" class="screen">
+      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
+      <img src="logo.png" class="small-logo" alt="SteadyMind Logo">
+      <div class="progress"><span>1</span><span class="active-step">2</span><span>3</span><span>4</span></div>
+      <h2>Your SteadyMind Profile</h2>
+      <div id="profileCard" class="card result-card">Complete the assessment to create your personalized profile.</div>
+      <h2>Your Mind Type</h2>
+      <div id="mindTypeCard" class="card result-card">Your mind type will appear here after your assessment.</div>
+      <h2>Your Personalized Path</h2>
+      <div id="pathCard" class="card result-card">Your primary path will appear here after your assessment.</div>
+      <h2>Today's Dashboard</h2>
+      <div id="dailyPlanCard" class="card result-card">Start with one small steady action today.</div>
+      <h2>Gamified Progress</h2>
+      <div class="card result-card">
+        <strong id="levelName">Level 1: Calm Seeker</strong>
+        <p>Complete daily activities to earn Mind Points and unlock new levels.</p>
+        <div class="xp-wrap"><div id="xpFill" class="xp-fill"></div></div>
+        <p><strong id="xpText">0 / 100 Mind Points</strong></p>
+      </div>
+      <button onclick="completeActivity()">Complete Today's Activity +5 XP</button>
+      <button class="secondary" onclick="showScreen('weekly')">View Weekly Review</button>
+      <button class="secondary" onclick="showScreen('assessment')">Edit Assessment</button>
+    </section>
+
+    <section id="checkin" class="screen">
+      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
+      <h2>Daily Check-In</h2>
+      <p>Take a moment to notice how you feel.</p>
+      <label>How is your mind today?</label>
+      <div class="emotion-row">
+        <button type="button" class="emotion-btn" onclick="setMoodChoice('Steady', this)">😌 Steady</button>
+        <button type="button" class="emotion-btn" onclick="setMoodChoice('Calm', this)">🌿 Calm</button>
+        <button type="button" class="emotion-btn" onclick="setMoodChoice('Restless', this)">🌊 Restless</button>
+        <button type="button" class="emotion-btn" onclick="setMoodChoice('Overwhelmed', this)">⛈️ Overwhelmed</button>
+        <button type="button" class="emotion-btn" onclick="setMoodChoice('Tired', this)">🌙 Tired</button>
+      </div>
+      <select id="mood" class="hidden"><option>Steady</option><option>Calm</option><option>Restless</option><option>Overwhelmed</option><option>Tired</option></select>
+      <label>What do you need most?</label>
+      <select id="need"><option>Calm</option><option>Focus</option><option>Confidence</option><option>Rest</option><option>Motivation</option></select>
+      <button onclick="saveCheckIn()">Save Check-In +5 XP</button>
+      <div id="checkinResult" class="card result-card hidden"></div>
+    </section>
+
+    <section id="tools" class="screen tools-screen">
+      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
+      <h2 class="center-title emergency-heading"><span class="warning-pulse">🚨</span> EMERGENCY CALMING TOOL</h2>
+      <p class="intro compact">Use this when your mind feels overwhelmed and you need to steady yourself quickly.</p>
+      <div class="ambient-controls card">
+        <strong>Optional Soundscape</strong>
+        <div class="ambient-buttons">
+          <button type="button" class="secondary" onclick="playAmbient('rain')">Rain</button>
+          <button type="button" class="secondary" onclick="playAmbient('ocean')">Ocean</button>
+          <button type="button" class="secondary" onclick="playAmbient('forest')">Forest</button>
+          <button type="button" class="secondary" onclick="stopAmbient()">Off</button>
+        </div>
+      </div>
+
+      <div class="feature-card">Grounding Exercise</div>
+      <div class="feature-card">Worry Release</div>
+      <div class="feature-card">Sleep Wind-Down</div>
+
+      <div class="breathing-panel" onclick="startBreathing()">
+        <div class="breathing-title">60-Second Breathing Reset</div>
+        <div class="breathing-subtitle">Tap here to begin</div>
+        <div class="breathing-circle">
+          <div id="breathingBox" class="breathing-box">Breathe with SteadyMind</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="games" class="screen">
+      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
+      <h2>Games</h2>
+      <p>Short calming games designed to build focus, confidence, and resilience.</p>
+
+      <div class="game-tabs">
+        <button type="button" class="game-tab active-game-tab" onclick="showGame('groundingGame', this)">Grounding</button>
+        <button type="button" class="game-tab" onclick="showGame('thoughtSortGame', this)">Thought Sort</button>
+        <button type="button" class="game-tab" onclick="showGame('calmFocusGame', this)">Calm Focus</button>
+      </div>
+
+      <div id="groundingGame" class="game-panel active-game">
+        <h2>5-4-3-2-1 Grounding Game</h2>
+        <p>Bring your attention back to the present moment.</p>
+        <label>5 things you can see</label>
+        <textarea id="groundingSee" placeholder="Example: lamp, chair, window..."></textarea>
+        <label>4 things you can feel</label>
+        <textarea id="groundingFeel" placeholder="Example: shirt, floor, phone..."></textarea>
+        <label>3 things you can hear</label>
+        <textarea id="groundingHear" placeholder="Example: fan, traffic, birds..."></textarea>
+        <label>2 things you can smell</label>
+        <textarea id="groundingSmell" placeholder="Example: coffee, soap..."></textarea>
+        <label>1 thing you can taste</label>
+        <textarea id="groundingTaste" placeholder="Example: mint, water..."></textarea>
+        <button onclick="completeGroundingGame()">Complete Grounding +10 XP</button>
+        <div id="groundingResult" class="card result-card hidden"></div>
+      </div>
+
+      <div id="thoughtSortGame" class="game-panel hidden">
+        <h2>Thought Sort</h2>
+        <p>Practice separating facts from assumptions.</p>
+        <div class="thought-card"><strong id="thoughtPrompt">I am going to mess everything up.</strong></div>
+        <div class="choice-row">
+          <button onclick="answerThoughtSort('fact')">Fact</button>
+          <button class="secondary" onclick="answerThoughtSort('assumption')">Assumption</button>
+        </div>
+        <div id="thoughtSortResult" class="card result-card hidden"></div>
+        <p class="small-progress">Question <span id="thoughtIndex">1</span> of 5</p>
+      </div>
+
+      <div id="calmFocusGame" class="game-panel hidden">
+        <h2>Calm Focus</h2>
+        <p>Tap the floating calm circles slowly. No rushing.</p>
+        <div id="focusPlayArea" class="focus-play-area">
+          <button id="focusCircle" class="focus-circle" onclick="tapFocusCircle()">Tap</button>
+        </div>
+        <p class="small-progress">Calm taps: <span id="focusScore">0</span> / 5</p>
+        <div id="focusResult" class="card result-card hidden"></div>
+      </div>
+    </section>
+
+    <section id="education" class="screen">
+      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
+      <h2>Education</h2>
+      <p>Learn what is happening in your mind and body so fear becomes easier to understand.</p>
+      <div class="lesson-progress"><div id="lessonProgressFill"></div></div>
+      <div id="xpPopup" class="xp-popup hidden">+5 XP</div>
+      <div class="feature-card" onclick="openLesson('Anxiety Basics')"><strong>Anxiety Basics</strong><br>Why your body reacts when it senses danger.</div>
+      <div class="feature-card" onclick="openLesson('Overthinking')"><strong>Overthinking</strong><br>Why your mind tries to solve uncertainty.</div>
+      <div class="feature-card" onclick="openLesson('Confidence')"><strong>Confidence</strong><br>Why confidence grows through action.</div>
+      <div class="feature-card" onclick="openLesson('Sleep')"><strong>Sleep</strong><br>How stress affects rest and recovery.</div>
+      <div id="lessonResult" class="card result-card hidden"></div>
+    </section>
+
+    <section id="journal" class="screen">
+      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
+      <div class="journal-paper">
+      <h2>Daily Reflection</h2>
+      <p>A short guided journal to help you understand your thoughts, steady your mind, and move from worry to action.</p>
+
+      <label>1. How are you feeling right now?</label>
+      <select id="journalMood" onchange="updateSmartPrompts()">
+        <option>Calm</option>
+        <option>Anxious</option>
+        <option>Overwhelmed</option>
+        <option>Sad</option>
+        <option>Frustrated</option>
+        <option>Lonely</option>
+        <option>Hopeful</option>
+        <option>Motivated</option>
+        <option>Tired</option>
+      </select>
+
+      <label>Describe your feelings in your own words.</label>
+      <textarea id="feelingWords" placeholder="Example: I feel tense because I have a lot on my mind today."></textarea>
+
+      <label>2. What’s weighing on your mind today?</label>
+      <p class="prompt-hint">What are you worried about? What are you overthinking? What feels uncertain? What challenge are you facing?</p>
+      <textarea id="weighingMind" placeholder="Write what is taking up the most space in your mind..."></textarea>
+
+      <label>3. What evidence supports that worry?</label>
+      <textarea id="evidenceFor" placeholder="Example: I stumbled during practice yesterday."></textarea>
+
+      <label>4. What’s one thing you can control today?</label>
+      <textarea id="controlToday" placeholder="Example: Go for a walk, finish one task, call a friend, read for 15 minutes, or get to bed on time."></textarea>
+
+      <label>5. One thing that went well today</label>
+      <textarea id="wentWell" placeholder="Example: I stayed calm during a stressful moment."></textarea>
+
+      <label>6. What are you grateful for?</label>
+      <input id="gratitudeOne" class="journal-input" placeholder="1.">
+      <input id="gratitudeTwo" class="journal-input" placeholder="2.">
+      <input id="gratitudeThree" class="journal-input" placeholder="3.">
+
+      <h2>Smart Journaling</h2>
+      <p class="prompt-hint">These prompts adjust based on your Mind Type or selected path.</p>
+      <div id="smartPromptCard" class="card result-card">
+        Complete your assessment first, or answer the prompts below based on what fits you today.
+      </div>
+
+      <label id="smartPromptOneLabel">Smart Prompt 1</label>
+      <textarea id="smartPromptOne" placeholder="Your answer..."></textarea>
+
+      <label id="smartPromptTwoLabel">Smart Prompt 2</label>
+      <textarea id="smartPromptTwo" placeholder="Your answer..."></textarea>
+
+      <label id="smartPromptThreeLabel">Smart Prompt 3</label>
+      <textarea id="smartPromptThree" placeholder="Your answer..."></textarea>
+
+      <button onclick="saveJournal()">Save Reflection +10 XP</button>
+      <div id="journalResult" class="card result-card hidden"></div>
+      </div>
+    </section>
+
+    <section id="weekly" class="screen">
+      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
+      <div class="progress"><span>1</span><span>2</span><span class="active-step">3</span><span>4</span></div>
+      <h2>Your Weekly Review</h2>
+      <div id="weeklyCard" class="card result-card">Complete activities this week to see your progress.</div>
+      <div class="card">Streak: <strong id="streakText">0 days</strong></div>
+      <div class="card">Activities Completed: <strong id="activitiesText">0</strong></div>
+      <div class="card">Keep going. Small steady steps build a steadier mind.</div>
+    </section>
+
+    <section id="settings" class="screen">
+      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
+      <h2>Settings</h2>
+      <div class="sound-settings card">
+        <strong>Sound</strong>
+        <p>Use gentle sounds for buttons, XP, and breathing guidance.</p>
+        <label class="toggle-row">
+          <span>Enable Sounds</span>
+          <input type="checkbox" id="soundToggle" checked onchange="toggleSoundSetting()">
+        </label>
+        <label>Ambient Soundscape</label>
+        <select id="ambientSelect" onchange="setAmbientChoice()">
+          <option value="none">None</option>
+          <option value="rain">Light Rain</option>
+          <option value="ocean">Ocean Waves</option>
+          <option value="forest">Forest</option>
+        </select>
+      </div>
+      <div class="feature-card" onclick="showScreen('privacy')">Privacy Policy</div>
+      <div class="feature-card" onclick="showScreen('terms')">Terms & Conditions</div>
+      <div class="feature-card" onclick="showScreen('welcome')">Log Out</div>
+    </section>
+
+    <section id="privacy" class="screen">
+      <button class="text-back" onclick="showScreen('settings')">← Back</button>
+      <h2>Privacy Policy</h2>
+      <p>SteadyMind respects your privacy. We do not sell your personal information. Your check-ins, reflections, and wellness data are used to personalize your experience.</p>
+      <p>SteadyMind is a wellness tool and is not a replacement for medical advice, diagnosis, therapy, or treatment.</p>
+    </section>
+
+    <section id="terms" class="screen">
+      <button class="text-back" onclick="showScreen('settings')">← Back</button>
+      <h2>Terms & Conditions</h2>
+      <p>By using SteadyMind, you agree that the app is for wellness, education, and self-support purposes only.</p>
+      <p>SteadyMind does not provide medical advice, diagnose conditions, or replace professional care.</p>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
