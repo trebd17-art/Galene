@@ -3993,7 +3993,22 @@ function sendSteadierPathNotification(title, body) {
     icon: "logo.png"
   });
 }
+function testNotification() {
+  if (!("Notification" in window)) {
+    alert("Notifications are not supported on this device/browser yet.");
+    return;
+  }
 
+  if (Notification.permission !== "granted") {
+    alert("Please tap Enable Notifications first.");
+    return;
+  }
+
+  sendSteadierPathNotification(
+    "SteadierPath",
+    "Your notifications are working perfectly."
+  );
+}
 function checkDailyNotifications() {
   var saved = localStorage.getItem("steadierPath.notifications");
   if (!saved) return;
