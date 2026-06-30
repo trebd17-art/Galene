@@ -756,6 +756,31 @@
     <section id="settings" class="screen">
       <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
       <h2>Settings</h2>
+      <div class="premium-card">
+  <div class="card-heading-row">
+    <div class="circle-icon">🔔</div>
+    <h3>Notifications</h3>
+  </div>
+
+  <p>Choose gentle reminders to help you stay consistent.</p>
+
+  <label class="toggle-row">
+    <span>Morning Reset Reminder</span>
+    <input type="checkbox" id="morningReminder" onchange="saveNotificationSettings()">
+  </label>
+
+  <label class="toggle-row">
+    <span>Evening Reflection Reminder</span>
+    <input type="checkbox" id="eveningReminder" onchange="saveNotificationSettings()">
+  </label>
+
+  <label class="toggle-row">
+    <span>Streak Reminder</span>
+    <input type="checkbox" id="streakReminder" onchange="saveNotificationSettings()">
+  </label>
+
+  <button class="secondary" onclick="requestNotificationPermission()">Enable Notifications</button>
+</div>
       <div class="sound-settings card">
         <strong>Sound</strong>
         <p>Use gentle sounds for buttons, XP, and breathing guidance.</p>
