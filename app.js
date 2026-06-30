@@ -3937,3 +3937,112 @@ if(oldShowScreenV54){
     }
   };
 }
+/* v55 Gentle Notification System */
+
+function requestNotificationPermission() {
+  if (!("Notification" in window)) {
+    alert("Notifications are not supported on this device/browser yet.");
+    return;
+  }
+
+  Notification.requestPermission().then(function(permission) {
+    if (permission === "granted") {
+      alert("Notifications enabled.");
+      saveNotificationSettings();
+    } else {
+      alert("Notifications were not enabled.");
+    }
+  });
+}
+
+function saveNotificationSettings() {
+  var settings = {
+    morning: document.getElementById("morningReminder")?.checked || false,
+    evening: document.getElementById("eveningReminder")?.checked || false,
+    streak: document.getElementById("streakReminder")?.checked || false
+  };
+
+  localStorage.setItem("steadierPath.notifications", JSON.stringify(settings));
+}
+
+function loadNotificationSettings() {
+  var saved = localStorage.getItem("steadierPath.notifications");
+  if (!saved) return;
+
+  try {
+    var settings = JSON.parse(saved);
+
+    var morning = document.getElementById("morningReminder");
+    var evening = document.getElementById("eveningReminder");
+    var streak = document.getElementById("streakReminder");
+
+    if (morning) morning.checked = !!settings.morning;
+    if (evening) evening.checked = !!settings.evening;
+    if (streak) streak.checked = !!settings.streak;
+  } catch (error) {
+    console.warn("Could not load notification settings:", error);
+  }
+}
+
+function sendSteadierPathNotification(title, body) {
+  if (!("Notification" in window)) return;
+  if (Notification.permission !== "granted") return;
+
+  new Notification(title, {
+    body: body,
+    icon: "logo.png"
+  });
+}
+
+function checkDailyNotifications() {
+  var saved = localStorage.getItem("steadierPath.notifications");
+  if (!saved) return;
+
+  var settings;
+
+  try {
+    settings = JSON.parse(saved);
+  } catch (error) {
+    return;
+  }
+
+  var now = new Date();
+  var hour = now.getHours();
+  var today = now.toDateString();
+
+  var lastMorning = localStorage.getItem("steadierPath.lastMorningNotification");
+  var lastEvening = localStorage.getItem("steadierPath.lastEveningNotification");
+  var lastStreak = localStorage.getItem("steadierPath.lastStreakNotification");
+
+  if (settings.morning && hour >= 7 && hour <= 11 && lastMorning !== today) {
+    sendSteadierPathNotification(
+      "Start steady today",
+      "Take one minute for your morning reset."
+    );
+    localStorage.setItem("steadierPath.lastMorningNotification", today);
+  }
+
+  if (settings.evening && hour >= 18 && hour <= 22 && lastEvening !== today) {
+    sendSteadierPathNotification(
+      "Evening reflection",
+      "Take a moment to check in and close the day calmly."
+    );
+    localStorage.setItem("steadierPath.lastEveningNotification", today);
+  }
+
+  if (settings.streak && hour >= 17 && hour <= 22 && lastStreak !== today) {
+    sendSteadierPathNotification(
+      "Keep your streak alive",
+      "A small steady step today keeps your progress moving."
+    );
+    localStorage.setItem("steadierPath.lastStreakNotification", today);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  loadNotificationSettings();
+
+  setTimeout(checkDailyNotifications, 2000);
+
+  setInterval(checkDailyNotifications, 60000);
+});
