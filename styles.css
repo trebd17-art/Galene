@@ -2895,3 +2895,26 @@ h1,h2,h3,.emergency-message-bubble,.guided-message strong,.primary-home-card str
 #todayDashboardStartBtn {
   cursor: pointer;
 }
+.daily-encouragement-card {
+  margin: 16px 0;
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 12px 28px rgba(13, 51, 66, 0.08);
+  text-align: center;
+}
+
+.encouragement-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 8px;
+}
+
+#dailyEncouragementText {
+  font-size: 16px;
+  line-height: 1.45;
+  font-weight: 600;
+}
