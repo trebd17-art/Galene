@@ -591,7 +591,11 @@ function renderHome() {
     if(btn) btn.textContent = "Build My Plan →";
   } else {
     const plan = appData.savedPlan;
-    if(status) status.textContent = `Plan ready: ${plan.path.title} · ${plan.time} per day`;
+    const pathTitle = typeof plan.path === "object"
+  ? (plan.path.title || plan.path.name || "Calm Foundations")
+  : plan.path;
+
+if(status) status.textContent = `Plan ready: ${pathTitle} · ${plan.time} per day`;
     if(heading) heading.innerHTML = "Continue My<br>Plan";
     if(sub) sub.textContent = "Return to your personalized path";
     if(desc) desc.textContent = `Today's Focus: ${plan.path.name}. ${plan.path.daily[0]}.`;
