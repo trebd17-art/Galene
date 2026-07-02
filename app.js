@@ -417,7 +417,16 @@ function loadAppData() {
   const savedNotifications = safeParse(localStorage.getItem("steadierPath.notifications"), null);
   if(savedNotifications) appData.notifications = { ...appData.notifications, ...savedNotifications };
 }
-
+ // Important fix:
+  // Do NOT treat planBuilt as true unless savedPlan actually exists.
+  if (appData.savedPlan && appData.savedPlan.path) {
+    appData.planBuilt = true;
+    localStorage.setItem("steadierPath.planBuilt", "true");
+  } else {
+    appData.planBuilt = false;
+    localStorage.setItem("steadierPath.planBuilt", "false");
+  }
+}
 function showScreen(screenId) {
   stopBreathing();
   document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
