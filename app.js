@@ -1300,3 +1300,40 @@ document.addEventListener("DOMContentLoaded", function(){
     }, 1600);
   }
 });
+/* v56.1 Profile Restore Fix */
+
+function forceProfileRefreshV561() {
+  try {
+    loadAppData();
+  } catch (e) {}
+
+  if (appData && appData.savedPlan) {
+    appData.planBuilt = true;
+    localStorage.setItem("steadierPath.planBuilt", "true");
+    renderSavedPlan();
+    renderHome();
+    saveAppData();
+  }
+}
+
+const oldShowScreenV561 = showScreen;
+showScreen = function(screenId) {
+  oldShowScreenV561(screenId);
+
+  if (screenId === "dashboard" || screenId === "mainMenu") {
+    setTimeout(forceProfileRefreshV561, 50);
+  }
+};
+
+const oldBuildPlanAndSaveV561 = buildPlanAndSave;
+buildPlanAndSave = function() {
+  oldBuildPlanAndSaveV561();
+
+  if (appData && appData.savedPlan) {
+    appData.planBuilt = true;
+    localStorage.setItem("steadierPath.planBuilt", "true");
+    saveAppData();
+    renderSavedPlan();
+    renderHome();
+  }
+};
