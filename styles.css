@@ -1,0 +1,58 @@
+*{box-sizing:border-box}
+:root{--ink:#12333c;--muted:#5d7378;--line:rgba(18,51,60,.13);--card:rgba(255,255,255,.84);--accent:#278198;--accent2:#5fb9a8;--soft:#e7f5f2;--shadow:0 18px 40px rgba(18,51,60,.12)}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);min-height:100vh;background:linear-gradient(135deg,#e8f7f5,#fff8e6)}
+.phone{width:min(430px,100%);min-height:100vh;margin:0 auto;padding:18px;overflow-x:hidden}
+.screen{display:none!important}.screen.active{display:block!important;animation:fade .22s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.center-screen{min-height:calc(100vh - 36px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px}
+.logo-big{width:150px;height:150px;border-radius:28px;object-fit:contain;background:#fff;box-shadow:var(--shadow)}
+.logo-small{width:110px;height:110px;border-radius:24px;object-fit:contain;background:#fff;display:block;margin:0 auto 12px;box-shadow:0 8px 22px rgba(18,51,60,.08)}
+h1,h2,h3{font-family:Nunito,Inter,sans-serif;line-height:1.05;margin:8px 0}
+h1{font-size:38px}h2{font-size:31px}h3{font-size:22px}p{line-height:1.45}
+.intro,.tagline,.legal,.prompt-hint,small{color:var(--muted)}.center-title{text-align:center}
+.eyebrow,.section-label,.small-label,.encouragement-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:900;color:var(--accent);margin-bottom:8px}
+button{width:100%;border:0;border-radius:24px;padding:15px 18px;margin:8px 0;font-size:15px;font-weight:800;color:white;background:linear-gradient(135deg,var(--accent),#146579);box-shadow:0 12px 28px rgba(20,101,121,.22);cursor:pointer}
+button.secondary,.secondary{background:rgba(255,255,255,.76);color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.text-back{width:auto;background:transparent;color:#146579;box-shadow:none;padding:7px 0;margin:0 0 12px}
+.card,.premium-card,.feature-card,.daily-encouragement-card,.daily-priority-card,.plan-status,.today-progress-strip,.quiet-reminder-text,.today-plan-shell,.today-plan-card,.emergency-message-bubble,.floating-thought-card{background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:18px;margin:14px 0}
+.daily-encouragement-card{text-align:center}
+#dailyEncouragementText,.quiet-reminder-text{font-size:17px;font-weight:800;line-height:1.45}
+.plan-status{text-align:center;font-weight:800;color:var(--muted)}
+.dynamic-greeting{text-align:center;margin-top:4px;margin-bottom:14px}
+.dynamic-greeting-title{font-size:1.25rem;font-weight:800;color:var(--accent)}
+.dynamic-greeting-subtitle{font-size:.92rem;color:#666;margin-top:4px}
+.focus-time{color:var(--muted);font-weight:800}
+.inset-card{box-shadow:none;margin-top:14px;margin-bottom:0}
+.inset-card p{margin-bottom:0;color:var(--muted)}
+.priority-top,.card-heading-row,.today-plan-top,.emergency-player-header{display:flex;align-items:center;gap:12px}
+.circle-icon{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#7ed2c4,#23829b);font-size:24px;flex:0 0 auto}
+.priority-body{margin:14px 0}
+.today-progress-strip{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center}
+.mini-progress,.xp-wrap,.today-plan-progress,.mood-meter{height:12px;background:rgba(18,51,60,.1);border-radius:999px;overflow:hidden}
+#homeProgressFill,#xpFill,#rewardsXpFill,#todayPlanProgressFill,#moodMeterFill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:999px;transition:width .3s ease}
+.support-grid,.emergency-tool-grid,.game-icon-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.support-tile,.emergency-tool-card,.game-icon-card{min-height:124px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:6px;background:rgba(255,255,255,.82);color:var(--ink);box-shadow:var(--shadow);border:1px solid var(--line);text-align:left}
+.support-tile span,.emergency-tool-card span,.game-icon-card span{font-size:28px}
+.secondary-actions,.thought-buckets{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-weight:800;margin:14px 0 7px}
+input,select,textarea{width:100%;border:1px solid var(--line);border-radius:17px;padding:13px;background:rgba(255,255,255,.76);font:inherit;color:var(--ink)}
+textarea{min-height:95px;resize:vertical}.hidden{display:none!important}
+.choices label,.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.65);border-radius:17px;padding:10px 12px}
+.choices input,.toggle-row input{width:auto}
+.selected-chips span{display:inline-block;margin:4px;padding:6px 10px;border-radius:999px;background:var(--soft)}
+.profile-row{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.profile-label{font-weight:900}.profile-value{grid-column:2;color:var(--muted)}
+.today-focus-box ol{padding-left:20px}
+.breathing-panel{display:grid;place-items:center;min-height:220px}
+.breathing-circle{width:170px;height:170px;border-radius:50%;display:grid;place-items:center;text-align:center;padding:20px;background:radial-gradient(circle,#dff8ef,#68bbaa);box-shadow:0 18px 45px rgba(20,101,121,.18);transition:transform 4s ease}
+.breathing-circle.inhale{transform:scale(1.18)}.breathing-circle.hold{transform:scale(1.18)}.breathing-circle.exhale{transform:scale(.9)}
+.color-board{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:16px 0}
+.color-cell{aspect-ratio:1/1;min-height:48px;border-radius:15px;margin:0;box-shadow:none}
+.color-cell.calm{background:#73caa5}.color-cell.focus{background:#75aee4}.color-cell.anxiety{background:#e57874}
+.floating-thought-card{min-height:130px;display:grid;place-items:center;text-align:center;font-weight:900}
+.focus-play-area{height:330px;position:relative;background:linear-gradient(180deg,#dff5f8,#eaf7f4);border:1px solid var(--line);border-radius:28px;overflow:hidden;margin:14px 0}
+.focus-orb,.noise-orb{position:absolute;width:76px;height:76px;border-radius:50%;display:grid;place-items:center;margin:0;box-shadow:0 10px 20px rgba(0,0,0,.12)}
+.focus-orb{background:#71b9e8}.noise-orb{background:#e77b76}
+.emergency-message-bubble{font-size:18px;line-height:1.5;min-height:130px}
+.result-card{background:rgba(255,255,255,.68)}a{color:#146579;font-weight:900}.reward-level-card{font-size:20px;font-weight:900}
+@media(max-width:380px){.support-grid,.emergency-tool-grid,.game-icon-grid,.secondary-actions,.today-progress-strip{grid-template-columns:1fr}.logo-big{width:128px;height:128px}.logo-small{width:96px;height:96px}}
