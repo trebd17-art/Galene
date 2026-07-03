@@ -50,6 +50,14 @@ label{display:block;font-weight:800;margin:14px 0 7px}input,select,textarea{widt
 
 <section id="mainMenu" class="screen">
 <img src="logo.png" class="logo-small" alt="SteadierPath Logo"><p class="eyebrow center-title">Your steady step for today</p><h2 class="center-title">SteadierPath Home</h2>
+<div
+    id="dynamicGreeting"
+    style="
+        text-align:center;
+        margin-top:-6px;
+        margin-bottom:18px;
+    ">
+</div>
 <div class="daily-encouragement-card"><p class="encouragement-label">A Quiet Reminder</p><div id="dailyEncouragementText">Loading today's reflection...</div></div>
 <div id="planStatus" class="plan-status">No plan built yet. Start with “Build My Plan.”</div>
 <div class="daily-priority-card"><div class="priority-top"><div class="circle-icon">🌤️</div><div><p class="eyebrow">Recommended next step</p><h3 id="homePlanHeading">Build My Plan</h3></div></div><div class="priority-body"><strong id="homePlanSubheading">Build your personalized path</strong><p id="homePlanDescription">Answer a few questions so SteadierPath can guide your daily calm, focus, and confidence plan.</p></div><button id="homePlanCTA" onclick="handleHomePlanCTA(event)">Build My Plan →</button></div>
