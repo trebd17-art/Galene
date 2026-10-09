@@ -133,28 +133,28 @@ function determineMindType(improvements, challenge, hope){
   if(all.includes("overthinking") || all.includes("negative")){
     return {
       name: "🧠 Deep Thinker",
-      description: "Your mind works hard to understand and prepare, but SteadyMind will help you turn mental noise into clarity."
+      description: "Your mind works hard to understand and prepare, but SteadierMind will help you turn mental noise into clarity."
     };
   }
 
   if(all.includes("confidence") || all.includes("social anxiety")){
     return {
       name: "🦁 Quiet Leader",
-      description: "You may doubt yourself at times, but there is courage there. SteadyMind will help you build it through small actions."
+      description: "You may doubt yourself at times, but there is courage there. SteadierMind will help you build it through small actions."
     };
   }
 
   if(all.includes("burnout") || all.includes("work stress")){
     return {
       name: "🔥 Burned-Out Achiever",
-      description: "You keep pushing, but your mind and body need recovery. SteadyMind will help you rebuild energy and balance."
+      description: "You keep pushing, but your mind and body need recovery. SteadierMind will help you rebuild energy and balance."
     };
   }
 
   if(all.includes("motivation") || all.includes("energized")){
     return {
       name: "🚀 Momentum Builder",
-      description: "You want to move forward. SteadyMind will help you turn small wins into steady progress."
+      description: "You want to move forward. SteadierMind will help you turn small wins into steady progress."
     };
   }
 
@@ -180,7 +180,7 @@ function buildPlanAndSave(){
   const time = timeEl.value;
   const hope = hopeEl.value;
   const userType = userTypeEl.value;
-  const improvementText = improvements.length ? improvements.join(", ") : "your steady mind";
+  const improvementText = improvements.length ? improvements.join(", ") : "your SteadierMind";
 
   const path = determinePrimaryPath(improvements, challenge);
   const mindType = determineMindType(improvements, challenge, hope);
@@ -223,7 +223,7 @@ function renderSavedPlan(){
   const plan = savedSteadyPlan;
 
   document.getElementById("profileCard").innerHTML =
-    `<strong>Your SteadyMind Profile</strong><br><br>
+    `<strong>Your SteadierMind Profile</strong><br><br>
     • User type: ${plan.userType}<br>
     • Wants to improve: ${plan.improvementText}<br>
     • Biggest challenge: ${plan.challenge}<br>
@@ -253,7 +253,7 @@ function renderSavedPlan(){
   const weeklyCard = document.getElementById("weeklyCard");
   if(weeklyCard){
     weeklyCard.innerHTML =
-      `<strong>This week, SteadyMind will track:</strong><br>
+      `<strong>This week, SteadierMind will track:</strong><br>
       • Anxiety and stress trends<br>
       • Confidence and focus growth<br>
       • Activities completed<br>
@@ -285,7 +285,7 @@ function updatePlanStatus(){
 }
 
 function getLevelName(points){
-  if(points >= 400) return "Level 5: SteadyMind Master";
+  if(points >= 400) return "Level 5: SteadierMind Master";
   if(points >= 300) return "Level 4: Resilient Thinker";
   if(points >= 200) return "Level 3: Storm Navigator";
   if(points >= 100) return "Level 2: Steady Builder";
@@ -336,7 +336,7 @@ function stopBreathingExercise(){
   }
 
   if(box){
-    box.textContent = "Breathe with SteadyMind";
+    box.textContent = "Breathe with SteadierMind";
   }
 
   if(timerEl){
@@ -460,7 +460,7 @@ function playGame(game){
 function openLesson(topic){
   const lessons = {
     "Anxiety Basics":"Anxiety is your body's alarm system. The goal is not to fear the alarm, but to understand it and respond steadily.",
-    "Overthinking":"Overthinking is often your mind trying to solve uncertainty. SteadyMind helps you separate useful planning from mental noise.",
+    "Overthinking":"Overthinking is often your mind trying to solve uncertainty. SteadierMind helps you separate useful planning from mental noise.",
     "Confidence":"Confidence grows after action. Small repeated courage steps build self-trust.",
     "Sleep":"Sleep improves when your body feels safe. Wind-down routines teach your nervous system to settle."
   };
@@ -496,7 +496,7 @@ function updateSmartPrompts(){
   const challenge = currentProfile.challenge || (document.getElementById("challenge") ? document.getElementById("challenge").value : "");
   const all = [...improvements, challenge].join(" ").toLowerCase();
 
-  let title = "General SteadyMind Reflection";
+  let title = "General SteadierMind Reflection";
   let prompts = [
     "What thought or feeling needs your attention today?",
     "What would a calmer version of you say about this situation?",
@@ -1119,7 +1119,7 @@ renderSavedPlan = function(){
   document.getElementById("pathCard").innerHTML = `<div class="path-pill">☆ Primary Path: ${plan.path.title}</div><br>Supporting Focus: ${plan.supportingPaths.length ? plan.supportingPaths.join(", ") : "Steady daily habits"}<br><br>This path is designed to help you feel more <strong>${plan.hope}</strong> while working through <strong>${plan.challenge}</strong>.`;
   document.getElementById("dailyPlanCard").innerHTML = `<strong>Today's Focus: ${plan.path.name}</strong><br>Today's Goal: Take one small action that helps you steady your mind.<br><br><strong>Your ${plan.time} reset:</strong><ol><li>${plan.path.daily[0]}</li><li>${plan.path.daily[1]}</li><li>${plan.path.daily[2]}</li></ol>`;
   const weeklyCard = document.getElementById("weeklyCard");
-  if(weeklyCard){weeklyCard.innerHTML = `<strong>This week, SteadyMind will track:</strong><br>• Anxiety and stress trends<br>• Confidence and focus growth<br>• Activities completed<br>• Mind Points earned<br><br>Your first goal: complete one steady activity today.`;}
+  if(weeklyCard){weeklyCard.innerHTML = `<strong>This week, SteadierMind will track:</strong><br>• Anxiety and stress trends<br>• Confidence and focus growth<br>• Activities completed<br>• Mind Points earned<br><br>Your first goal: complete one steady activity today.`;}
   updateXP();
 };
 
@@ -1136,7 +1136,7 @@ function updateFocusedHome(){
   if(!savedSteadyPlan){
     if(primaryTitle)primaryTitle.textContent="Continue My Plan";
     if(mindType)mindType.textContent="Build your personalized path";
-    if(focus)focus.textContent="Answer a few questions so SteadyMind can guide your daily calm, focus, and confidence plan.";
+    if(focus)focus.textContent="Answer a few questions so SteadierMind can guide your daily calm, focus, and confidence plan.";
     return;
   }
   const plan=savedSteadyPlan;
@@ -2044,28 +2044,28 @@ function closeEmergencyTool(){
 /* v30 game menu restored; existing game logic preserved. */
 
 /* v31 XP, Rewards, Difficulty, Bug Fixes */
-var STEADYMIND_XP_PER_LEVEL=250;
+var STEADIERMIND_XP_PER_LEVEL=250;
 function getSteadyLevelInfo(){
   const totalXP=typeof mindPoints!=="undefined"?mindPoints:0;
-  const level=Math.floor(totalXP/STEADYMIND_XP_PER_LEVEL)+1;
-  const xpIntoLevel=totalXP%STEADYMIND_XP_PER_LEVEL;
-  const remaining=STEADYMIND_XP_PER_LEVEL-xpIntoLevel;
-  const names={1:"Calm Seeker",2:"Building Stability",3:"Steady Beginner",4:"Finding Balance",5:"Grounded Mind",6:"Focus Builder",7:"Calm Under Pressure",8:"Resilience Builder",9:"Thought Challenger",10:"Storm Navigator",15:"Steady Guide",20:"Resilient Mind",30:"Calm Leader",40:"Deeply Grounded",50:"SteadyMind Master"};
-  return {totalXP,level,xpIntoLevel,remaining,name:names[level]||(level>=50?"SteadyMind Master":"Steady Progress")};
+  const level=Math.floor(totalXP/STEADIERMIND_XP_PER_LEVEL)+1;
+  const xpIntoLevel=totalXP%STEADIERMIND_XP_PER_LEVEL;
+  const remaining=STEADIERMIND_XP_PER_LEVEL-xpIntoLevel;
+  const names={1:"Calm Seeker",2:"Building Stability",3:"Steady Beginner",4:"Finding Balance",5:"Grounded Mind",6:"Focus Builder",7:"Calm Under Pressure",8:"Resilience Builder",9:"Thought Challenger",10:"Storm Navigator",15:"Steady Guide",20:"Resilient Mind",30:"Calm Leader",40:"Deeply Grounded",50:"SteadierMind Master"};
+  return {totalXP,level,xpIntoLevel,remaining,name:names[level]||(level>=50?"SteadierMind Master":"Steady Progress")};
 }
 function renderRewardsPage(){
   const i=getSteadyLevelInfo();
   const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val};
-  set("rewardsLevelCard",`Level ${i.level}: ${i.name}`);set("rewardsXpText",`${i.xpIntoLevel} / ${STEADYMIND_XP_PER_LEVEL} XP`);set("rewardsRemainingText",`${i.remaining} XP until Level ${i.level+1}.`);
-  const f=document.getElementById("rewardsXpFill");if(f)f.style.width=`${(i.xpIntoLevel/STEADYMIND_XP_PER_LEVEL)*100}%`;
+  set("rewardsLevelCard",`Level ${i.level}: ${i.name}`);set("rewardsXpText",`${i.xpIntoLevel} / ${STEADIERMIND_XP_PER_LEVEL} XP`);set("rewardsRemainingText",`${i.remaining} XP until Level ${i.level+1}.`);
+  const f=document.getElementById("rewardsXpFill");if(f)f.style.width=`${(i.xpIntoLevel/STEADIERMIND_XP_PER_LEVEL)*100}%`;
 }
 var _v31ShowScreen=showScreen;showScreen=function(screenId){_v31ShowScreen(screenId);if(screenId==="rewards")renderRewardsPage();};
 var _v31UpdateXP=updateXP;updateXP=function(){
   const i=getSteadyLevelInfo();
   const levelNameEl=document.getElementById("levelName"),xpFill=document.getElementById("xpFill"),xpText=document.getElementById("xpText");
   if(levelNameEl)levelNameEl.textContent=`Level ${i.level}: ${i.name}`;
-  if(xpFill)xpFill.style.width=`${(i.xpIntoLevel/STEADYMIND_XP_PER_LEVEL)*100}%`;
-  if(xpText)xpText.textContent=`${i.xpIntoLevel} / ${STEADYMIND_XP_PER_LEVEL} XP • ${i.remaining} XP to Level ${i.level+1}`;
+  if(xpFill)xpFill.style.width=`${(i.xpIntoLevel/STEADIERMIND_XP_PER_LEVEL)*100}%`;
+  if(xpText)xpText.textContent=`${i.xpIntoLevel} / ${STEADIERMIND_XP_PER_LEVEL} XP • ${i.remaining} XP to Level ${i.level+1}`;
   renderRewardsPage();
 };
 document.addEventListener("DOMContentLoaded",()=>setTimeout(()=>{document.querySelectorAll("h3").forEach(h=>{if(h.textContent.trim().toLowerCase()==="gamified progress")h.textContent="Steady Progress";});updateXP();},300));
@@ -2751,15 +2751,15 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 /* v40 Local Storage System */
-var STEADYMIND_STORAGE_KEY = "steadyMind.v1.data";
-var steadyMindLoadedFromStorage = false;
-var steadyMindJournalEntries = [];
-var steadyMindMoodHistory = [];
-var steadyMindGameProgress = {};
-var steadyMindAchievements = [];
-var steadyMindCompletedDates = [];
+var STEADIERMIND_STORAGE_KEY = "steadyMind.v1.data";
+var steadierMindLoadedFromStorage = false;
+var steadierMindJournalEntries = [];
+var steadierMindMoodHistory = [];
+var steadierMindGameProgress = {};
+var steadierMindAchievements = [];
+var steadierMindCompletedDates = [];
 
-function getSteadyMindSnapshot(){
+function getSteadierMindSnapshot(){
   var plan = null;
   try { plan = typeof savedSteadyPlan !== "undefined" ? savedSteadyPlan : null; } catch(e){}
 
@@ -2778,11 +2778,11 @@ function getSteadyMindSnapshot(){
       challenge: typeof selectedChallenge !== "undefined" ? selectedChallenge : null
     },
 
-    journalEntries: steadyMindJournalEntries,
-    moodHistory: steadyMindMoodHistory,
-    gameProgress: steadyMindGameProgress,
-    achievements: steadyMindAchievements,
-    completedDates: steadyMindCompletedDates,
+    journalEntries: steadierMindJournalEntries,
+    moodHistory: steadierMindMoodHistory,
+    gameProgress: steadierMindGameProgress,
+    achievements: steadierMindAchievements,
+    completedDates: steadierMindCompletedDates,
 
     games: {
       centeredLevel: typeof centeredLevel !== "undefined" ? centeredLevel : 1,
@@ -2793,24 +2793,24 @@ function getSteadyMindSnapshot(){
   };
 }
 
-function saveSteadyMindData(){
+function saveSteadierMindData(){
   try {
-    var snapshot = getSteadyMindSnapshot();
-    localStorage.setItem(STEADYMIND_STORAGE_KEY, JSON.stringify(snapshot));
+    var snapshot = getSteadierMindSnapshot();
+    localStorage.setItem(STEADIERMIND_STORAGE_KEY, JSON.stringify(snapshot));
     return true;
   } catch(err) {
-    console.warn("SteadyMind save failed:", err);
+    console.warn("SteadierMind save failed:", err);
     return false;
   }
 }
 
-function loadSteadyMindData(){
+function loadSteadierMindData(){
   try {
-    var raw = localStorage.getItem(STEADYMIND_STORAGE_KEY);
+    var raw = localStorage.getItem(STEADIERMIND_STORAGE_KEY);
     if(!raw) return false;
 
     var data = JSON.parse(raw);
-    steadyMindLoadedFromStorage = true;
+    steadierMindLoadedFromStorage = true;
 
     if(typeof mindPoints !== "undefined") mindPoints = Number(data.xp || 0);
     if(typeof completedActivities !== "undefined") completedActivities = Number(data.completedActivities || 0);
@@ -2824,11 +2824,11 @@ function loadSteadyMindData(){
       try { if(typeof selectedChallenge !== "undefined") selectedChallenge = data.selectedOptions.challenge; } catch(e){}
     }
 
-    steadyMindJournalEntries = Array.isArray(data.journalEntries) ? data.journalEntries : [];
-    steadyMindMoodHistory = Array.isArray(data.moodHistory) ? data.moodHistory : [];
-    steadyMindGameProgress = data.gameProgress || {};
-    steadyMindAchievements = Array.isArray(data.achievements) ? data.achievements : [];
-    steadyMindCompletedDates = Array.isArray(data.completedDates) ? data.completedDates : [];
+    steadierMindJournalEntries = Array.isArray(data.journalEntries) ? data.journalEntries : [];
+    steadierMindMoodHistory = Array.isArray(data.moodHistory) ? data.moodHistory : [];
+    steadierMindGameProgress = data.gameProgress || {};
+    steadierMindAchievements = Array.isArray(data.achievements) ? data.achievements : [];
+    steadierMindCompletedDates = Array.isArray(data.completedDates) ? data.completedDates : [];
 
     if(data.games){
       try { if(typeof centeredLevel !== "undefined") centeredLevel = Number(data.games.centeredLevel || 1); } catch(e){}
@@ -2837,15 +2837,15 @@ function loadSteadyMindData(){
       try { if(typeof thoughtDifficulty !== "undefined") thoughtDifficulty = data.games.thoughtDifficulty || "easy"; } catch(e){}
     }
 
-    refreshSteadyMindSavedUI();
+    refreshSteadierMindSavedUI();
     return true;
   } catch(err) {
-    console.warn("SteadyMind load failed:", err);
+    console.warn("SteadierMind load failed:", err);
     return false;
   }
 }
 
-function refreshSteadyMindSavedUI(){
+function refreshSteadierMindSavedUI(){
   try { if(typeof updateXP === "function") updateXP(); } catch(e){}
   try { if(typeof updatePlanStatus === "function") updatePlanStatus(); } catch(e){}
   try { if(typeof renderRewardsPage === "function") renderRewardsPage(); } catch(e){}
@@ -2862,9 +2862,9 @@ function renderSavedJournalEntries(){
 
   if(!targets.length) return;
 
-  var html = steadyMindJournalEntries.length
-    ? steadyMindJournalEntries.slice().reverse().map(function(entry){
-        return '<div class="saved-entry"><strong>' + escapeSteadyMindHTML(entry.date || "") + '</strong><p>' + escapeSteadyMindHTML(entry.text || entry.summary || "") + '</p></div>';
+  var html = steadierMindJournalEntries.length
+    ? steadierMindJournalEntries.slice().reverse().map(function(entry){
+        return '<div class="saved-entry"><strong>' + escapeSteadierMindHTML(entry.date || "") + '</strong><p>' + escapeSteadierMindHTML(entry.text || entry.summary || "") + '</p></div>';
       }).join("")
     : "<p>No saved journal entries yet.</p>";
 
@@ -2880,16 +2880,16 @@ function renderSavedMoodHistory(){
 
   if(!targets.length) return;
 
-  var html = steadyMindMoodHistory.length
-    ? steadyMindMoodHistory.slice().reverse().map(function(entry){
-        return '<div class="saved-entry"><strong>' + escapeSteadyMindHTML(entry.date || "") + '</strong><p>Mood: ' + escapeSteadyMindHTML(String(entry.mood || entry.value || "")) + '</p></div>';
+  var html = steadierMindMoodHistory.length
+    ? steadierMindMoodHistory.slice().reverse().map(function(entry){
+        return '<div class="saved-entry"><strong>' + escapeSteadierMindHTML(entry.date || "") + '</strong><p>Mood: ' + escapeSteadierMindHTML(String(entry.mood || entry.value || "")) + '</p></div>';
       }).join("")
     : "<p>No saved moods yet.</p>";
 
   targets.forEach(function(t){ t.innerHTML = html; });
 }
 
-function escapeSteadyMindHTML(value){
+function escapeSteadierMindHTML(value){
   return String(value)
     .replaceAll("&","&amp;")
     .replaceAll("<","&lt;")
@@ -2898,43 +2898,43 @@ function escapeSteadyMindHTML(value){
     .replaceAll("'","&#039;");
 }
 
-function recordSteadyMindJournalEntry(entry){
+function recordSteadierMindJournalEntry(entry){
   var finalEntry = entry || {};
   finalEntry.date = finalEntry.date || new Date().toLocaleString();
-  steadyMindJournalEntries.push(finalEntry);
-  saveSteadyMindData();
+  steadierMindJournalEntries.push(finalEntry);
+  saveSteadierMindData();
   renderSavedJournalEntries();
 }
 
-function recordSteadyMindMoodEntry(entry){
+function recordSteadierMindMoodEntry(entry){
   var finalEntry = entry || {};
   finalEntry.date = finalEntry.date || new Date().toLocaleString();
-  steadyMindMoodHistory.push(finalEntry);
-  saveSteadyMindData();
+  steadierMindMoodHistory.push(finalEntry);
+  saveSteadierMindData();
   renderSavedMoodHistory();
 }
 
-function updateSteadyMindGameProgress(game, data){
-  steadyMindGameProgress[game] = Object.assign(steadyMindGameProgress[game] || {}, data || {}, {
+function updateSteadierMindGameProgress(game, data){
+  steadierMindGameProgress[game] = Object.assign(steadierMindGameProgress[game] || {}, data || {}, {
     updatedAt: new Date().toISOString()
   });
-  saveSteadyMindData();
+  saveSteadierMindData();
 }
 
-function exportSteadyMindData(){
-  var data = JSON.stringify(getSteadyMindSnapshot(), null, 2);
+function exportSteadierMindData(){
+  var data = JSON.stringify(getSteadierMindSnapshot(), null, 2);
   var blob = new Blob([data], {type:"application/json"});
   var url = URL.createObjectURL(blob);
   var a = document.createElement("a");
   a.href = url;
-  a.download = "steadymind-data.json";
+  a.download = "steadiermind-data.json";
   a.click();
   URL.revokeObjectURL(url);
 }
 
-function clearSteadyMindData(){
-  if(confirm("Clear saved SteadyMind data on this device?")){
-    localStorage.removeItem(STEADYMIND_STORAGE_KEY);
+function clearSteadierMindData(){
+  if(confirm("Clear saved SteadierMind data on this device?")){
+    localStorage.removeItem(STEADIERMIND_STORAGE_KEY);
     location.reload();
   }
 }
@@ -2944,14 +2944,14 @@ function clearSteadyMindData(){
   var originalUpdateXP = typeof updateXP === "function" ? updateXP : null;
   updateXP = function(){
     if(originalUpdateXP) originalUpdateXP();
-    saveSteadyMindData();
+    saveSteadierMindData();
   };
 
   var originalBuildPlan = typeof buildMyPlan === "function" ? buildMyPlan : null;
   if(originalBuildPlan){
     buildMyPlan = function(){
       var result = originalBuildPlan.apply(this, arguments);
-      saveSteadyMindData();
+      saveSteadierMindData();
       return result;
     };
   }
@@ -2960,7 +2960,7 @@ function clearSteadyMindData(){
   if(originalCompleteActivity){
     completeActivity = function(){
       var result = originalCompleteActivity.apply(this, arguments);
-      saveSteadyMindData();
+      saveSteadierMindData();
       return result;
     };
   }
@@ -2990,9 +2990,9 @@ function captureJournalFromPage(){
     .filter(function(v){ return v && v.trim(); });
 
   if(fields.length){
-    recordSteadyMindJournalEntry({text: fields.join(" | ")});
+    recordSteadierMindJournalEntry({text: fields.join(" | ")});
   } else {
-    saveSteadyMindData();
+    saveSteadierMindData();
   }
 }
 
@@ -3006,18 +3006,18 @@ function captureMoodFromPage(){
   var note = noteField ? noteField.value : "";
 
   if(moodValue || note){
-    recordSteadyMindMoodEntry({mood:moodValue || "Entry", note:note});
+    recordSteadierMindMoodEntry({mood:moodValue || "Entry", note:note});
   } else {
-    saveSteadyMindData();
+    saveSteadierMindData();
   }
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-  loadSteadyMindData();
+  loadSteadierMindData();
 
   document.addEventListener("change", function(event){
     if(event.target && event.target.closest("#journal, #moodTracker, #assessment, #settings")){
-      saveSteadyMindData();
+      saveSteadierMindData();
     }
   });
 
@@ -3028,12 +3028,12 @@ document.addEventListener("DOMContentLoaded", function(){
 
     setTimeout(function(){
       if(text.includes("complete") || text.includes("save") || text.includes("finish") || text.includes("build") || text.includes("start")){
-        saveSteadyMindData();
+        saveSteadierMindData();
       }
     }, 200);
   });
 
-  window.addEventListener("beforeunload", saveSteadyMindData);
+  window.addEventListener("beforeunload", saveSteadierMindData);
 });
 
 
@@ -3085,10 +3085,10 @@ document.addEventListener("DOMContentLoaded", function(){
         el.textContent = built ? "Return to your personalized path" : "Build your personalized path";
       }
 
-      if(t.includes("Answer a few questions so SteadyMind") || t.includes("Your SteadyMind profile is ready")){
+      if(t.includes("Answer a few questions so SteadierMind") || t.includes("Your SteadierMind profile is ready")){
         el.textContent = built
-          ? "Your SteadyMind profile is ready. Continue your daily calm, focus, and confidence plan."
-          : "Answer a few questions so SteadyMind can guide your daily calm, focus, and confidence plan.";
+          ? "Your SteadierMind profile is ready. Continue your daily calm, focus, and confidence plan."
+          : "Answer a few questions so SteadierMind can guide your daily calm, focus, and confidence plan.";
       }
     });
 
@@ -3120,7 +3120,7 @@ document.addEventListener("DOMContentLoaded", function(){
   };
 
   function afterPlanBuilt(){
-    try{ if(typeof saveSteadyMindData === "function") saveSteadyMindData(); }catch(e){}
+    try{ if(typeof saveSteadierMindData === "function") saveSteadierMindData(); }catch(e){}
     setTimeout(function(){
       refreshBuildContinuePlanCard();
       if(smPlanExists() && document.getElementById("profile")){
@@ -3165,9 +3165,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 /* v45 Developer Tools */
-function resetSteadyMindData(){
+function resetSteadierMindData(){
   var confirmed = confirm(
-    "Reset all SteadyMind data?\n\nThis will remove:\n• XP\n• Levels\n• Journal Entries\n• Mood History\n• Personalized Plan\n• Game Progress"
+    "Reset all SteadierMind data?\n\nThis will remove:\n• XP\n• Levels\n• Journal Entries\n• Mood History\n• Personalized Plan\n• Game Progress"
   );
 
   if(!confirmed) return;
@@ -3176,7 +3176,7 @@ function resetSteadyMindData(){
     localStorage.removeItem("steadyMind.v1.data");
     localStorage.clear();
 
-    alert("SteadyMind data cleared. The app will now restart.");
+    alert("SteadierMind data cleared. The app will now restart.");
 
     location.reload();
   }catch(err){
@@ -3184,12 +3184,12 @@ function resetSteadyMindData(){
   }
 }
 
-function viewSteadyMindData(){
+function viewSteadierMindData(){
   try{
     var raw = localStorage.getItem("steadyMind.v1.data");
 
     if(!raw){
-      alert("No SteadyMind data found.");
+      alert("No SteadierMind data found.");
       return;
     }
 
@@ -3204,20 +3204,20 @@ function viewSteadyMindData(){
 }
 
 /* v46 stronger reset tools */
-function resetSteadyMindAppDataHard(){
-  var ok = confirm("Reset SteadyMind as a brand-new user on this device?");
+function resetSteadierMindAppDataHard(){
+  var ok = confirm("Reset SteadierMind as a brand-new user on this device?");
   if(!ok) return;
   try{
     var keys = [];
     for(var i=0;i<localStorage.length;i++){
       var k = localStorage.key(i);
-      if(k && /steady|steadymind|plan|journal|mood|xp/i.test(k)){ keys.push(k); }
+      if(k && /steady|steadiermind|plan|journal|mood|xp/i.test(k)){ keys.push(k); }
     }
     keys.forEach(function(k){ localStorage.removeItem(k); });
     localStorage.removeItem("steadyMind.v1.data");
     localStorage.removeItem("steadyMindData");
     sessionStorage.clear();
-    alert("SteadyMind test data cleared. Reloading now.");
+    alert("SteadierMind test data cleared. Reloading now.");
     window.location.href = window.location.origin + window.location.pathname;
   }catch(err){
     alert("Reset failed: " + err.message);
@@ -3228,7 +3228,7 @@ document.addEventListener("DOMContentLoaded", function(){
   if(window.location.search.includes("dev=true")){
     var btn = document.createElement("button");
     btn.textContent = "Reset Test Data";
-    btn.onclick = resetSteadyMindAppDataHard;
+    btn.onclick = resetSteadierMindAppDataHard;
     btn.style.position = "fixed";
     btn.style.right = "14px";
     btn.style.bottom = "90px";
@@ -3242,21 +3242,21 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 /* v46 override Settings reset */
-function resetSteadyMindData(){
-  resetSteadyMindAppDataHard();
+function resetSteadierMindData(){
+  resetSteadierMindAppDataHard();
 }
 
 
 /* v47 First-run plan-state fix */
-function markSteadyMindPlanBuilt(){
+function markSteadierMindPlanBuilt(){
   try { localStorage.setItem("steadyMind.planBuilt", "true"); } catch(e){}
 }
 
-function clearSteadyMindPlanBuilt(){
+function clearSteadierMindPlanBuilt(){
   try { localStorage.removeItem("steadyMind.planBuilt"); } catch(e){}
 }
 
-function isSteadyMindPlanBuilt(){
+function isSteadierMindPlanBuilt(){
   try {
     return localStorage.getItem("steadyMind.planBuilt") === "true";
   } catch(e){}
@@ -3274,7 +3274,7 @@ function forceFirstRunHomeState(){
   if(sub) sub.textContent = "Build your personalized path";
 
   var desc = document.getElementById("homePlanDescription");
-  if(desc) desc.textContent = "Answer a few questions so SteadyMind can guide your daily calm, focus, and confidence plan.";
+  if(desc) desc.textContent = "Answer a few questions so SteadierMind can guide your daily calm, focus, and confidence plan.";
 
   var btn = document.getElementById("homePlanCTA");
   if(btn){
@@ -3301,7 +3301,7 @@ function forceBuiltPlanHomeState(){
   if(sub) sub.textContent = "Return to your personalized path";
 
   var desc = document.getElementById("homePlanDescription");
-  if(desc) desc.textContent = "Your SteadyMind profile is ready. Continue your daily calm, focus, and confidence plan.";
+  if(desc) desc.textContent = "Your SteadierMind profile is ready. Continue your daily calm, focus, and confidence plan.";
 
   var btn = document.getElementById("homePlanCTA");
   if(btn){
@@ -3314,20 +3314,20 @@ function forceBuiltPlanHomeState(){
 }
 
 function refreshTruePlanState(){
-  if(isSteadyMindPlanBuilt()) forceBuiltPlanHomeState();
+  if(isSteadierMindPlanBuilt()) forceBuiltPlanHomeState();
   else forceFirstRunHomeState();
 }
 
 // Override older plan-exists logic so default JS variables no longer count as a completed plan.
-window.steadyMindPlanExists = function(){ return isSteadyMindPlanBuilt(); };
-window.hasBuiltPlan = function(){ return isSteadyMindPlanBuilt(); };
+window.steadierMindPlanExists = function(){ return isSteadierMindPlanBuilt(); };
+window.hasBuiltPlan = function(){ return isSteadierMindPlanBuilt(); };
 
 var _v47RefreshBuildContinuePlanCard = typeof refreshBuildContinuePlanCard === "function" ? refreshBuildContinuePlanCard : null;
 refreshBuildContinuePlanCard = function(){ refreshTruePlanState(); };
 
 var _v47HandleHomePlanCTA = typeof handleHomePlanCTA === "function" ? handleHomePlanCTA : null;
 handleHomePlanCTA = function(){
-  if(isSteadyMindPlanBuilt()) showScreen("profile");
+  if(isSteadierMindPlanBuilt()) showScreen("profile");
   else showScreen("assessment");
 };
 
@@ -3336,8 +3336,8 @@ var _v47BuildPlanAndSave = typeof buildPlanAndSave === "function" ? buildPlanAnd
 if(_v47BuildPlanAndSave){
   buildPlanAndSave = function(){
     var result = _v47BuildPlanAndSave.apply(this, arguments);
-    markSteadyMindPlanBuilt();
-    try { if(typeof saveSteadyMindData === "function") saveSteadyMindData(); } catch(e){}
+    markSteadierMindPlanBuilt();
+    try { if(typeof saveSteadierMindData === "function") saveSteadierMindData(); } catch(e){}
     setTimeout(function(){
       refreshTruePlanState();
       if(document.getElementById("profile")) showScreen("profile");
@@ -3351,8 +3351,8 @@ var _v47BuildPlan = typeof buildPlan === "function" ? buildPlan : null;
 if(_v47BuildPlan){
   buildPlan = function(){
     var result = _v47BuildPlan.apply(this, arguments);
-    markSteadyMindPlanBuilt();
-    try { if(typeof saveSteadyMindData === "function") saveSteadyMindData(); } catch(e){}
+    markSteadierMindPlanBuilt();
+    try { if(typeof saveSteadierMindData === "function") saveSteadierMindData(); } catch(e){}
     setTimeout(function(){
       refreshTruePlanState();
       if(document.getElementById("profile")) showScreen("profile");
@@ -3362,15 +3362,15 @@ if(_v47BuildPlan){
   };
 }
 
-var _v47ResetHard = typeof resetSteadyMindAppDataHard === "function" ? resetSteadyMindAppDataHard : null;
-resetSteadyMindAppDataHard = function(){
-  var ok = confirm("Reset SteadyMind as a brand-new user on this device?");
+var _v47ResetHard = typeof resetSteadierMindAppDataHard === "function" ? resetSteadierMindAppDataHard : null;
+resetSteadierMindAppDataHard = function(){
+  var ok = confirm("Reset SteadierMind as a brand-new user on this device?");
   if(!ok) return;
   try{
     localStorage.clear();
     sessionStorage.clear();
   }catch(e){}
-  alert("SteadyMind test data cleared. Reloading now.");
+  alert("SteadierMind test data cleared. Reloading now.");
   window.location.href = window.location.origin + window.location.pathname;
 };
 
@@ -3411,7 +3411,7 @@ document.addEventListener("DOMContentLoaded", function(){
     if(sub) sub.textContent = "Build your personalized path";
 
     var desc = document.getElementById("homePlanDescription");
-    if(desc) desc.textContent = "Answer a few questions so SteadyMind can guide your daily calm, focus, and confidence plan.";
+    if(desc) desc.textContent = "Answer a few questions so SteadierMind can guide your daily calm, focus, and confidence plan.";
 
     var card = document.querySelector(".daily-priority-card");
     if(card){
@@ -3449,7 +3449,7 @@ document.addEventListener("DOMContentLoaded", function(){
     if(sub) sub.textContent = "Return to your personalized path";
 
     var desc = document.getElementById("homePlanDescription");
-    if(desc) desc.textContent = "Your SteadyMind profile is ready. Continue your daily calm, focus, and confidence plan.";
+    if(desc) desc.textContent = "Your SteadierMind profile is ready. Continue your daily calm, focus, and confidence plan.";
 
     var card = document.querySelector(".daily-priority-card");
     if(card){
@@ -3482,7 +3482,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   // Override all plan-exists checks so default savedSteadyPlan values do NOT count.
   window.hasBuiltPlan = function(){ return getPlanBuiltFlag(); };
-  window.steadyMindPlanExists = function(){ return getPlanBuiltFlag(); };
+  window.steadierMindPlanExists = function(){ return getPlanBuiltFlag(); };
 
   // Force old updatePlanStatus not to resurrect a default plan.
   var previousUpdatePlanStatus = typeof updatePlanStatus === "function" ? updatePlanStatus : null;
@@ -3497,7 +3497,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   function afterAssessmentBuild(){
     setPlanBuiltFlag();
-    try { if(typeof saveSteadyMindData === "function") saveSteadyMindData(); } catch(e){}
+    try { if(typeof saveSteadierMindData === "function") saveSteadierMindData(); } catch(e){}
     setTimeout(function(){
       setHomeBuilt();
       if(document.getElementById("dashboard")) showScreen("dashboard");
@@ -3524,20 +3524,20 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 
   // Strong reset: clears and sets forced new-user mode.
-  window.resetSteadyMindAppDataHard = function(){
-    var ok = confirm("Reset SteadyMind as a brand-new user on this device?");
+  window.resetSteadierMindAppDataHard = function(){
+    var ok = confirm("Reset SteadierMind as a brand-new user on this device?");
     if(!ok) return;
     try{
       localStorage.clear();
       sessionStorage.clear();
       localStorage.setItem("steadyMind.forceNewUser", "true");
     }catch(e){}
-    alert("SteadyMind test data cleared. Reloading now.");
+    alert("SteadierMind test data cleared. Reloading now.");
     window.location.href = window.location.origin + window.location.pathname;
   };
 
-  window.resetSteadyMindData = function(){
-    resetSteadyMindAppDataHard();
+  window.resetSteadierMindData = function(){
+    resetSteadierMindAppDataHard();
   };
 
   document.addEventListener("DOMContentLoaded", function(){
@@ -3569,7 +3569,7 @@ document.addEventListener("DOMContentLoaded", function(){
     if(sub) sub.textContent = "Build your personalized path";
 
     var desc = document.getElementById("homePlanDescription");
-    if(desc) desc.textContent = "Answer a few questions so SteadyMind can guide your daily calm, focus, and confidence plan.";
+    if(desc) desc.textContent = "Answer a few questions so SteadierMind can guide your daily calm, focus, and confidence plan.";
 
     var btn = document.getElementById("homePlanCTA");
     if(btn){
@@ -3610,7 +3610,7 @@ document.addEventListener("DOMContentLoaded", function(){
     if(sub) sub.textContent = "Return to your personalized path";
 
     var desc = document.getElementById("homePlanDescription");
-    if(desc) desc.textContent = "Your SteadyMind profile is ready. Continue your daily calm, focus, and confidence plan.";
+    if(desc) desc.textContent = "Your SteadierMind profile is ready. Continue your daily calm, focus, and confidence plan.";
 
     var btn = document.getElementById("homePlanCTA");
     if(btn){
@@ -3656,7 +3656,7 @@ document.addEventListener("DOMContentLoaded", function(){
     buildPlanAndSave = function(){
       var result = oldBuildPlanAndSaveV50.apply(this, arguments);
       try { localStorage.setItem("steadyMind.planBuilt", "true"); } catch(e){}
-      try { if(typeof saveSteadyMindData === "function") saveSteadyMindData(); } catch(e){}
+      try { if(typeof saveSteadierMindData === "function") saveSteadierMindData(); } catch(e){}
       setTimeout(function(){
         window.refreshHomeCardV50();
         showScreen("dashboard");
@@ -3665,21 +3665,21 @@ document.addEventListener("DOMContentLoaded", function(){
     };
   }
 
-  var oldResetHardV50 = typeof resetSteadyMindAppDataHard === "function" ? resetSteadyMindAppDataHard : null;
-  window.resetSteadyMindAppDataHard = function(){
-    var ok = confirm("Reset SteadyMind as a brand-new user on this device?");
+  var oldResetHardV50 = typeof resetSteadierMindAppDataHard === "function" ? resetSteadierMindAppDataHard : null;
+  window.resetSteadierMindAppDataHard = function(){
+    var ok = confirm("Reset SteadierMind as a brand-new user on this device?");
     if(!ok) return;
     try {
       localStorage.clear();
       sessionStorage.clear();
       localStorage.setItem("steadyMind.forceNewUser", "true");
     } catch(e){}
-    alert("SteadyMind test data cleared. Reloading now.");
+    alert("SteadierMind test data cleared. Reloading now.");
     window.location.href = window.location.origin + window.location.pathname;
   };
 
-  window.resetSteadyMindData = function(){
-    resetSteadyMindAppDataHard();
+  window.resetSteadierMindData = function(){
+    resetSteadierMindAppDataHard();
   };
 
   document.addEventListener("DOMContentLoaded", function(){

@@ -1,4 +1,4 @@
-# SteadyMind v40
+# SteadierMind v40
 
 Updates:
 - Added Local Storage saving.
@@ -38,7 +38,7 @@ v44:
 
 v46:
 - Added stronger reset tools.
-- Add ?reset=true to the app URL to clear SteadyMind data and reload as a new user.
+- Add ?reset=true to the app URL to clear SteadierMind data and reload as a new user.
 - Add ?dev=true to show a floating Reset Test Data button.
 - Syntax check: Passed.
 
@@ -85,3 +85,5 @@ v50:
 - Welcome/login page title and intro are centered.
 - Returning users still see “Continue My Plan.”
 - Syntax check: Passed.
+
+The app is now named SteadierMind. Existing `steadyMind` browser storage keys are retained to preserve saved user progress.
