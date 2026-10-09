@@ -1125,23 +1125,23 @@ renderSavedPlan = function(){
 
 /* v21 focused home behavior */
 function updateFocusedHome(){
-  const primaryTitle=document.getElementById("homePrimaryTitle");
-  const mindType=document.getElementById("homeMindType");
-  const focus=document.getElementById("homeTodayFocus");
+  const primaryTitle=document.getElementById("homePlanHeading");
+  const mindType=document.getElementById("homePlanSubheading");
+  const focus=document.getElementById("homePlanDescription");
   const progressText=document.getElementById("homeProgressText");
   const progressFill=document.getElementById("homeProgressFill");
   const percent=Math.min(completedActivities*25,100);
   if(progressText)progressText.textContent=`${percent}% Complete`;
   if(progressFill)progressFill.style.width=`${percent}%`;
   if(!savedSteadyPlan){
-    if(primaryTitle)primaryTitle.textContent="Continue My Plan";
+    if(primaryTitle)primaryTitle.textContent="Your personalized path";
     if(mindType)mindType.textContent="Build your personalized path";
-    if(focus)focus.textContent="Answer a few questions so SteadierMind can guide your daily calm, focus, and confidence plan.";
+    if(focus)focus.textContent="A few questions to find what feels right for you.";
     return;
   }
   const plan=savedSteadyPlan;
   const clean=plan.mindType.name.replace("🌊 ","").replace("🧠 ","").replace("🦁 ","").replace("🔥 ","").replace("🚀 ","").replace("🌱 ","");
-  if(primaryTitle)primaryTitle.textContent="Continue My Plan";
+  if(primaryTitle)primaryTitle.textContent="Your personalized path";
   if(mindType)mindType.textContent=clean;
   if(focus)focus.textContent=`Today's Focus: ${plan.path.name}. ${plan.path.daily[0]}.`;
 }
@@ -3087,8 +3087,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
       if(t.includes("Answer a few questions so SteadierMind") || t.includes("Your SteadierMind profile is ready")){
         el.textContent = built
-          ? "Your SteadierMind profile is ready. Continue your daily calm, focus, and confidence plan."
-          : "Answer a few questions so SteadierMind can guide your daily calm, focus, and confidence plan.";
+          ? "Your path is ready. Take your next steady step."
+          : "A few questions to find what feels right for you.";
       }
     });
 
@@ -3268,13 +3268,13 @@ function forceFirstRunHomeState(){
   if(status) status.textContent = 'No plan built yet. Start with “Build My Plan.”';
 
   var heading = document.getElementById("homePlanHeading");
-  if(heading) heading.textContent = "Build My Plan";
+  if(heading) heading.textContent = "Your personalized path";
 
   var sub = document.getElementById("homePlanSubheading");
   if(sub) sub.textContent = "Build your personalized path";
 
   var desc = document.getElementById("homePlanDescription");
-  if(desc) desc.textContent = "Answer a few questions so SteadierMind can guide your daily calm, focus, and confidence plan.";
+  if(desc) desc.textContent = "A few questions to find what feels right for you.";
 
   var btn = document.getElementById("homePlanCTA");
   if(btn){
@@ -3295,13 +3295,13 @@ function forceBuiltPlanHomeState(){
   }
 
   var heading = document.getElementById("homePlanHeading");
-  if(heading) heading.innerHTML = "Continue My<br>Plan";
+  if(heading) heading.textContent = "Your personalized path";
 
   var sub = document.getElementById("homePlanSubheading");
   if(sub) sub.textContent = "Return to your personalized path";
 
   var desc = document.getElementById("homePlanDescription");
-  if(desc) desc.textContent = "Your SteadierMind profile is ready. Continue your daily calm, focus, and confidence plan.";
+  if(desc) desc.textContent = "Your path is ready. Take your next steady step.";
 
   var btn = document.getElementById("homePlanCTA");
   if(btn){
@@ -3405,13 +3405,13 @@ document.addEventListener("DOMContentLoaded", function(){
     if(status) status.textContent = 'No plan built yet. Start with “Build My Plan.”';
 
     var heading = document.getElementById("homePlanHeading");
-    if(heading) heading.textContent = "Build My Plan";
+    if(heading) heading.textContent = "Your personalized path";
 
     var sub = document.getElementById("homePlanSubheading");
     if(sub) sub.textContent = "Build your personalized path";
 
     var desc = document.getElementById("homePlanDescription");
-    if(desc) desc.textContent = "Answer a few questions so SteadierMind can guide your daily calm, focus, and confidence plan.";
+    if(desc) desc.textContent = "A few questions to find what feels right for you.";
 
     var card = document.querySelector(".daily-priority-card");
     if(card){
@@ -3443,13 +3443,13 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     var heading = document.getElementById("homePlanHeading");
-    if(heading) heading.innerHTML = "Continue My<br>Plan";
+    if(heading) heading.textContent = "Your personalized path";
 
     var sub = document.getElementById("homePlanSubheading");
     if(sub) sub.textContent = "Return to your personalized path";
 
     var desc = document.getElementById("homePlanDescription");
-    if(desc) desc.textContent = "Your SteadierMind profile is ready. Continue your daily calm, focus, and confidence plan.";
+    if(desc) desc.textContent = "Your path is ready. Take your next steady step.";
 
     var card = document.querySelector(".daily-priority-card");
     if(card){
@@ -3563,13 +3563,13 @@ document.addEventListener("DOMContentLoaded", function(){
     if(status) status.textContent = 'No plan built yet. Start with “Build My Plan.”';
 
     var heading = document.getElementById("homePlanHeading");
-    if(heading) heading.textContent = "Build My Plan";
+    if(heading) heading.textContent = "Your personalized path";
 
     var sub = document.getElementById("homePlanSubheading");
     if(sub) sub.textContent = "Build your personalized path";
 
     var desc = document.getElementById("homePlanDescription");
-    if(desc) desc.textContent = "Answer a few questions so SteadierMind can guide your daily calm, focus, and confidence plan.";
+    if(desc) desc.textContent = "A few questions to find what feels right for you.";
 
     var btn = document.getElementById("homePlanCTA");
     if(btn){
@@ -3604,13 +3604,13 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     var heading = document.getElementById("homePlanHeading");
-    if(heading) heading.innerHTML = "Continue My<br>Plan";
+    if(heading) heading.textContent = "Your personalized path";
 
     var sub = document.getElementById("homePlanSubheading");
     if(sub) sub.textContent = "Return to your personalized path";
 
     var desc = document.getElementById("homePlanDescription");
-    if(desc) desc.textContent = "Your SteadierMind profile is ready. Continue your daily calm, focus, and confidence plan.";
+    if(desc) desc.textContent = "Your path is ready. Take your next steady step.";
 
     var btn = document.getElementById("homePlanCTA");
     if(btn){
@@ -3631,6 +3631,8 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 
   window.refreshHomeCardV50 = function(){
+    var progress = document.getElementById("homeDailyProgress");
+    if(progress) progress.hidden = !planBuiltV50();
     if(planBuiltV50()) setReturningHomeV50();
     else setFirstTimeHomeV50();
   };

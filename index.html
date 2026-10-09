@@ -73,54 +73,58 @@
       <p class="legal">By continuing, you agree to our <a href="#" onclick="showScreen('terms')">Terms & Conditions</a> and <a href="#" onclick="showScreen('privacy')">Privacy Policy</a>.</p>
     </section>
 
-    <section id="mainMenu" class="screen premium-menu focused-home">
-      <div class="particles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-      <img src="logo.png" class="small-logo menu-logo" alt="SteadierMind Logo">
-
-      <p class="eyebrow center-title">Your steady step for today</p>
-      <h2 class="center-title">SteadierMind Home</h2>
-
-      <div id="planStatus" class="plan-status focused-status">No plan built yet. Start with “Build My Plan.”</div>
-
-      <div class="daily-priority-card" onclick="handleHomePlanCTA(event)">
+    <section id="mainMenu" class="screen premium-menu focused-home calm-home">
+      <header class="home-header">
+        <img src="logo.png" class="small-logo menu-logo" alt="SteadierMind Logo">
+        <button class="home-settings" onclick="showScreen('settings')" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2" fill="white"/><circle cx="15" cy="12" r="2" fill="white"/><circle cx="9" cy="18" r="2" fill="white"/></svg></button>
+      </header>
+      <p class="home-eyebrow">A moment for you</p>
+      <h2 class="home-greeting">A steadier day<br>starts here.</h2>
+      <p class="home-intro">One small step, at your own pace.</p>
+      <div id="planStatus" class="home-visually-hidden" aria-live="polite"></div>
+      <div class="daily-priority-card">
         <div class="priority-top">
-          <div class="circle-icon sun-icon">🌤️</div>
-          <div>
-            <p class="eyebrow">Recommended next step</p>
-            <h3 id="homePrimaryTitle" class="center-plan-title"><span id="homePlanHeading">Build My Plan</span></h3>
-          </div>
-          <span class="arrow">›</span>
+          <h3 id="homePrimaryTitle"><span id="homePlanHeading">Your personalized path</span></h3>
         </div>
         <div class="priority-body">
-          <strong id="homeMindType"><span id="homePlanSubheading">Build your personalized path</span></strong>
-          <p id="homeTodayFocus"><span id="homePlanDescription">Answer a few questions so SteadierMind can guide your daily calm, focus, and confidence plan.</span></p>
+          <strong id="homeMindType" hidden><span id="homePlanSubheading"></span></strong>
+          <p id="homeTodayFocus"><span id="homePlanDescription">A few questions to find what feels right for you.</span></p>
         </div>
         <button id="homePlanCTA" class="start-now home-start-btn" onclick="event.stopPropagation(); handleHomePlanCTA(event)">Build My Plan →</button>
       </div>
-
-      <div class="today-progress-strip">
-        <div>
-          <span class="small-label">Today's Progress</span>
-          <strong id="homeProgressText">0% Complete</strong>
-        </div>
+      <div id="homeDailyProgress" class="today-progress-strip" hidden>
+        <div><span class="small-label">Today's progress</span><strong id="homeProgressText">0% Complete</strong></div>
         <div class="mini-progress"><div id="homeProgressFill"></div></div>
       </div>
-
-      <p class="section-label">Support tools</p>
-      <div class="support-grid">
-        <button class="support-tile emergency-tile" onclick="showScreen('tools')"><span>🚨</span><strong>Emergency Tool</strong><small>Relief right now</small></button>
-        <button class="support-tile" onclick="showScreen('journal')"><span>✍️</span><strong>Reflection</strong><small>Process your thoughts</small></button>
-        <button class="support-tile" onclick="showScreen('moodTracker')"><span>📊</span><strong>Mood Tracker</strong><small>Track your calm score</small></button>
-        <button class="support-tile" onclick="showScreen('education')"><span>📚</span><strong>Education</strong><small>Learn the why</small></button>
-        <button class="support-tile" onclick="showScreen('weekly')"><span>📈</span><strong>Progress</strong><small>View your growth</small></button>
-        <button class="support-tile" onclick="showScreen('games')"><span>🎮</span><strong>Games</strong><small>Practice skills</small></button>
-        <button class="support-tile reward-tile" onclick="showScreen('rewards')"><span>🏆</span><strong>Rewards</strong><small>Levels and unlocks</small></button>
+      <h3 class="home-section-title">What do you need today?</h3>
+      <div class="home-quick-actions">
+        <button onclick="showScreen('tools')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9c3-4 6 4 9 0s6 4 9 0M3 15c3-4 6 4 9 0s6 4 9 0"/></svg><span>Calm Now</span></button>
+        <button onclick="showScreen('journal')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h12v18H5zM8 7h6M8 11h6M8 15h4"/></svg><span>Reflection</span></button>
+        <button onclick="showScreen('checkin')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg><span>Daily Check-In</span></button>
       </div>
+      <details class="home-explore">
+        <summary>Explore tools <span aria-hidden="true">＋</span></summary>
+        <p>More ways to care for your mind.</p>
+        <div class="home-explore-links">
+          <button onclick="showScreen('moodTracker')">Mood Tracker <span aria-hidden="true">→</span></button>
+          <button onclick="showScreen('education')">Education <span aria-hidden="true">→</span></button>
+          <button onclick="showScreen('weekly')">Progress <span aria-hidden="true">→</span></button>
+          <button onclick="showScreen('games')">Games <span aria-hidden="true">→</span></button>
+          <button onclick="showScreen('rewards')">Rewards <span aria-hidden="true">→</span></button>
+        </div>
+      </details>
+    </section>
 
-      <div class="secondary-actions">
-        <button class="secondary" onclick="showScreen('checkin')">Daily Check-In</button>
-        <button class="secondary" onclick="showScreen('settings')">Settings</button>
-      </div>
+    <section id="education" class="screen">
+      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
+      <h2>Learn at your own pace</h2>
+      <p>Small lessons to help you understand your mind.</p>
+      <button class="secondary" onclick="openLesson('Anxiety Basics')">Anxiety Basics</button>
+      <button class="secondary" onclick="openLesson('Overthinking')">Overthinking</button>
+      <button class="secondary" onclick="openLesson('Confidence')">Confidence</button>
+      <button class="secondary" onclick="openLesson('Sleep')">Sleep</button>
+      <div id="lessonResult" class="card result-card hidden" aria-live="polite"></div>
+      <div class="xp-wrap" aria-label="Lesson progress"><div id="lessonProgressFill" class="xp-fill"></div></div>
     </section>
 
     <section id="assessment" class="screen">

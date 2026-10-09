@@ -2875,3 +2875,35 @@ h1,h2,h3,.emergency-message-bubble,.guided-message strong,.primary-home-card str
   text-align: center !important;
   width: 100%;
 }
+
+/* Calm home: one primary action, with existing tools tucked into Explore. */
+#mainMenu.calm-home { padding: 24px; background: #f5f8f5; }
+#mainMenu .particles { display: none; }
+#mainMenu .home-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+#mainMenu .menu-logo { width: 76px; max-width: none; margin: 0; border-radius: 12px; }
+#mainMenu .home-settings { width: 44px; height: 44px; padding: 11px; margin: 0; background: #e8efec; color: #21414d; box-shadow: none; }
+#mainMenu svg { width: 24px; height: 24px; flex-shrink: 0; }
+#mainMenu .home-eyebrow { margin: 0 0 8px; color: #58756e; font-size: 13px; letter-spacing: .08em; }
+#mainMenu .home-greeting { margin: 0; font-size: 30px; font-weight: 650; line-height: 1.2; letter-spacing: -.6px; text-align: left; }
+#mainMenu .home-intro { margin: 12px 0 24px; color: #58706e; font-size: 15px; }
+#mainMenu .daily-priority-card { margin: 0 0 24px; padding: 22px; border: 1px solid #dce8e1; border-radius: 22px; background: #e9f2ec; box-shadow: 0 6px 18px rgba(33,65,77,.04); }
+#mainMenu .daily-priority-card::after { display: none; }
+#mainMenu .priority-top { display: block; margin: 0; }
+#mainMenu .priority-top h3 { margin: 0; text-align: left; font-size: 21px; line-height: 1.25; }
+#mainMenu .priority-body p { margin: 10px 0 18px; font-size: 15px; line-height: 1.5; color: #4e6863; }
+#mainMenu .home-start-btn { margin: 0; padding: 14px 12px; border-radius: 14px; background: #1e5663; box-shadow: none; }
+#mainMenu .home-section-title { margin: 0 0 14px; font-size: 17px; font-weight: 650; }
+#mainMenu .home-quick-actions { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+#mainMenu .home-quick-actions button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; min-height: 100px; padding: 14px 6px; margin: 0; background: white; color: #21414d; border: 1px solid #e0e9e3; border-radius: 16px; box-shadow: none; font-size: 13px; line-height: 1.35; }
+#mainMenu .home-quick-actions svg { color: #4c8276; }
+#mainMenu .home-explore { margin-top: 24px; border-top: 1px solid #dce6df; }
+#mainMenu .home-explore summary { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; font-size: 16px; font-weight: 600; cursor: pointer; list-style: none; }
+#mainMenu .home-explore summary::-webkit-details-marker { display: none; }
+#mainMenu .home-explore[open] summary span { transform: rotate(45deg); }
+#mainMenu .home-explore p { margin: 0 0 10px; color: #58706e; font-size: 14px; }
+#mainMenu .home-explore-links button { display: flex; justify-content: space-between; margin: 0; padding: 15px 0; border-radius: 0; background: transparent; color: #21414d; border-bottom: 1px solid #e0e9e3; text-align: left; box-shadow: none; }
+#mainMenu .today-progress-strip { margin: -6px 0 24px; padding: 14px; background: white; border: 1px solid #e0e9e3; border-radius: 14px; box-shadow: none; }
+#mainMenu [hidden] { display: none !important; }
+#mainMenu .home-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+#mainMenu button:focus-visible, #mainMenu summary:focus-visible { outline: 3px solid #4c8276; outline-offset: 4px; }
+@media (max-width: 400px) { #mainMenu.calm-home { padding: 20px; } #mainMenu .home-greeting { font-size: 28px; } }
