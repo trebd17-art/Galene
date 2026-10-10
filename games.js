@@ -3,7 +3,7 @@ var centeredRoundActive = false;
 var groundingAdvanceTimer = null;
 (function () {
   'use strict';
-  const screens = ['centeredGame','thoughtSortGameScreen','calmFocusGameScreen','groundingGameScreen','anchorGameScreen'];
+  const screens = ['thoughtSortGameScreen','calmFocusGameScreen','groundingGameScreen','anchorGameScreen'];
   function cancelGroundingAdvance() {
     if (groundingAdvanceTimer !== null) clearTimeout(groundingAdvanceTimer);
     groundingAdvanceTimer = null;

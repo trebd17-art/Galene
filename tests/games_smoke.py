@@ -57,23 +57,15 @@ with sync_playwright() as p:
     page.evaluate('checkAnchorEnd()')
     assert page.evaluate('mindPoints')==points
     level=page.evaluate('anchorLevel')
-    page.evaluate('openCenteredGame();centeredCurrentObjective="500 Harmony";centeredHarmony=500;checkCenteredLevelEndV27()')
-    points=page.evaluate('mindPoints')
-    page.evaluate('checkCenteredLevelEndV27();useCenteredPower(0)')
-    assert page.evaluate('mindPoints')==points
-    assert not page.evaluate('centeredRoundActive')
-    page.wait_for_timeout(3200)
-    assert not page.evaluate('centeredRoundActive')
     page.reload(wait_until='networkidle')
     page.locator('#welcome').wait_for(state='visible')
     assert page.evaluate('anchorLevel')==level
-    assert page.evaluate('steadierMindGameProgress.centered.roundsCompleted')==1
     for screen in ['games','thoughtSortGameScreen','centeredGame','groundingGameScreen','calmFocusGameScreen','anchorGameScreen']:
         page.evaluate('(screen)=>showScreen(screen)',screen)
         for width in [320,390]:
             page.set_viewport_size({'width':width,'height':844})
             assert page.locator('#'+screen).evaluate('(e)=>e.scrollWidth<=e.clientWidth')
     assert not errors,errors
-    print('PASS: manual next, duplicate taps/rewards, canceled grounding transitions, game exit timers, explicit Centered ending, saved levels/progress, mobile widths')
+    print('PASS: manual next, duplicate taps/rewards, canceled grounding transitions, game exit timers, saved levels/progress, mobile widths')
     browser.close()
 server.shutdown()

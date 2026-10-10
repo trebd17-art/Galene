@@ -395,7 +395,7 @@
         <button class="game-icon-card centered-card" onclick="showScreen('centeredIntro')">
           <span class="game-icon">⚖️</span>
           <strong>Centered</strong>
-          <small>Emotional balance strategy</small>
+          <small>Find your way through</small>
         </button>
 
         <button class="game-icon-card" onclick="openThoughtSortGame()">
@@ -435,78 +435,30 @@
       </div>
     </section>
 
-    <section id="centeredIntro" class="screen">
-      <button class="text-back" onclick="showScreen('games')">← Back to Game Menu</button>
+    <section id="centeredIntro" class="screen centered-puzzle-intro">
+      <button class="text-back" onclick="showScreen('games')">← Back to Games</button>
       <h2>Centered</h2>
-      <p class="intro compact">A strategy game about emotional balance, not emotional perfection.</p>
-
-      <div class="premium-card">
-        <div class="card-heading-row"><div class="circle-icon">🎮</div><h3>Core Principle</h3></div>
-        <p>You are not trying to eliminate anxiety. You are trying to maintain a healthy emotional ecosystem.</p>
-        <p>If the board becomes all green, that is not optimal. You need calm and focus working together while keeping anxiety from taking over.</p>
-      </div>
-
-      <div class="premium-card">
-        <div class="card-heading-row"><div class="circle-icon leaf">🌈</div><h3>Emotional Colors</h3></div>
-        <div class="centered-legend-list">
-          <span><i class="dot calm-dot"></i> Green = Calm</span>
-          <span><i class="dot focus-dot"></i> Blue = Focus</span>
-          <span><i class="dot anxiety-dot"></i> Red = Anxiety</span>
-        </div>
-      </div>
-
-      <div class="premium-card">
-        <div class="card-heading-row"><div class="circle-icon storm">⚖️</div><h3>How You Win</h3></div>
-        <p>Earn Harmony by maintaining balance across the board. Anxiety does not need to disappear for you to succeed.</p>
-        <ul class="soft-list">
-          <li>Perfect Balance = +500 Harmony</li>
-          <li>Mostly Balanced = +250 Harmony</li>
-          <li>Unbalanced = +100 Harmony</li>
-          <li>Overwhelmed = 0 Harmony</li>
-        </ul>
-      </div>
-
-      <div class="premium-card">
-        <div class="card-heading-row"><div class="circle-icon sun-icon">⚡</div><h3>Mental Energy & Powers</h3></div>
-        <p>You begin with 100 Mental Energy. Every action costs energy, and energy slowly regenerates.</p>
-        <ul class="soft-list">
-          <li>Deep Breathing = 5 Energy</li>
-          <li>Grounding = 10 Energy</li>
-          <li>Reframe = 12 Energy</li>
-          <li>Rest Day = restores Energy</li>
-        </ul>
-      </div>
-
-      <button onclick="openCenteredGame()">Play Centered</button>
+      <p class="intro compact">Find your way through.</p>
+      <div class="card"><h3>A little space to explore</h3><p>Connect the start to the lantern using paths that meet up, down, left, or right. Choose a tool, then tap a matching obstacle. You can take your time and undo any move.</p></div>
+      <div class="card"><p>🌬 Breathing clears nearby mist.</p><p>🌿 Grounding untangles a root tile.</p><p>↔ Reframe builds a bridge across a gap.</p><p>◆ Stone stays in place—look for another route.</p></div>
+      <p>Five short puzzles. No timer. Your progress stays on this device.</p>
+      <button onclick="openCenteredGame()">Explore Centered</button>
     </section>
-
-    <section id="centeredGame" class="screen">
-      <button class="text-back" onclick="showScreen('games')">← Back to Game Menu</button>
-      <h2>Centered</h2>
-      <div class="difficulty-row"><button id="centeredEasyBtn" class="difficulty-btn active-difficulty" onclick="setGameDifficulty('centered','easy')">Easy</button><button id="centeredMediumBtn" class="difficulty-btn premium-locked" onclick="setGameDifficulty('centered','medium')">Medium 🔒</button><button id="centeredHardBtn" class="difficulty-btn premium-locked" onclick="setGameDifficulty('centered','hard')">Hard 🔒</button></div><div id="centeredDifficultyMessage" class="card result-card difficulty-message">Easy mode is available in the free version.</div>
-      <p id="centeredObjective" class="objective-card">Objective: Maintain emotional balance.</p>
-
-      <div class="centered-status-grid">
-        <div><strong id="centeredLevel">1</strong><small>Level</small></div>
-        <div><strong id="centeredWave">1</strong><small>Wave</small></div>
-        <div><strong id="centeredHarmony">0</strong><small>Harmony</small></div>
-        <div><strong id="centeredEnergy">100</strong><small>Energy</small></div>
-        <div><strong id="centeredCombo">x1</strong><small>Recovery</small></div>
-        <div><strong id="centeredBalance">0%</strong><small>Balance</small></div>
-      </div>
-
-      <div id="centeredEvent" class="event-card hidden"></div>
-      <div id="centeredBoard" class="color-board centered-board"></div>
-
-      <div class="power-row centered-powers">
-        <button id="deepBreathingBtn" class="power-btn active-power" onclick="selectCenteredPower('deepBreathing')">🌬️ Deep Breathing<br><small>5 Energy</small></button>
-        <button id="groundingBtn" class="power-btn" onclick="selectCenteredPower('grounding')">🧊 Grounding<br><small>10 Energy</small></button>
-        <button id="reframeBtn" class="power-btn" onclick="selectCenteredPower('reframe')">🔄 Reframe<br><small>12 Energy</small></button>
-        <button id="restDayBtn" class="power-btn" onclick="selectCenteredPower('restDay')">🌙 Rest Day<br><small>Restores Energy</small></button>
-      </div>
-
-      <div id="centeredMessage" class="card result-card">Select a power, then tap the board.</div>
-      <button onclick="startCenteredGame()">Restart Level</button>
+    <section id="centeredGame" class="screen centered-puzzle">
+      <button class="text-back" onclick="showScreen('games')">← Back to Games</button>
+      <p class="eyebrow center-title">Centered · Find your way through</p>
+      <h2 id="centeredPuzzleTitle"></h2>
+      <p id="centeredPuzzleGuide"></p>
+      <div id="centeredPuzzleLevels" class="puzzle-levels" aria-label="Choose a level"></div>
+      <p id="centeredPuzzleStats" class="center-title"></p>
+      <div id="centeredPuzzleBoard" class="puzzle-board" role="group" aria-label="Path puzzle"></div>
+      <p class="puzzle-legend">✦ Start · ◉ Lantern · ≋ Mist · ♧ Roots · ↔ Gap · ◆ Stone</p>
+      <div id="centeredPuzzleTools" class="puzzle-tools" role="group" aria-label="Choose a tool"></div>
+      <p id="centeredPuzzleMessage" class="card" role="status" aria-live="polite"></p>
+      <div class="puzzle-actions"><button class="secondary" onclick="undoCenteredPuzzle()">Undo</button><button class="secondary" onclick="hintCenteredPuzzle()">Hint</button></div>
+      <button id="centeredPuzzleNext" onclick="nextCenteredPuzzle()" hidden>Next level</button>
+      <button id="centeredPuzzleRetry" onclick="saveCenteredPuzzleWin()" hidden>Retry saving progress</button>
+      <button class="secondary" onclick="startCenteredGame()">Restart this level</button>
     </section>
 
     <section id="thoughtSortGameScreen" class="screen thought-sort-game-screen">
@@ -887,5 +839,6 @@
   <script src="reflection.js"></script>
   <script src="mood.js"></script>
   <script src="games.js"></script>
+  <script src="centered.js"></script>
 </body>
 </html>

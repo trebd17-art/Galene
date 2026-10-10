@@ -3038,3 +3038,25 @@ body.sleep-mode { background: #13252e; }
 @media (prefers-reduced-motion: reduce) {
   .game-menu-screen *, #centeredGame *, #thoughtSortGameScreen *, #calmFocusGameScreen *, #groundingGameScreen *, #anchorGameScreen * { animation: none !important; transition: none !important; }
 }
+
+.centered-puzzle h2, .centered-puzzle-intro h2 { text-align: center; }
+.centered-puzzle [hidden] { display: none !important; }
+.puzzle-board { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 6px; background: #dce9e6; padding: 10px; border-radius: 22px; }
+.puzzle-board .puzzle-tile { margin: 0; padding: 0; min-height: 44px; aspect-ratio: 1; border-radius: 12px; font-size: 24px; background: #f4f5ec; color: #365d55; border: 2px solid transparent; transition: background .3s, transform .2s; }
+.puzzle-board .tile-stone { background: #526764; color: #dce9e6; }
+.puzzle-board .tile-F { background: #d9e2ed; color: #4d617e; }
+.puzzle-board .tile-R { background: #dfd3be; color: #68503d; }
+.puzzle-board .tile-G { background: #cadbdc; color: #315c70; }
+.puzzle-board .tile-S, .puzzle-board .tile-E { background: #f6e1a2; color: #5c491d; }
+.puzzle-board .puzzle-path { background: #8bc9ad; border-color: #356a56; animation: puzzleGlow .6s ease both; }
+.puzzle-tools { display: grid; gap: 8px; margin: 18px 0; }
+.puzzle-tools button { margin: 0; padding: 14px; background: #dce9e6; color: #21414d; border: 2px solid transparent; }
+.puzzle-tools button[aria-pressed="true"] { border-color: #356a56; background: #c1dfcd; }
+.puzzle-tools button:disabled { opacity: .6; }
+.puzzle-levels, .puzzle-actions { display: flex; gap: 8px; }
+.puzzle-levels button { padding: 10px; margin: 8px 0; }
+.puzzle-levels button[aria-current="step"] { outline: 2px solid #356a56; outline-offset: 2px; }
+.puzzle-levels button:disabled { background: #dce9e6; color: #58706e; }
+.puzzle-legend { font-size: 13px; text-align: center; line-height: 1.7; }
+.centered-puzzle button:focus-visible { outline: 3px solid #356a56; outline-offset: 3px; }
+@keyframes puzzleGlow { from { transform: scale(.94); } to { transform: scale(1); } }
