@@ -2998,3 +2998,18 @@ body.sleep-mode { background: #13252e; }
 .sleep-sound { margin: 24px 0 0; border-top: 1px solid #45616a; padding-top: 16px; }
 .sleep-sound summary { padding: 12px; cursor: pointer; font-size: 14px; color: #c0d2cb; }
 #sleepSession button:focus-visible, #sleepSession textarea:focus-visible, #sleepSession input:focus-visible, .sleep-sound summary:focus-visible { outline: 3px solid #a4c6b5; outline-offset: 3px; }
+
+/* Daily reflection: a short core with optional deeper prompts and private history. */
+.reflection-screen h2, .reflection-screen .reflection-intro { text-align: center; text-wrap: balance; }
+.reflection-screen .text-back { display: block; margin: 16px auto; }
+.reflection-screen label { line-height: 1.4; }
+.reflection-screen textarea { min-height: 110px; }
+.reflection-main { margin: 24px 0; }
+.reflection-optional { font-size: 14px; font-weight: 400; }
+.reflection-details { margin: 24px 0; border-top: 1px solid #dce6df; padding-top: 16px; }
+.reflection-details summary { text-align: center; padding: 12px; cursor: pointer; font-weight: 600; color: #21414d; }
+.reflection-screen .reflection-privacy { font-size: 13px; color: #58706e; line-height: 1.5; }
+.reflection-screen [hidden] { display: none !important; }
+.reflection-screen button:disabled { opacity: .7; cursor: default; }
+.reflection-screen button:focus-visible, .reflection-screen textarea:focus-visible, .reflection-screen select:focus-visible, .reflection-details summary:focus-visible { outline: 3px solid #4c8276; outline-offset: 3px; }
+#journalResult { text-align: center; line-height: 1.5; }

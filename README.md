@@ -136,3 +136,12 @@ Sleep Wind-Down uses a dim, readable navy-and-teal screen with four stages: sett
 Tomorrow notes remain in session memory unless the user explicitly opts into saving them to the existing browser-local journal on completion. Save failures support retry or finishing without saving; exported data includes saved journal notes. Sleep-focused starter plans suggest this tool unless the current feeling calls for grounding instead.
 
 Run `python3 tests/sleep_smoke.py` with Python Playwright and Chromium to validate the flow.
+
+
+## Daily Reflection
+
+Daily Reflection now has a short core: an optional feeling, one main reflection, and an optional supportive next step. A goal-based prompt is available without relabeling answers already written. Balanced uncertainty and gratitude prompts are tucked into an optional section. No positive response is required.
+
+Entries save explicitly with their mood and question labels. An unchanged repeated save creates no duplicate or additional XP. Editing a saved draft updates the same entry; Start a new reflection creates a separate entry. Failed saves roll back the entry and rewards while preserving editor text for retry. Past reflections is collapsed by default and safely displays existing legacy, starter, worry, and sleep entries. Unsaved editor text is not included in autosave and is lost on reload; saved entries remain browser-local and available in data export.
+
+Run `python3 tests/reflection_smoke.py` with Python Playwright and Chromium to check these behaviors.

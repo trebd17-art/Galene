@@ -674,64 +674,38 @@
     </section>
 
 
-    <section id="journal" class="screen">
-      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
-      <div class="journal-paper">
+    <section id="journal" class="screen reflection-screen">
+      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Home</button>
       <h2>Daily Reflection</h2>
-      <p>A short guided journal to help you understand your thoughts, steady your mind, and move from worry to action.</p>
-
-      <label>1. How are you feeling right now?</label>
-      <select id="journalMood" onchange="updateSmartPrompts()">
-        <option>Calm</option>
-        <option>Anxious</option>
-        <option>Overwhelmed</option>
-        <option>Sad</option>
-        <option>Frustrated</option>
-        <option>Lonely</option>
-        <option>Hopeful</option>
-        <option>Motivated</option>
-        <option>Tired</option>
-      </select>
-
-      <label>Describe your feelings in your own words.</label>
-      <textarea id="feelingWords" placeholder="Example: I feel tense because I have a lot on my mind today."></textarea>
-
-      <label>2. What’s weighing on your mind today?</label>
-      <p class="prompt-hint">What are you worried about? What are you overthinking? What feels uncertain? What challenge are you facing?</p>
-      <textarea id="weighingMind" placeholder="Write what is taking up the most space in your mind..."></textarea>
-
-      <label>3. What evidence supports that worry?</label>
-      <textarea id="evidenceFor" placeholder="Example: I stumbled during practice yesterday."></textarea>
-
-      <label>4. What’s one thing you can control today?</label>
-      <textarea id="controlToday" placeholder="Example: Go for a walk, finish one task, call a friend, read for 15 minutes, or get to bed on time."></textarea>
-
-      <label>5. One thing that went well today</label>
-      <textarea id="wentWell" placeholder="Example: I stayed calm during a stressful moment."></textarea>
-
-      <label>6. What are you grateful for?</label>
-      <input id="gratitudeOne" class="journal-input" placeholder="1.">
-      <input id="gratitudeTwo" class="journal-input" placeholder="2.">
-      <input id="gratitudeThree" class="journal-input" placeholder="3.">
-
-      <h2>Smart Journaling</h2>
-      <p class="prompt-hint">These prompts adjust based on your Mind Type or selected path.</p>
-      <div id="smartPromptCard" class="card result-card">
-        Complete your assessment first, or answer the prompts below based on what fits you today.
-      </div>
-
-      <label id="smartPromptOneLabel">Smart Prompt 1</label>
-      <textarea id="smartPromptOne" placeholder="Your answer..."></textarea>
-
-      <label id="smartPromptTwoLabel">Smart Prompt 2</label>
-      <textarea id="smartPromptTwo" placeholder="Your answer..."></textarea>
-
-      <label id="smartPromptThreeLabel">Smart Prompt 3</label>
-      <textarea id="smartPromptThree" placeholder="Your answer..."></textarea>
-
-      <button onclick="saveJournal()">Save Reflection +10 XP</button>
-      <div id="journalResult" class="card result-card hidden"></div>
-      </div>
+      <p class="reflection-intro">A little space to understand your day. Answer what feels useful; you can leave any question blank.</p>
+      <form id="reflectionForm">
+        <label for="journalMood">How are you feeling?</label>
+        <select id="journalMood"><option>Prefer not to say</option><option>Calm</option><option>Anxious</option><option>Overwhelmed</option><option>Sad</option><option>Frustrated</option><option>Lonely</option><option>Hopeful</option><option>Motivated</option><option>Tired</option></select>
+        <div class="reflection-main">
+          <label id="reflectionPromptLabel" for="reflectionAnswer">What’s taking up space in your mind?</label>
+          <p class="prompt-hint">A few words are enough. You don’t need to find a positive answer.</p>
+          <textarea id="reflectionAnswer" maxlength="5000" placeholder="Start wherever you are…"></textarea>
+          <button id="reflectionPromptToggle" type="button" class="text-back" onclick="chooseReflectionPrompt()">Try a prompt for my goal</button>
+        </div>
+        <label for="reflectionSupport">What would feel supportive right now? <span class="reflection-optional">(optional)</span></label>
+        <p class="prompt-hint">Rest, asking for help, or one small action can all count.</p>
+        <textarea id="reflectionSupport" maxlength="2000" placeholder="Something manageable, at your own pace…"></textarea>
+        <details id="reflectionExtras" class="reflection-details">
+          <summary>Explore another prompt</summary>
+          <label for="reflectionUncertainty">What do you know, and what feels uncertain?</label>
+          <textarea id="reflectionUncertainty" maxlength="3000" placeholder="Separate what you know from what you’re unsure about…"></textarea>
+          <label for="reflectionGratitude">Is there something you appreciate today, if anything?</label>
+          <textarea id="reflectionGratitude" maxlength="2000" placeholder="It’s okay to leave this blank…"></textarea>
+        </details>
+        <p class="reflection-privacy">Writing is saved only when you select Save Reflection. Entries stay in this browser and are included in your data export. Unsaved writing is lost on reload.</p>
+        <button id="reflectionSave" type="submit">Save Reflection</button>
+        <p id="journalResult" role="status" aria-live="polite"></p>
+        <button id="reflectionNew" type="button" class="secondary" onclick="newDailyReflection()" hidden>Start a new reflection</button>
+      </form>
+      <details class="reflection-details" id="pastReflections">
+        <summary>Past reflections</summary>
+        <div id="journalHistory"></div>
+      </details>
     </section>
 
     <section id="weekly" class="screen">
@@ -916,5 +890,6 @@
   <script src="grounding.js"></script>
   <script src="worry.js"></script>
   <script src="sleep.js"></script>
+  <script src="reflection.js"></script>
 </body>
 </html>
