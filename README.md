@@ -87,3 +87,20 @@ v50:
 - Syntax check: Passed.
 
 The app is now named SteadierMind. Existing `steadyMind` browser storage keys are retained to preserve saved user progress.
+
+
+## Guided setup and starter routine
+
+Setup now asks for up to two support areas, an optional current feeling, and a 2-, 5-, or 10-minute time preference. The optional profile question can be skipped. Answers personalize a starting routine with arrival, an existing breathing/grounding tool, a reflection, and a manageable action. A closing check-in accepts neutral or less-settled outcomes. Activities can be skipped, and incomplete routines can resume from Home.
+
+`starter.js` integrates this flow with the existing `app.js` snapshot and tools. Setup drafts and routine state are stored inside the existing browser-local snapshot; completed reflections are added to the existing journal. This is local browser storage, not cloud account synchronization. Saved profiles are rendered when restored or opened.
+
+To verify the workflow in an environment with Python Playwright and Chromium installed:
+
+```sh
+node --check starter.js
+node --check app.js
+python3 tests/starter_smoke.py
+```
+
+The smoke test serves the checkout on an ephemeral local port and uses an isolated browser context. It checks setup limits, draft reload, personalization, tool switching, routine resume, reflection saving, skips, profile reload, and mobile widths.

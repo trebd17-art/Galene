@@ -127,47 +127,76 @@
       <div class="xp-wrap" aria-label="Lesson progress"><div id="lessonProgressFill" class="xp-fill"></div></div>
     </section>
 
-    <section id="assessment" class="screen">
-      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
-      <div class="progress"><span class="active-step">1</span><span>2</span><span>3</span><span>4</span></div>
-      <h2>Steady Your Mind Past The Storm</h2>
+    <section id="assessment" class="screen starter-screen">
+      <button class="text-back" onclick="showScreen('mainMenu')">← Back to Home</button>
+      <p id="setupProgress" class="starter-eyebrow" aria-live="polite">Step 1 of 3</p>
+      <div class="starter-meter"><div id="setupProgressFill"></div></div>
+      <h2>Find your starting point</h2>
+      <p class="starter-intro">Your answers help us suggest a starting routine. You can change them anytime.</p>
+      <p class="starter-save-status" role="status"></p>
+      <form id="starterSetupForm">
+        <fieldset data-setup-step="0">
+          <legend>What would you like support with?</legend>
+          <p id="setupGoalHint">Choose up to two, or continue without choosing.</p>
+          <div class="starter-options">
+            <label><input type="checkbox" name="starterGoal" value="Stress"> Everyday stress</label>
+            <label><input type="checkbox" name="starterGoal" value="Overthinking"> Overthinking</label>
+            <label><input type="checkbox" name="starterGoal" value="Sleep"> Sleep</label>
+            <label><input type="checkbox" name="starterGoal" value="Focus"> Focus</label>
+            <label><input type="checkbox" name="starterGoal" value="Confidence"> Confidence</label>
+          </div>
+          <p id="setupError" role="status"></p>
+        </fieldset>
+        <fieldset data-setup-step="1" hidden>
+          <legend>How are you feeling today?</legend>
+          <div class="starter-options">
+            <label><input type="radio" name="starterFeeling" value="Restless"> Restless</label>
+            <label><input type="radio" name="starterFeeling" value="Overwhelmed"> Overwhelmed</label>
+            <label><input type="radio" name="starterFeeling" value="Tired"> Tired</label>
+            <label><input type="radio" name="starterFeeling" value="Steady"> Steady</label>
+            <label><input type="radio" name="starterFeeling" value="Prefer not to say" checked> Prefer not to say</label>
+          </div>
+        </fieldset>
+        <fieldset data-setup-step="2" hidden>
+          <legend>How much time feels manageable?</legend>
+          <div class="starter-options">
+            <label><input type="radio" name="starterMinutes" value="2"> 2 minutes</label>
+            <label><input type="radio" name="starterMinutes" value="5" checked> 5 minutes</label>
+            <label><input type="radio" name="starterMinutes" value="10"> 10 minutes</label>
+          </div>
+          <label for="starterProfile">About you <span class="starter-muted">(optional)</span></label>
+          <select id="starterProfile"><option value="">Skip this question</option><option>Shift Worker</option><option>Student</option><option>Parent</option><option>Working Professional</option><option>Young Adult</option><option>Senior</option></select>
+        </fieldset>
+        <button type="submit" id="setupNext">Continue</button>
+        <button type="button" class="secondary" id="setupBack" onclick="starterSetupBack()" hidden>Previous step</button>
+      </form>
+    </section>
 
-      <label>Which best describes you?</label>
-      <select id="userType">
-        <option>Shift Worker</option><option>Student</option><option>Parent</option><option>Working Professional</option><option>Young Adult</option><option>Senior</option>
-      </select>
+    <section id="starterResult" class="screen starter-screen">
+      <p class="starter-eyebrow">Made for your starting point</p>
+      <h2>Your starting routine</h2>
+      <p class="starter-save-status" role="status"></p>
+      <div class="starter-card"><p id="starterSummary"></p><p class="starter-sequence">Arrive · Settle · Reflect · Act</p><p>No perfect answers. No need to rush.</p></div>
+      <button onclick="startStarterRoutine()">Start My First Routine</button>
+      <button class="secondary" onclick="showScreen('assessment')">Edit my answers</button>
+      <button class="text-back" onclick="showScreen('mainMenu')">Do this later</button>
+    </section>
 
-      <label>What Would You Most Like To Improve?</label>
-      <p class="prompt-hint">Choose all that apply. Your answers help build your profile.</p>
-      <button type="button" class="dropdown-toggle" onclick="toggleImproveOptions()">Select improvement areas</button>
-      <div id="selectedImprovements" class="selected-chips compact-chip-row">No areas selected yet.</div>
-      <div id="improveOptions" class="choices multi hidden">
-        <label><input type="checkbox" value="Anxiety" onchange="updateImproveButton()"> Anxiety</label>
-        <label><input type="checkbox" value="Work stress" onchange="updateImproveButton()"> Work stress</label>
-        <label><input type="checkbox" value="Sleep trouble" onchange="updateImproveButton()"> Sleep trouble</label>
-        <label><input type="checkbox" value="Performance anxiety" onchange="updateImproveButton()"> Performance anxiety</label>
-        <label><input type="checkbox" value="Overthinking" onchange="updateImproveButton()"> Overthinking</label>
-        <label><input type="checkbox" value="Negative Thinking" onchange="updateImproveButton()"> Negative Thinking</label>
-        <label><input type="checkbox" value="Focus" onchange="updateImproveButton()"> Focus</label>
-        <label><input type="checkbox" value="Confidence" onchange="updateImproveButton()"> Confidence</label>
-        <label><input type="checkbox" value="Stress" onchange="updateImproveButton()"> Stress</label>
-        <label><input type="checkbox" value="Motivation" onchange="updateImproveButton()"> Motivation</label>
-      </div>
-
-      <label>What Challenge Affects You Most?</label>
-      <select id="challenge">
-        <option>Racing thoughts</option><option>Panic attacks</option><option>Difficulty sleeping</option><option>Social anxiety</option><option>Low confidence</option><option>Burnout</option><option>Work stress</option><option>Loneliness</option>
-      </select>
-
-      <label>How Much Time Can You Commit Per Day?</label>
-      <select id="timeCommitment"><option>5 minutes</option><option>10 minutes</option><option>15 minutes</option><option>20+ minutes</option></select>
-
-      <label>If SteadierMind worked perfectly, what would you want to feel?</label>
-      <select id="hope"><option>Calm</option><option>Confident</option><option>Focused</option><option>Energized</option><option>Happy</option></select>
-      <button id="buildPlanButton" onclick="buildPlanAndSave()">Build My Plan</button>
+    <section id="starterRoutine" class="screen starter-screen">
+      <button class="text-back" onclick="showScreen('mainMenu')">Save and return home</button>
+      <p id="routineProgress" class="starter-eyebrow" aria-live="polite"></p>
+      <div class="starter-meter"><div id="routineProgressFill"></div></div>
+      <h2 id="routineHeading" tabindex="-1"></h2>
+      <p id="routineDescription"></p>
+      <div id="routinePanel"></div>
+      <p id="routineSaveStatus" class="starter-save-status" role="status"></p>
+      <button id="routineNext" onclick="starterRoutineNext()">Continue</button>
+      <button id="routineSkip" class="secondary" onclick="starterRoutineNext(true)">Skip this activity</button>
     </section>
 
     <section id="dashboard" class="screen premium-dashboard">
+      <button class="secondary" onclick="showScreen('assessment')">Edit my starting routine</button>
+      <button onclick="startStarterRoutine()">Start my routine</button>
       <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
       <div class="dashboard-hero">
         <div><p class="eyebrow">Your personalized path</p><h2>Your SteadierMind Profile</h2></div>
@@ -813,5 +842,6 @@
     </section>
   </main>
   <script src="app.js"></script>
+  <script src="starter.js"></script>
 </body>
 </html>

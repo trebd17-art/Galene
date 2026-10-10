@@ -2921,3 +2921,23 @@ h1,h2,h3,.emergency-message-bubble,.guided-message strong,.primary-home-card str
 #mainMenu .home-explore summary span, #mainMenu .home-explore-links button span { position: absolute; right: 4px; }
 #mainMenu .today-progress-strip { display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
 #mainMenu .today-progress-strip .mini-progress { width: 100%; }
+
+/* Welcoming setup and guided starter routine. */
+.starter-screen { text-align: center; }
+.starter-screen h2 { text-wrap: balance; line-height: 1.3; }
+.starter-screen p { color: #4e6863; line-height: 1.5; text-wrap: balance; }
+.starter-eyebrow { font-size: 13px; letter-spacing: .06em; }
+.starter-meter { height: 6px; overflow: hidden; background: #dce9e6; border-radius: 20px; margin: 12px 0 24px; }
+.starter-meter > div { height: 100%; background: #4c8276; transition: width .2s; }
+.starter-screen fieldset { border: 0; padding: 0; margin: 24px 0; min-width: 0; }
+.starter-screen legend { width: 100%; font-size: 20px; font-weight: 650; }
+.starter-screen [hidden] { display: none !important; }
+.starter-options { display: grid; gap: 10px; margin: 18px 0; text-align: left; }
+.starter-options label { display: flex; align-items: center; gap: 12px; margin: 0; padding: 15px; border: 1px solid #d5e2df; border-radius: 16px; background: white; font-weight: 500; }
+.starter-options label:has(input:checked) { background: #e9f2ec; border-color: #4c8276; }
+.starter-options input { flex-shrink: 0; width: 18px; height: 18px; accent-color: #1e5663; }
+.starter-card { padding: 20px; margin: 22px 0; border-radius: 22px; border: 1px solid #dce8e1; background: #e9f2ec; }
+.starter-sequence { font-weight: 650; color: #21414d !important; }
+.starter-muted { font-size: 14px; font-weight: 400; }
+.starter-screen button:focus-visible, .starter-screen input:focus-visible, .starter-screen textarea:focus-visible, .starter-screen select:focus-visible { outline: 3px solid #4c8276; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .screen, .starter-meter > div { animation: none !important; transition: none !important; } }
