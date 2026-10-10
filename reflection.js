@@ -94,8 +94,22 @@
       steadierMindJournalEntries.slice().reverse().forEach(entry => {
         const card = document.createElement('article'); card.className = 'saved-entry';
         const date = document.createElement('strong'); date.textContent = entry.date || 'Saved entry'; card.append(date);
-        const text = document.createElement('p'); text.textContent = entry.text || entry.summary || '';
-        text.style.whiteSpace = 'pre-wrap'; card.append(text); target.append(card);
+        if (entry.type === 'dailyReflection' && Array.isArray(entry.responses)) {
+          const mood = document.createElement('p'); mood.className = 'reflection-history-mood';
+          mood.textContent = `Feeling: ${entry.mood || 'Prefer not to say'}`; card.append(mood);
+          entry.responses.forEach(response => {
+            const pair = document.createElement('div'); pair.className = 'reflection-history-response';
+            const question = document.createElement('p'); question.className = 'reflection-history-question';
+            question.textContent = response.prompt;
+            const answer = document.createElement('p'); answer.className = 'reflection-history-answer';
+            answer.textContent = response.answer;
+            pair.append(question, answer); card.append(pair);
+          });
+        } else {
+          const text = document.createElement('p'); text.textContent = entry.text || entry.summary || '';
+          text.style.whiteSpace = 'pre-wrap'; card.append(text);
+        }
+        target.append(card);
       });
     });
   };

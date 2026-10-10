@@ -3011,5 +3011,9 @@ body.sleep-mode { background: #13252e; }
 .reflection-screen .reflection-privacy { font-size: 13px; color: #58706e; line-height: 1.5; }
 .reflection-screen [hidden] { display: none !important; }
 .reflection-screen button:disabled { opacity: .7; cursor: default; }
+.reflection-history-response { margin-top: 20px; }
+.saved-entry .reflection-history-question { font-size: 14px; font-weight: 700; color: #466f69; line-height: 1.5; }
+.saved-entry .reflection-history-answer { margin-top: 8px; font-size: 17px; font-weight: 400; color: #21414d; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; }
+.saved-entry .reflection-history-mood { font-size: 14px; color: #58706e; }
 .reflection-screen button:focus-visible, .reflection-screen textarea:focus-visible, .reflection-screen select:focus-visible, .reflection-details summary:focus-visible { outline: 3px solid #4c8276; outline-offset: 3px; }
 #journalResult { text-align: center; line-height: 1.5; }

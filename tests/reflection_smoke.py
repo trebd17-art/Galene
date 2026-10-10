@@ -59,6 +59,12 @@ with sync_playwright() as p:
     page.locator('#pastReflections summary').click()
     assert 'Anxious' in page.locator('#journalHistory').inner_text()
     assert 'An updated thought' in page.locator('#journalHistory').inner_text()
+    assert page.locator('.reflection-history-question').count() == 4
+    assert page.locator('.reflection-history-question').first.inner_text() == prompt
+    assert page.locator('.reflection-history-answer').first.inner_text() == 'An updated thought'
+    question_style = page.locator('.reflection-history-question').first.evaluate('(e)=>[getComputedStyle(e).fontSize,getComputedStyle(e).fontWeight,getComputedStyle(e).color]')
+    answer_style = page.locator('.reflection-history-answer').first.evaluate('(e)=>[getComputedStyle(e).fontSize,getComputedStyle(e).fontWeight,getComputedStyle(e).color]')
+    assert all(q != a for q, a in zip(question_style, answer_style))
     assert page.evaluate('window.bad') is None
     page.locator('#reflectionNew').click()
     page.locator('#reflectionAnswer').fill('Failed save stays in editor')
