@@ -2976,3 +2976,25 @@ h1,h2,h3,.emergency-message-bubble,.guided-message strong,.primary-home-card str
 .worry-save-choice { display: flex; align-items: flex-start; gap: 12px; text-align: left; font-size: 15px; font-weight: 500; padding: 16px; border: 1px solid #d5e2df; border-radius: 16px; background: white; }
 .worry-save-choice input { flex-shrink: 0; width: 18px; height: 18px; margin: 2px 0 0; accent-color: #1e5663; }
 .worry-session .worry-privacy { font-size: 13px; color: #58706e; }
+
+/* Quiet, readable bedtime colors; completion stays on this dim screen. */
+body.sleep-mode { background: #13252e; }
+.phone.sleep-mode { background: #192f3a; box-shadow: 0 12px 32px rgba(0,0,0,.18); }
+#sleepSession { text-align: center; color: #e0ebe7; animation: none; }
+#sleepSession h2, #sleepSession h3 { color: #e0ebe7; line-height: 1.35; text-wrap: balance; }
+#sleepSession p { color: #c0d2cb; line-height: 1.55; text-wrap: balance; }
+#sleepSession .text-back { display: block; margin: 16px auto; color: #d2e2db; }
+#sleepSession button { background: #355e62; color: #eef5f0; box-shadow: none; }
+#sleepSession button.secondary { background: #283f49; color: #e0ebe7; }
+#sleepSession .text-back { background: transparent; padding: 8px; }
+.sleep-card { background: #203943; border: 1px solid #45616a; border-radius: 22px; padding: 22px; margin: 24px 0; }
+#sleepSession label { text-align: left; color: #e0ebe7; }
+#sleepSession textarea { background: #182e37; color: #e0ebe7; border-color: #6b8989; }
+#sleepSession textarea::placeholder { color: #b4c9c3; }
+.sleep-save-choice { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; font-weight: 500; }
+.sleep-save-choice input { flex-shrink: 0; width: 18px; height: 18px; margin: 2px 0 0; accent-color: #a4c6b5; }
+#sleepSession .sleep-privacy { font-size: 13px; }
+#sleepSession [hidden] { display: none !important; }
+.sleep-sound { margin: 24px 0 0; border-top: 1px solid #45616a; padding-top: 16px; }
+.sleep-sound summary { padding: 12px; cursor: pointer; font-size: 14px; color: #c0d2cb; }
+#sleepSession button:focus-visible, #sleepSession textarea:focus-visible, #sleepSession input:focus-visible, .sleep-sound summary:focus-visible { outline: 3px solid #a4c6b5; outline-offset: 3px; }

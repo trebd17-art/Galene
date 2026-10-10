@@ -316,6 +316,20 @@
       </div>
     </section>
 
+    <section id="sleepSession" class="screen sleep-session">
+      <button class="text-back" onclick="leaveSleepSession()">← Back</button>
+      <p id="sleepProgress" class="starter-eyebrow" aria-live="polite"></p>
+      <h2 id="sleepHeading" tabindex="-1"></h2>
+      <p id="sleepDescription"></p>
+      <div id="sleepPanel" class="sleep-card"></div>
+      <p id="sleepSaveStatus" role="status"></p>
+      <button id="sleepNext" onclick="nextSleepStep()">Continue</button>
+      <button id="sleepSkip" class="text-back" onclick="nextSleepStep(true)">Skip this step</button>
+      <details id="sleepSound" class="sleep-sound"><summary>Optional sound · off by default</summary>
+        <div class="ambient-buttons"><button class="secondary" onclick="playAmbient('rain')">Rain</button><button class="secondary" onclick="playAmbient('ocean')">Ocean</button><button class="secondary" onclick="stopAmbient()">Off</button></div>
+      </details>
+    </section>
+
     <section id="worrySession" class="screen starter-screen worry-session">
       <button class="text-back" onclick="leaveWorrySession()">← Back</button>
       <p id="worryProgress" class="starter-eyebrow" aria-live="polite"></p>
@@ -901,5 +915,6 @@
   <script src="breathing.js"></script>
   <script src="grounding.js"></script>
   <script src="worry.js"></script>
+  <script src="sleep.js"></script>
 </body>
 </html>

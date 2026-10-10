@@ -127,3 +127,12 @@ Worry Release now offers four guided steps: optionally name a worry, choose what
 Written worries stay in session memory and are excluded from snapshots and autosave. Saving to the existing browser-local journal requires an explicit checkbox on the final screen. Unchecked writing is discarded on finishing, leaving, or reload. Saved entries are included in existing data export; save failures allow retry or finishing without saving. No new analytics or remote transmission is introduced.
 
 Run `python3 tests/worry_smoke.py` and `python3 tests/worry_save_smoke.py` with Python Playwright and Chromium to check the guided flow, privacy, and save-failure recovery.
+
+
+## Sleep Wind-Down
+
+Sleep Wind-Down uses a dim, readable navy-and-teal screen with four stages: settle in, optionally put something aside, relax the jaw/shoulders/hands one at a time, and finish quietly. Every instruction can be skipped. Sound is optional and off when the session opens. Finishing stops sound and stays on the dim screen without XP, bright animations, or an automatic return home. A user can deliberately return to their routine or calming tools.
+
+Tomorrow notes remain in session memory unless the user explicitly opts into saving them to the existing browser-local journal on completion. Save failures support retry or finishing without saving; exported data includes saved journal notes. Sleep-focused starter plans suggest this tool unless the current feeling calls for grounding instead.
+
+Run `python3 tests/sleep_smoke.py` with Python Playwright and Chromium to validate the flow.

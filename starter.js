@@ -49,7 +49,7 @@
   function recommendation() {
     const { goals, feeling, minutes } = state.setup;
     const goal = goals[0] || 'Balance';
-    const tool = feeling === 'Overwhelmed' || goal === 'Focus' ? 'grounding' : 'breathing';
+    const tool = feeling === 'Overwhelmed' || goal === 'Focus' ? 'grounding' : goal === 'Sleep' ? 'sleep' : 'breathing';
     const prompts = {
       Stress: 'What is one pressure you can make a little smaller today?',
       Overthinking: 'What thought keeps returning, and what do you know for certain about it?',
@@ -93,7 +93,7 @@
   function renderResult() {
     const { goal, tool } = recommendation();
     const focus = goal === 'Balance' ? 'everyday wellbeing' : state.setup.goals.map(x => x.toLowerCase()).join(' and ');
-    $('starterSummary').textContent = `A ${state.setup.minutes}-minute routine for ${focus}: ${tool === 'grounding' ? 'grounding' : 'gentle breathing'}, one reflection, and a manageable next step.`;
+    $('starterSummary').textContent = `A ${state.setup.minutes}-minute routine for ${focus}: ${tool === 'grounding' ? 'grounding' : tool === 'sleep' ? 'a gentle wind-down' : 'gentle breathing'}, one reflection, and a manageable next step.`;
   }
   window.startStarterRoutine = function () {
     if (!hasBuiltPlan()) { showScreen('assessment'); return; }
@@ -113,7 +113,7 @@
     const headings = ['Arrive', 'Settle', 'Reflect', 'Take one small step', 'Notice how you feel'];
     const descriptions = [
       'How are you feeling right now? Noticing is enough.',
-      `Try ${rec.tool === 'grounding' ? 'grounding' : 'gentle breathing'} for about ${rec.settleSeconds} seconds. Go at your own pace; stop or switch if it feels uncomfortable.`,
+      rec.tool === 'sleep' ? 'Take a quiet wind-down pause at your own pace. You can skip any instruction or try grounding instead.' : `Try ${rec.tool === 'grounding' ? 'grounding' : 'gentle breathing'} for about ${rec.settleSeconds} seconds. Go at your own pace; stop or switch if it feels uncomfortable.`,
       rec.prompt + (state.setup.minutes === 2 ? ' A few words are enough.' : state.setup.minutes === 10 ? ' Take a little time to explore what comes up.' : ' One or two sentences are enough.'),
       'Choose something manageable to carry into your day.',
       'There is no right outcome. About the same is a valid answer.'
@@ -127,7 +127,7 @@
     let panel = '';
     if (routine.step === 0) panel = radios('routineBefore', ['Restless', 'Overwhelmed', 'Anxious', 'Steady', 'Prefer not to say'], routine.before);
     if (routine.step === 1) {
-      panel = `<button onclick="launchStarterTool('${rec.tool}')">Open ${rec.tool === 'grounding' ? 'Grounding' : 'Breathing'}</button><button class="secondary" onclick="launchStarterTool('${rec.tool === 'grounding' ? 'breathing' : 'grounding'}')">Try ${rec.tool === 'grounding' ? 'breathing' : 'grounding'} instead</button>`;
+      panel = `<button onclick="launchStarterTool('${rec.tool}')">Open ${rec.tool === 'grounding' ? 'Grounding' : rec.tool === 'sleep' ? 'Sleep Wind-Down' : 'Breathing'}</button><button class="secondary" onclick="launchStarterTool('${rec.tool === 'grounding' ? 'breathing' : 'grounding'}')">Try ${rec.tool === 'grounding' ? 'breathing' : 'grounding'} instead</button>`;
       $('routineNext').hidden = true;
     }
     if (routine.step === 2) panel = `<label for="starterReflection">Your reflection (optional)</label><textarea id="starterReflection" maxlength="5000" placeholder="A few words, just for you…">${escape(routine.reflection)}</textarea>`;
@@ -193,6 +193,13 @@
       }, true);
       return;
     }
+    if (tool === 'sleep') {
+      openSleepSession(() => {
+        usingRoutineTool = false;
+        state.routine.step = 2; persist(); showScreen('starterRoutine');
+      }, true);
+      return;
+    }
     openEmergencyTool(tool);
     const back = document.querySelector('#emergencyToolPlayer .text-back');
     back.textContent = '← Back to My Routine';
@@ -213,7 +220,7 @@
   };
   const previousShowScreen = showScreen;
   showScreen = function (screenId) {
-    if (usingRoutineTool && screenId !== 'emergencyToolPlayer' && screenId !== 'breathingSession' && screenId !== 'groundingSession' && screenId !== 'worrySession') {
+    if (usingRoutineTool && screenId !== 'emergencyToolPlayer' && screenId !== 'breathingSession' && screenId !== 'groundingSession' && screenId !== 'worrySession' && screenId !== 'sleepSession') {
       usingRoutineTool = false; stopBreathingExercise();
     }
     previousShowScreen(screenId);
