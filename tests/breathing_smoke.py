@@ -72,6 +72,10 @@ with sync_playwright() as p:
     before = page.locator('#gentleBreathingTimer').inner_text()
     page.clock.run_for(70000)
     assert page.locator('#gentleBreathingTimer').inner_text() == before
+    page.evaluate('showScreen("todayPlan"); startBreathing()')
+    page.locator('#breathingSession').wait_for(state='visible')
+    page.locator('#breathingSession .text-back').first.click()
+    page.locator('#todayPlan').wait_for(state='visible')
     for width in [320, 390, 768]:
         page.set_viewport_size({'width': width, 'height': 844})
         page.evaluate('openBreathingSession(60)')
