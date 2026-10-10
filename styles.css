@@ -2941,3 +2941,20 @@ h1,h2,h3,.emergency-message-bubble,.guided-message strong,.primary-home-card str
 .starter-muted { font-size: 14px; font-weight: 400; }
 .starter-screen button:focus-visible, .starter-screen input:focus-visible, .starter-screen textarea:focus-visible, .starter-screen select:focus-visible { outline: 3px solid #4c8276; outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .screen, .starter-meter > div { animation: none !important; transition: none !important; } }
+
+/* Focused, gentle breathing player. */
+.breathing-session { text-align: center; }
+.breathing-session .text-back { display: block; margin: 12px auto; }
+.breathing-session h2 { line-height: 1.3; text-wrap: balance; }
+.breathing-intro { color: #4e6863; font-size: 15px; text-wrap: balance; }
+.gentle-breathing-circle { width: min(210px, 75%); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; margin: 48px auto; padding: 24px; border-radius: 50%; background: #dcece5; border: 2px solid #8bb8aa; color: #21414d; transition: transform 4s linear; transform: scale(.88); }
+.gentle-breathing-circle.breathing-in { transform: scale(1.08); transition-duration: 4s; }
+.gentle-breathing-circle.breathing-out { transform: scale(.88); transition-duration: 6s; }
+.gentle-breathing-circle.breathing-paused { transition-duration: .2s; transform: scale(.95); }
+#gentleBreathingPhase { font-weight: 600; line-height: 1.5; }
+#gentleBreathingTimer { color: #58706e; font-variant-numeric: tabular-nums; }
+.breathing-session [hidden] { display: none !important; }
+.breathing-sound { margin-top: 20px; padding-top: 16px; border-top: 1px solid #dce6df; }
+.breathing-sound summary { padding: 12px; cursor: pointer; font-size: 14px; color: #4e6863; }
+.breathing-session button:focus-visible, .breathing-sound summary:focus-visible { outline: 3px solid #4c8276; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .gentle-breathing-circle { transition: none !important; transform: none !important; } }

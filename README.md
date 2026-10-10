@@ -104,3 +104,10 @@ python3 tests/starter_smoke.py
 ```
 
 The smoke test serves the checkout on an ephemeral local port and uses an isolated browser context. It checks setup limits, draft reload, personalization, tool switching, routine resume, reflection saving, skips, profile reload, and mobile widths.
+
+
+## Gentle breathing
+
+The focused breathing screen uses a gentle 4-second inhale and 6-second exhale, without breath holds. Sessions require an explicit start, support pause/resume and finishing early, and offer grounding instead. Optional sound is off when a session opens. Starter routines use 30, 60, or 120 seconds for the 2-, 5-, or 10-minute preferences; standalone sessions use 60 seconds. Leaving the screen stops the clock and sound. Natural completion awards XP once when the user continues; finishing early does not award XP. Browser tab hiding automatically pauses the session.
+
+Run `python3 tests/breathing_smoke.py` to check timing and integration with the same prerequisites as the starter smoke test.

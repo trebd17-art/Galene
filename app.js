@@ -351,81 +351,10 @@ function stopBreathingExercise(){
 }
 
 function startBreathing(){
-  const box = document.getElementById("breathingBox");
-  const circle = document.querySelector(".breathing-circle");
-  const panel = document.querySelector(".breathing-panel");
-  if(!box || !circle) return;
-
-  if(steadyBreathingRunning) return;
-  steadyBreathingRunning = true;
-
-  if(panel) panel.classList.add("running");
-
-  let timerEl = document.getElementById("breathingTimer");
-  if(!timerEl){
-    timerEl = document.createElement("div");
-    timerEl.id = "breathingTimer";
-    timerEl.className = "breathing-timer";
-    circle.parentElement.appendChild(timerEl);
-  }
-
-  let completeEl = document.getElementById("breathingCompleteMessage");
-  if(!completeEl){
-    completeEl = document.createElement("div");
-    completeEl.id = "breathingCompleteMessage";
-    completeEl.className = "breathing-complete-message";
-    circle.parentElement.appendChild(completeEl);
-  }
-
-  completeEl.innerHTML = "";
-
-  const phases = [
-    { text: "Breathe in slowly...", className: "inhale", seconds: 4 },
-    { text: "Hold gently...", className: "hold", seconds: 4 },
-    { text: "Breathe out fully...", className: "exhale", seconds: 6 },
-    { text: "Rest...", className: "rest", seconds: 6 }
-  ];
-
-  let elapsed = 0;
-  let phaseIndex = 0;
-  let phaseElapsed = 0;
-  const totalSeconds = 60;
-
-  function applyPhase(){
-    const phase = phases[phaseIndex];
-    circle.classList.remove("inhale", "hold", "exhale", "rest", "calm-breathe");
-    circle.classList.add(phase.className);
-    box.textContent = phase.text;
-  }
-
-  applyPhase();
-  timerEl.textContent = `${totalSeconds} seconds remaining`;
-
-  const interval = setInterval(() => {
-    elapsed += 1;
-    phaseElapsed += 1;
-
-    const remaining = Math.max(totalSeconds - elapsed, 0);
-    timerEl.textContent = `${remaining} seconds remaining`;
-
-    if(phaseElapsed >= phases[phaseIndex].seconds){
-      phaseIndex = (phaseIndex + 1) % phases.length;
-      phaseElapsed = 0;
-      applyPhase();
-    }
-
-    if(elapsed >= totalSeconds){
-      clearInterval(interval);
-      circle.classList.remove("inhale", "hold", "exhale", "rest");
-      circle.classList.add("rest");
-      box.textContent = "60-second reset complete.";
-      timerEl.textContent = "";
-      completeEl.innerHTML = "Rest. You are safe in this moment.<br><strong>YOU are in control.</strong><br><br>+5 XP";
-      if(panel) panel.classList.remove("running");
-      steadyBreathingRunning = false;
-      completeActivity();
-    }
-  }, 1000);
+  const source = document.querySelector('.screen.active');
+  if (source && source.id === 'todayPlan') {
+    openBreathingSession(60, () => showScreen('todayPlan'), false, 'todayPlan');
+  } else openBreathingSession(60);
 }
 
 function setMoodChoice(mood, button){
@@ -1927,7 +1856,7 @@ const emergencyToolData={
   breathing:{
     title:"60-Second Reset", icon:"🚨",
     messages:[
-      "You are safe in this moment.",
+      "Take a moment to notice your surroundings.",
       "Nothing needs to be solved right now.",
       "Let your body slow down before your mind tries to figure everything out.",
       "Tap the breathing bubble below and follow the rhythm.",
@@ -2024,7 +1953,7 @@ function completeEmergencyTool(){
   updateXP();
   const bubble=document.getElementById("emergencyMessageBubble");
   const endings={
-    breathing:"Strengthening thought: Your body can calm down. You are safe in this moment. You are in control.",
+    breathing:"Take a moment to notice how you feel.",
     grounding:"Strengthening thought: You returned to the present. You can be steady even when your mind feels loud.",
     worry:"Strengthening thought: You do not have to carry every thought. You can choose one steady step.",
     sleep:"Strengthening thought: Rest is not weakness. Rest is how you recover your strength."

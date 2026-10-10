@@ -259,7 +259,7 @@
       <p class="intro compact">Pick the support you need right now. Each tool guides you one step at a time.</p>
 
       <div class="emergency-tool-grid">
-        <button class="emergency-tool-card urgent-card" onclick="openEmergencyTool('breathing')"><span class="tool-icon">🚨</span><strong>60-Second Reset</strong><small>Breathe and settle your body</small></button>
+        <button class="emergency-tool-card urgent-card" onclick="openEmergencyTool('breathing')"><span class="tool-icon">🚨</span><strong>Gentle Breathing</strong><small>Breathe and settle your body</small></button>
         <button class="emergency-tool-card" onclick="openEmergencyTool('grounding')"><span class="tool-icon">🌿</span><strong>Grounding</strong><small>Return to the present moment</small></button>
         <button class="emergency-tool-card" onclick="openEmergencyTool('worry')"><span class="tool-icon">🕊️</span><strong>Worry Release</strong><small>Release what is not yours to carry</small></button>
         <button class="emergency-tool-card" onclick="openEmergencyTool('sleep')"><span class="tool-icon">🌙</span><strong>Sleep Wind-Down</strong><small>Prepare your mind for rest</small></button>
@@ -314,6 +314,27 @@
           <button type="button" class="secondary" onclick="stopAmbient()">Off</button>
         </div>
       </div>
+    </section>
+
+    <section id="breathingSession" class="screen breathing-session">
+      <button class="text-back" onclick="leaveBreathingSession()">← Back</button>
+      <h2>A moment to breathe</h2>
+      <p class="breathing-intro">Take a moment to notice your surroundings. Breathe gently, without holding your breath. You can breathe naturally or switch to grounding whenever you prefer.</p>
+      <div id="gentleBreathingCircle" class="gentle-breathing-circle"><span id="gentleBreathingPhase" aria-live="polite">At your own pace</span></div>
+      <p id="gentleBreathingTimer"></p>
+      <div id="gentleBreathingControls">
+        <button id="gentleBreathingBegin" onclick="beginGentleBreathing()">Begin breathing</button>
+        <button id="gentleBreathingPause" onclick="pauseGentleBreathing()" hidden>Pause</button>
+        <button id="gentleBreathingFinish" class="secondary" onclick="finishGentleBreathing()">Finish early</button>
+      </div>
+      <div id="gentleBreathingEnd" hidden>
+        <p role="status">Take a moment to notice how you feel.</p>
+        <button id="gentleBreathingContinue" onclick="continueAfterBreathing()">Continue</button>
+      </div>
+      <button id="gentleBreathingGrounding" class="text-back" onclick="switchBreathingToGrounding()">Try grounding instead</button>
+      <details class="breathing-sound"><summary>Optional sound · off by default</summary>
+        <div class="ambient-buttons"><button class="secondary" onclick="playAmbient('rain')">Rain</button><button class="secondary" onclick="playAmbient('ocean')">Ocean</button><button class="secondary" onclick="stopAmbient()">Off</button></div>
+      </details>
     </section>
 
     <section id="games" class="screen game-menu-screen">
@@ -843,5 +864,6 @@
   </main>
   <script src="app.js"></script>
   <script src="starter.js"></script>
+  <script src="breathing.js"></script>
 </body>
 </html>

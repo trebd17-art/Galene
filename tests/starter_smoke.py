@@ -55,7 +55,8 @@ with sync_playwright() as p:
     page.locator('#emergencyToolPlayer .text-back').click()
     assert page.locator('#routineHeading').inner_text() == 'Settle'
     page.locator('#routinePanel button', has_text='Try breathing instead').click()
-    page.locator('#emergencyToolPlayer .emergency-player-actions button', has_text='Complete +10 XP').click()
+    page.locator('#gentleBreathingFinish').click()
+    page.locator('#gentleBreathingContinue').click()
     assert page.locator('#routineHeading').inner_text() == 'Reflect'
     page.locator('#starterReflection').fill('A saved reflection <script>no execution</script>')
     reload_app()
