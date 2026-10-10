@@ -544,7 +544,8 @@
         <button class="bucket-btn unhelpful" onclick="sortThoughtCard('unhelpful')">🔴 Unhelpful</button>
       </div>
 
-      <div id="thoughtSortResult" class="card result-card hidden"></div>
+      <div id="thoughtSortResult" class="card result-card hidden" role="status" aria-live="polite"></div>
+      <button id="thoughtNext" onclick="nextThoughtSortCard()" hidden>Next card</button>
 
       <button onclick="startThoughtSortGame()">Start Thought Sort</button>
       <button class="secondary" onclick="resetThoughtSortGame()">Restart Thought Sort</button>
@@ -885,5 +886,6 @@
   <script src="sleep.js"></script>
   <script src="reflection.js"></script>
   <script src="mood.js"></script>
+  <script src="games.js"></script>
 </body>
 </html>

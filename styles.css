@@ -3032,3 +3032,9 @@ body.sleep-mode { background: #13252e; }
 .mood-entry-controls button { padding: 12px; }
 .mood-saved-note { white-space: pre-wrap; overflow-wrap: anywhere; }
 .mood-privacy { font-size: 13px; color: #58706e; }
+
+#thoughtSortGameScreen [hidden] { display: none !important; }
+.thought-buckets button:disabled { opacity: .65; cursor: default; }
+@media (prefers-reduced-motion: reduce) {
+  .game-menu-screen *, #centeredGame *, #thoughtSortGameScreen *, #calmFocusGameScreen *, #groundingGameScreen *, #anchorGameScreen * { animation: none !important; transition: none !important; }
+}

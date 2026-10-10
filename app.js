@@ -1296,7 +1296,7 @@ function createCalmFocusOrb(type){
 }
 
 function handleFocusOrbTap(orb){
-  if(!calmFocusRunning) return;
+  if(!calmFocusRunning || !orb.isConnected) return;
 
   calmFocusScore += 1;
   calmFocusCombo = Math.min(calmFocusCombo + 1, 5);
@@ -1315,6 +1315,7 @@ function handleFocusOrbTap(orb){
 }
 
 function handleDistractionTap(orb){
+  if(!calmFocusRunning || !orb.isConnected) return;
   calmFocusMisses += 1;
   calmFocusCombo = 1;
   calmFocusMeter = Math.max(0, calmFocusMeter - 12);
@@ -1350,6 +1351,7 @@ function triggerMindWandering(){
 }
 
 function returnToPresent(){
+  if(!calmFocusRunning || document.getElementById("mindWanderOverlay").classList.contains("hidden")) return;
   const overlay = document.getElementById("mindWanderOverlay");
   if(overlay) overlay.classList.add("hidden");
   calmFocusMeter = Math.min(100, calmFocusMeter + 10);
@@ -1359,6 +1361,7 @@ function returnToPresent(){
 }
 
 function completeCalmFocusRound(){
+  if(!calmFocusRunning) return;
   calmFocusRunning = false;
   if(calmFocusSpawnTimer){ clearInterval(calmFocusSpawnTimer); calmFocusSpawnTimer = null; }
   if(calmFocusWanderTimer){ clearInterval(calmFocusWanderTimer); calmFocusWanderTimer = null; }
@@ -1521,6 +1524,7 @@ function setAnchorPrompt(message){
 }
 
 function checkAnchorEnd(){
+  if(!anchorRunning) return;
   if(anchorStability <= 0){
     anchorRunning = false;
     if(anchorTimer) clearInterval(anchorTimer);
@@ -1614,6 +1618,7 @@ function handleCenteredWaveAndEventsV27(){
   }else if(centeredTurns%5!==1)centeredEventActive=null;
 }
 function checkCenteredLevelEndV27(){
+  if(!centeredRoundActive) return;
   const balance=getCenteredBalancePercent(),counts=getCenteredCounts(),anxiety=getCenteredAnxietyCount();
   let complete=false;
   if(centeredCurrentObjective.includes("80%")&&balance>=80&&centeredTurns>=8)complete=true;
@@ -1624,9 +1629,9 @@ function checkCenteredLevelEndV27(){
   if(complete){
     const xp=25+centeredLevel;mindPoints+=xp;completedActivities+=1;updateXP();
     setCenteredMessage(`Level complete. Harmony restored.<br><br>+${xp} Emotional Intelligence XP<br><br><strong>Lesson:</strong> Balance is healthier than eliminating anxiety.`);
-    centeredLevel++;setTimeout(startCenteredGame,3000);return;
+    centeredRoundActive=false; centeredLevel++;saveSteadierMindData();return;
   }
-  if(anxiety>=18){setCenteredMessage("Overwhelmed. Anxiety took over the system. Take a breath and rebuild balance.");setTimeout(startCenteredGame,2500);}
+  if(anxiety>=18){centeredRoundActive=false;setCenteredMessage("This round has ended. Take your time, then restart when you feel ready.");}
 }
 
 /* v27 Thought Sort 20 questions + premium difficulty gates */
@@ -2064,53 +2069,38 @@ function renderThoughtSortCard(){
 }
 
 function sortThoughtCard(bucket){
-  if(!thoughtSortRunning){
-    const result = document.getElementById("thoughtSortResult");
-    if(result){
-      result.classList.remove("hidden");
-      result.innerHTML = "Tap Start Thought Sort first.";
-    }
-    return;
-  }
-
-  if(thoughtSortAnswered) return;
-  thoughtSortAnswered = true;
-
+  if(!thoughtSortRunning || thoughtSortAnswered) return;
   const current = thoughtSortCurrentBank[thoughtSortIndex];
-  const card = document.getElementById("thoughtFloatingCard");
+  if(!current) return;
+  thoughtSortAnswered = true;
   const result = document.getElementById("thoughtSortResult");
-  if(!current || !result) return;
-
   result.classList.remove("hidden");
-
   if(bucket === current.bucket){
     thoughtSortScore += 10 * thoughtSortCombo;
     thoughtSortCombo = Math.min(thoughtSortCombo + 1, 5);
-    if(card) card.classList.add("correct");
-    result.innerHTML = `<strong>Correct.</strong><br>${current.explanation}<br><br>Combo x${thoughtSortCombo}`;
+    result.textContent = "That fits. " + current.explanation;
   } else {
     thoughtSortCombo = 1;
-    if(card) card.classList.add("incorrect");
-    result.innerHTML = `<strong>Good try.</strong><br>This belongs under <strong>${current.bucket}</strong>.<br>${current.explanation}`;
+    result.textContent = "Let's consider “" + current.bucket + ".” " + current.explanation;
   }
-
+  document.getElementById("thoughtNext").hidden = false;
+  document.getElementById("thoughtNext").textContent = thoughtSortIndex === thoughtSortCurrentBank.length - 1 ? "Finish Thought Sort" : "Next card";
+  document.querySelectorAll(".thought-buckets button").forEach(button => button.disabled = true);
   updateThoughtSortStats();
+}
 
-  setTimeout(() => {
-    thoughtSortIndex += 1;
-
-    if(thoughtSortIndex >= thoughtSortCurrentBank.length){
-      finishThoughtSortGame();
-      return;
-    }
-
-    renderThoughtSortCard();
-    result.classList.add("hidden");
-    updateThoughtSortStats();
-  }, 1600);
+function nextThoughtSortCard(){
+  if(!thoughtSortRunning || !thoughtSortAnswered) return;
+  thoughtSortIndex++;
+  document.getElementById("thoughtNext").hidden = true;
+  if(thoughtSortIndex >= thoughtSortCurrentBank.length){finishThoughtSortGame();return;}
+  renderThoughtSortCard();
+  document.getElementById("thoughtSortResult").classList.add("hidden");
+  updateThoughtSortStats();
 }
 
 function finishThoughtSortGame(){
+  if(!thoughtSortRunning) return;
   thoughtSortRunning = false;
 
   const xp = 15;
@@ -2300,6 +2290,7 @@ function createWorryCloud(){
   cloud.textContent = groundingWorryTexts[Math.floor(Math.random() * groundingWorryTexts.length)];
   cloud.onclick = function(event){
     event.stopPropagation();
+    if(!groundingGameRunning || groundingAdvanceTimer !== null || !cloud.isConnected) return;
     groundingGameMisses += 1;
     groundingGameCombo = 1;
     groundingGameScore = Math.max(0, groundingGameScore - 5);
@@ -2324,14 +2315,16 @@ function placeGroundingElement(el){
 }
 
 function handleGroundingObjectTap(btn){
-  if(!groundingGameRunning) return;
+  if(!groundingGameRunning || groundingAdvanceTimer !== null || !btn.isConnected) return;
 
   if(btn.dataset.target === "true"){
     groundingGameScore += 10 * groundingGameCombo;
     groundingGameCombo = Math.min(groundingGameCombo + 1, 5);
     btn.classList.add("correct-pop");
     setGroundingFeedback("Good. You anchored your attention to the present.");
-    setTimeout(function(){
+    groundingAdvanceTimer = setTimeout(function(){
+      groundingAdvanceTimer = null;
+      if(!groundingGameRunning) return;
       groundingGameStepIndex += 1;
       updateGroundingGameStats();
       updateGroundingSenseProgress();
@@ -2380,6 +2373,7 @@ function updateGroundingSenseProgress(){
 }
 
 function finishGroundingGame(){
+  if(!groundingGameRunning) return;
   groundingGameRunning = false;
   clearGroundingPlayArea();
   setGroundingInstruction("Grounding complete.");
