@@ -2907,3 +2907,17 @@ h1,h2,h3,.emergency-message-bubble,.guided-message strong,.primary-home-card str
 #mainMenu .home-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 #mainMenu button:focus-visible, #mainMenu summary:focus-visible { outline: 3px solid #4c8276; outline-offset: 4px; }
 @media (max-width: 400px) { #mainMenu.calm-home { padding: 20px; } #mainMenu .home-greeting { font-size: 28px; } }
+
+/* Balanced, centered home typography and controls. */
+#mainMenu.calm-home { text-align: center; }
+#mainMenu .home-header { position: relative; justify-content: center; min-height: 76px; }
+#mainMenu .home-settings { position: absolute; right: 0; top: 16px; }
+#mainMenu .home-greeting, #mainMenu .priority-top h3 { text-align: center; text-wrap: balance; }
+#mainMenu .home-intro, #mainMenu .priority-body p { text-wrap: balance; }
+#mainMenu .home-quick-actions { gap: 10px; }
+#mainMenu .home-quick-actions button { min-height: 108px; justify-content: flex-start; padding-top: 18px; }
+#mainMenu .home-quick-actions button span { display: flex; align-items: center; justify-content: center; min-height: 36px; text-wrap: balance; }
+#mainMenu .home-explore summary, #mainMenu .home-explore-links button { position: relative; justify-content: center; padding-left: 28px; padding-right: 28px; text-align: center; }
+#mainMenu .home-explore summary span, #mainMenu .home-explore-links button span { position: absolute; right: 4px; }
+#mainMenu .today-progress-strip { display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
+#mainMenu .today-progress-strip .mini-progress { width: 100%; }
