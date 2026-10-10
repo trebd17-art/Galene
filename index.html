@@ -423,6 +423,14 @@
         </button>
       </div>
 
+      <h3 class="center-title">More ways to play</h3>
+      <div class="game-icon-grid">
+        <button class="game-icon-card" onclick="openSimpleGame('meadow')"><span class="game-icon">🌻</span><strong>Memory Meadow</strong><small>Match pairs · 5 levels</small></button>
+        <button class="game-icon-card" onclick="openSimpleGame('detective')"><span class="game-icon">🔎</span><strong>Thought Detective</strong><small>Explore everyday thoughts · 5 levels</small></button>
+        <button class="game-icon-card" onclick="openSimpleGame('pond')"><span class="game-icon">🐸</span><strong>Pattern Pond</strong><small>Remember a sequence · 5 levels</small></button>
+        <button class="game-icon-card" onclick="openSimpleGame('garden')"><span class="game-icon">🌱</span><strong>Pocket Garden</strong><small>Plan a balanced day · 5 levels</small></button>
+      </div>
+
       <div class="premium-card game-values-card">
         <div class="card-heading-row"><div class="circle-icon">🎮</div><h3>Game Core Values</h3></div>
         <p>SteadierMind games are nonviolent, calming, and designed to teach mental wellness skills through interaction.</p>
@@ -433,6 +441,20 @@
           <li>Earn XP for healthy mental habits.</li>
         </ul>
       </div>
+    </section>
+
+    <section id="simpleGame" class="screen simple-game-screen">
+      <button class="text-back" onclick="showScreen('games')">← Back to Games</button>
+      <h2 id="simpleGameTitle"></h2>
+      <p id="simpleGameIntro"></p>
+      <p id="simpleGameProgress" class="center-title"></p>
+      <div id="simpleGameLevels" class="puzzle-levels" aria-label="Choose a level"></div>
+      <div id="simpleGameBoard" class="simple-game-board"></div>
+      <p id="simpleGameFeedback" class="card" role="status" aria-live="polite"></p>
+      <button id="simpleGameRetry" onclick="saveSimpleGameWin()" hidden>Retry saving progress</button>
+      <button id="simpleGameNext" onclick="nextSimpleGame()" hidden>Next level</button>
+      <button class="secondary" onclick="restartSimpleGame()">Restart this level</button>
+      <p class="simple-game-privacy">No timer. Progress is saved in this browser on this device.</p>
     </section>
 
     <section id="centeredIntro" class="screen centered-puzzle-intro">
@@ -840,5 +862,6 @@
   <script src="mood.js"></script>
   <script src="games.js"></script>
   <script src="centered.js"></script>
+  <script src="new-games.js"></script>
 </body>
 </html>

@@ -3060,3 +3060,21 @@ body.sleep-mode { background: #13252e; }
 .puzzle-legend { font-size: 13px; text-align: center; line-height: 1.7; }
 .centered-puzzle button:focus-visible { outline: 3px solid #356a56; outline-offset: 3px; }
 @keyframes puzzleGlow { from { transform: scale(.94); } to { transform: scale(1); } }
+
+.simple-game-screen h2 { text-align: center; }
+.simple-game-screen [hidden] { display: none !important; }
+.simple-game-screen button:focus-visible { outline: 3px solid #356a56; outline-offset: 3px; }
+.simple-game-screen button:disabled { opacity: .65; cursor: default; }
+.simple-game-board { margin: 22px 0; }
+.memory-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+.memory-grid button { margin: 0; border-radius: 16px; min-height: 70px; font-size: 30px; background: #dce9e6; color: #21414d; }
+.memory-grid button:disabled { background: #b7d9be; opacity: 1; }
+.detective-card { padding: 22px 16px; border-radius: 18px; background: #e1e7f0; font-size: 20px; text-align: center; }
+.pond-pattern { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; background: #dce9e6; border-radius: 18px; padding: 20px 10px; }
+.pond-pattern span { font-size: 30px; }
+.pond-controls { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+.pond-controls button { font-size: 32px; min-height: 70px; }
+.game-garden button { text-align: left; border-radius: 16px; line-height: 1.5; padding: 14px; }
+.game-garden .garden-picked { background: #b7d9be; color: #21414d; box-shadow: inset 0 0 0 2px #356a56; }
+.simple-game-privacy { font-size: 13px; color: #58706e; text-align: center; }
+@media (prefers-reduced-motion: reduce) { .simple-game-screen, .simple-game-screen * { animation: none !important; transition: none !important; } }
