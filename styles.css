@@ -2971,3 +2971,8 @@ h1,h2,h3,.emergency-message-bubble,.guided-message strong,.primary-home-card str
 #groundingSenseHint { font-size: 15px; margin: 0; }
 .grounding-session [hidden] { display: none !important; }
 .grounding-session button:focus-visible { outline: 3px solid #4c8276; outline-offset: 3px; }
+
+.worry-session .text-back { display: block; margin: 16px auto; }
+.worry-save-choice { display: flex; align-items: flex-start; gap: 12px; text-align: left; font-size: 15px; font-weight: 500; padding: 16px; border: 1px solid #d5e2df; border-radius: 16px; background: white; }
+.worry-save-choice input { flex-shrink: 0; width: 18px; height: 18px; margin: 2px 0 0; accent-color: #1e5663; }
+.worry-session .worry-privacy { font-size: 13px; color: #58706e; }

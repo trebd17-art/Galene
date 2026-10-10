@@ -118,3 +118,12 @@ Run `python3 tests/breathing_smoke.py` to check timing and integration with the 
 Grounding now displays one sense at a time, with a large number, short prompt, and progress indicator. Users can name observations silently or aloud, skip any step, or use an available sense instead. Smell and taste never require eating, drinking, or finding a particular sensation. The ending offers a neutral check-in message and returns to the starter routine when launched there. Completion rewards occur once; skipping every step does not earn XP.
 
 Run `python3 tests/grounding_smoke.py` with Python Playwright and Chromium to verify the flow.
+
+
+## Worry Release
+
+Worry Release now offers four guided steps: optionally name a worry, choose what is in your control, select a manageable response, and close without pressure to resolve the feeling. All steps can be skipped. Users can identify a small action, write for later, return attention to the present, or visit grounding and return. The starter integration supports returning to the routine.
+
+Written worries stay in session memory and are excluded from snapshots and autosave. Saving to the existing browser-local journal requires an explicit checkbox on the final screen. Unchecked writing is discarded on finishing, leaving, or reload. Saved entries are included in existing data export; save failures allow retry or finishing without saving. No new analytics or remote transmission is introduced.
+
+Run `python3 tests/worry_smoke.py` and `python3 tests/worry_save_smoke.py` with Python Playwright and Chromium to check the guided flow, privacy, and save-failure recovery.

@@ -261,7 +261,7 @@
       <div class="emergency-tool-grid">
         <button class="emergency-tool-card urgent-card" onclick="openEmergencyTool('breathing')"><span class="tool-icon">🚨</span><strong>Gentle Breathing</strong><small>Breathe and settle your body</small></button>
         <button class="emergency-tool-card" onclick="openEmergencyTool('grounding')"><span class="tool-icon">🌿</span><strong>Grounding</strong><small>Return to the present moment</small></button>
-        <button class="emergency-tool-card" onclick="openEmergencyTool('worry')"><span class="tool-icon">🕊️</span><strong>Worry Release</strong><small>Release what is not yours to carry</small></button>
+        <button class="emergency-tool-card" onclick="openEmergencyTool('worry')"><span class="tool-icon">🕊️</span><strong>Worry Release</strong><small>Find a manageable next step</small></button>
         <button class="emergency-tool-card" onclick="openEmergencyTool('sleep')"><span class="tool-icon">🌙</span><strong>Sleep Wind-Down</strong><small>Prepare your mind for rest</small></button>
       </div>
 
@@ -314,6 +314,19 @@
           <button type="button" class="secondary" onclick="stopAmbient()">Off</button>
         </div>
       </div>
+    </section>
+
+    <section id="worrySession" class="screen starter-screen worry-session">
+      <button class="text-back" onclick="leaveWorrySession()">← Back</button>
+      <p id="worryProgress" class="starter-eyebrow" aria-live="polite"></p>
+      <div class="starter-meter"><div id="worryProgressFill"></div></div>
+      <h2 id="worryHeading" tabindex="-1"></h2>
+      <p id="worryDescription"></p>
+      <div id="worryPanel"></div>
+      <p id="worrySaveStatus" role="status"></p>
+      <button id="worryNext" onclick="nextWorryStep()">Continue</button>
+      <button id="worrySkip" class="text-back" onclick="nextWorryStep(true)">Skip this step</button>
+      <button id="worryPrevious" class="text-back" onclick="previousWorryStep()" hidden>Previous step</button>
     </section>
 
     <section id="groundingSession" class="screen grounding-session">
@@ -887,5 +900,6 @@
   <script src="starter.js"></script>
   <script src="breathing.js"></script>
   <script src="grounding.js"></script>
+  <script src="worry.js"></script>
 </body>
 </html>

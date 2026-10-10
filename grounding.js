@@ -24,12 +24,12 @@
     $('groundingSkip').hidden = ended;
     $('groundingAlternative').hidden = ended || session.alternative;
     $('groundingEnding').hidden = !ended;
-    $('groundingContinue').textContent = session.inRoutine ? 'Continue My Routine' : 'Back to Calming Tools';
+    $('groundingContinue').textContent = session.continueLabel || (session.inRoutine ? 'Continue My Routine' : 'Back to Calming Tools');
     $('groundingSensePrompt').focus({ preventScroll: true });
   }
-  window.openGroundingSession = function (onContinue = null, inRoutine = false) {
+  window.openGroundingSession = function (onContinue = null, inRoutine = false, continueLabel = '', onBack = null) {
     stopBreathingExercise();
-    session = { step: 0, skipped: 0, alternative: false, continued: false, onContinue, inRoutine };
+    session = { step: 0, skipped: 0, alternative: false, continued: false, onContinue, inRoutine, continueLabel, onBack };
     showScreen('groundingSession'); render();
   };
   window.useGroundingAlternative = function () {
@@ -49,7 +49,8 @@
   };
   window.leaveGroundingSession = function () {
     if (!session) return;
-    if (session.inRoutine) closeEmergencyTool(); else showScreen('tools');
+    if (session.onBack) session.onBack();
+    else if (session.inRoutine) closeEmergencyTool(); else showScreen('tools');
   };
   const previousOpen = openEmergencyTool;
   openEmergencyTool = function (type) {
