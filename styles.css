@@ -2958,3 +2958,16 @@ h1,h2,h3,.emergency-message-bubble,.guided-message strong,.primary-home-card str
 .breathing-sound summary { padding: 12px; cursor: pointer; font-size: 14px; color: #4e6863; }
 .breathing-session button:focus-visible, .breathing-sound summary:focus-visible { outline: 3px solid #4c8276; outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .gentle-breathing-circle { transition: none !important; transform: none !important; } }
+
+/* One sense at a time, with accessible alternatives and a quiet ending. */
+.grounding-session { text-align: center; }
+.grounding-session h2, .grounding-session h3, .grounding-session p { text-wrap: balance; }
+.grounding-session p { color: #4e6863; line-height: 1.5; }
+.grounding-session .text-back { display: block; margin: 16px auto; }
+.grounding-sense-card { min-height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+#groundingSenseIcon { color: #4c8276; font-size: 24px; }
+#groundingSenseNumber { font-size: 64px; line-height: 1.2; font-weight: 500; color: #1e5663; }
+#groundingSensePrompt { font-size: 22px; line-height: 1.3; margin: 12px 0; }
+#groundingSenseHint { font-size: 15px; margin: 0; }
+.grounding-session [hidden] { display: none !important; }
+.grounding-session button:focus-visible { outline: 3px solid #4c8276; outline-offset: 3px; }

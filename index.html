@@ -316,6 +316,27 @@
       </div>
     </section>
 
+    <section id="groundingSession" class="screen grounding-session">
+      <button class="text-back" onclick="leaveGroundingSession()">← Back</button>
+      <h2>A moment to ground yourself</h2>
+      <p>If it feels comfortable, notice what’s around you. Name things silently or aloud. You don’t need to type.</p>
+      <p id="groundingProgress" class="starter-eyebrow" aria-live="polite"></p>
+      <div class="starter-meter"><div id="groundingProgressFill"></div></div>
+      <div class="starter-card grounding-sense-card">
+        <span id="groundingSenseIcon" aria-hidden="true"></span>
+        <strong id="groundingSenseNumber"></strong>
+        <h3 id="groundingSensePrompt" tabindex="-1"></h3>
+        <p id="groundingSenseHint"></p>
+      </div>
+      <button id="groundingAlternative" class="secondary" onclick="useGroundingAlternative()" hidden>Notice another nearby detail instead</button>
+      <button id="groundingNext" onclick="nextGroundingSense()">Next sense</button>
+      <button id="groundingSkip" class="text-back" onclick="nextGroundingSense(true)">Skip this step</button>
+      <div id="groundingEnding" hidden>
+        <p>Take a moment to notice how you feel. It’s okay if you feel about the same.</p>
+        <button id="groundingContinue" onclick="continueAfterGrounding()">Back to Calming Tools</button>
+      </div>
+    </section>
+
     <section id="breathingSession" class="screen breathing-session">
       <button class="text-back" onclick="leaveBreathingSession()">← Back</button>
       <h2>A moment to breathe</h2>
@@ -865,5 +886,6 @@
   <script src="app.js"></script>
   <script src="starter.js"></script>
   <script src="breathing.js"></script>
+  <script src="grounding.js"></script>
 </body>
 </html>

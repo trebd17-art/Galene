@@ -179,6 +179,13 @@
       }, true);
       return;
     }
+    if (tool === 'grounding') {
+      openGroundingSession(() => {
+        usingRoutineTool = false;
+        state.routine.step = 2; persist(); showScreen('starterRoutine');
+      }, true);
+      return;
+    }
     openEmergencyTool(tool);
     const back = document.querySelector('#emergencyToolPlayer .text-back');
     back.textContent = '← Back to My Routine';
@@ -199,7 +206,7 @@
   };
   const previousShowScreen = showScreen;
   showScreen = function (screenId) {
-    if (usingRoutineTool && screenId !== 'emergencyToolPlayer' && screenId !== 'breathingSession') {
+    if (usingRoutineTool && screenId !== 'emergencyToolPlayer' && screenId !== 'breathingSession' && screenId !== 'groundingSession') {
       usingRoutineTool = false; stopBreathingExercise();
     }
     previousShowScreen(screenId);

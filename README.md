@@ -111,3 +111,10 @@ The smoke test serves the checkout on an ephemeral local port and uses an isolat
 The focused breathing screen uses a gentle 4-second inhale and 6-second exhale, without breath holds. Sessions require an explicit start, support pause/resume and finishing early, and offer grounding instead. Optional sound is off when a session opens. Starter routines use 30, 60, or 120 seconds for the 2-, 5-, or 10-minute preferences; standalone sessions use 60 seconds. Leaving the screen stops the clock and sound. Natural completion awards XP once when the user continues; finishing early does not award XP. Browser tab hiding automatically pauses the session.
 
 Run `python3 tests/breathing_smoke.py` to check timing and integration with the same prerequisites as the starter smoke test.
+
+
+## Flexible grounding
+
+Grounding now displays one sense at a time, with a large number, short prompt, and progress indicator. Users can name observations silently or aloud, skip any step, or use an available sense instead. Smell and taste never require eating, drinking, or finding a particular sensation. The ending offers a neutral check-in message and returns to the starter routine when launched there. Completion rewards occur once; skipping every step does not earn XP.
+
+Run `python3 tests/grounding_smoke.py` with Python Playwright and Chromium to verify the flow.

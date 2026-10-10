@@ -62,9 +62,9 @@ with sync_playwright() as p:
     page.evaluate('launchStarterTool("breathing")')
     page.locator('#gentleBreathingBegin').click()
     page.locator('#gentleBreathingGrounding').click()
-    page.locator('#emergencyToolPlayer').wait_for(state='visible')
-    assert page.locator('#emergencyToolTitle').inner_text() == 'Grounding'
-    page.locator('#emergencyToolPlayer .text-back').click()
+    page.locator('#groundingSession').wait_for(state='visible')
+    assert 'five things' in page.locator('#groundingSensePrompt').inner_text()
+    page.locator('#groundingSession .text-back').first.click()
     page.locator('#starterRoutine').wait_for(state='visible')
     page.evaluate('openBreathingSession(60)')
     page.locator('#gentleBreathingBegin').click()

@@ -51,8 +51,8 @@ with sync_playwright() as p:
     page.locator('#routineNext').click()
     assert '30 seconds' in page.locator('#routineDescription').inner_text()
     page.locator('#routinePanel button', has_text='Open Grounding').click()
-    page.locator('#emergencyNextBtn').click()
-    page.locator('#emergencyToolPlayer .text-back').click()
+    page.locator('#groundingNext').click()
+    page.locator('#groundingSession .text-back').first.click()
     assert page.locator('#routineHeading').inner_text() == 'Settle'
     page.locator('#routinePanel button', has_text='Try breathing instead').click()
     page.locator('#gentleBreathingFinish').click()
@@ -98,7 +98,7 @@ with sync_playwright() as p:
     page.evaluate('showScreen("mainMenu")')
     page.locator('.home-quick-actions button', has_text='Calm Now').click()
     page.locator('#tools button', has_text='Grounding').click()
-    page.locator('#emergencyToolPlayer .text-back').click()
+    page.locator('#groundingSession .text-back').first.click()
     page.locator('#tools').wait_for(state='visible')
     for width in [320, 390, 768]:
         page.set_viewport_size({'width': width, 'height': 844})
