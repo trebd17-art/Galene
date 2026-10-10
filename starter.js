@@ -125,7 +125,7 @@
     $('routineNext').hidden = false; $('routineSkip').hidden = false;
     $('routineNext').textContent = routine.step === 4 ? 'Finish for Today' : 'Continue';
     let panel = '';
-    if (routine.step === 0) panel = radios('routineBefore', ['Restless', 'Overwhelmed', 'Tired', 'Steady', 'Prefer not to say'], routine.before);
+    if (routine.step === 0) panel = radios('routineBefore', ['Restless', 'Overwhelmed', 'Anxious', 'Steady', 'Prefer not to say'], routine.before);
     if (routine.step === 1) {
       panel = `<button onclick="launchStarterTool('${rec.tool}')">Open ${rec.tool === 'grounding' ? 'Grounding' : 'Breathing'}</button><button class="secondary" onclick="launchStarterTool('${rec.tool === 'grounding' ? 'breathing' : 'grounding'}')">Try ${rec.tool === 'grounding' ? 'breathing' : 'grounding'} instead</button>`;
       $('routineNext').hidden = true;
@@ -234,7 +234,7 @@
         const draft = raw.starter;
         state.setup.goals = Array.isArray(draft.setup.goals) ? draft.setup.goals.filter(x => ['Stress', 'Overthinking', 'Sleep', 'Focus', 'Confidence'].includes(x)).slice(0, 2) : [];
         state.setup.step = Math.max(0, Math.min(2, Number(draft.setup.step) || 0));
-        state.setup.feeling = ['Restless', 'Overwhelmed', 'Tired', 'Steady', 'Prefer not to say'].includes(draft.setup.feeling) ? draft.setup.feeling : 'Prefer not to say';
+        state.setup.feeling = ['Restless', 'Overwhelmed', 'Anxious', 'Steady', 'Prefer not to say'].includes(draft.setup.feeling) ? draft.setup.feeling : 'Prefer not to say';
         state.setup.minutes = [2, 5, 10].includes(draft.setup.minutes) ? draft.setup.minutes : 5;
         state.setup.profile = draft.setup.profile || '';
         if (draft.routine && Number.isInteger(draft.routine.step) && draft.routine.step >= 0 && draft.routine.step <= 4 && Array.isArray(draft.routine.skipped)) state.routine = draft.routine;
