@@ -723,42 +723,35 @@
       <h2>Mood Tracker</h2>
       <p>Track how your mind is doing over time. Small check-ins reveal patterns.</p>
 
-      <label>Calm Score Today</label>
-      <select id="calmScore">
-        <option value="1">1 - Not calm</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5 - Neutral</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10 - Very calm</option>
-      </select>
-
-      <label>Mood</label>
-      <select id="trackerMood">
-        <option>Calm</option>
-        <option>Anxious</option>
-        <option>Overwhelmed</option>
-        <option>Sad</option>
-        <option>Frustrated</option>
-        <option>Hopeful</option>
-        <option>Motivated</option>
-        <option>Tired</option>
-      </select>
-
-      <label>Quick Note</label>
-      <textarea id="moodNote" placeholder="What affected your mood today?"></textarea>
-
-      <button onclick="saveMoodEntry()">Save Mood Entry +5 XP</button>
-
-      <h2>Your Mood Trend</h2>
-      <div class="mood-meter">
-        <div id="moodMeterFill"></div>
-      </div>
-      <div id="moodSummary" class="card result-card">No mood entries yet.</div>
+      <form id="moodForm">
+        <label for="calmScore">How calm do you feel?</label>
+        <select id="calmScore" required>
+          <option value="">Choose a score</option>
+          <option value="1">1 — Not calm</option><option>2</option><option>3</option><option>4</option>
+          <option value="5">5 — Neutral</option><option>6</option><option>7</option><option>8</option><option>9</option><option value="10">10 — Very calm</option>
+        </select>
+        <label for="trackerMood">Mood</label>
+        <select id="trackerMood" required><option value="">Choose a mood</option><option>Calm</option><option>Anxious</option><option>Overwhelmed</option><option>Sad</option><option>Frustrated</option><option>Hopeful</option><option>Motivated</option><option>Tired</option></select>
+        <fieldset class="mood-influences"><legend>What influenced your mood? (optional)</legend>
+          <label><input type="checkbox" name="moodInfluence" value="Sleep"> Sleep</label>
+          <label><input type="checkbox" name="moodInfluence" value="Work"> Work</label>
+          <label><input type="checkbox" name="moodInfluence" value="Relationships"> Relationships</label>
+          <label><input type="checkbox" name="moodInfluence" value="Health"> Health</label>
+          <label><input type="checkbox" name="moodInfluence" value="Something else"> Something else</label>
+        </fieldset>
+        <label for="moodNote">Quick note (optional)</label>
+        <textarea id="moodNote" maxlength="2000" placeholder="What affected your mood today?"></textarea>
+        <p class="mood-privacy">Entries stay in this browser on this device. Save to keep your check-in; unsaved writing is lost on reload.</p>
+        <button id="moodSave" type="submit">Save Mood Entry</button>
+        <button id="moodCancel" type="button" class="secondary" hidden>Cancel editing</button>
+      </form>
+      <p id="moodStatus" role="status" aria-live="polite"></p>
+      <div id="moodSuggestion" hidden></div>
+      <h2>Your recent trends</h2>
+      <p>Daily average calm scores for the last seven days. Empty days mean no check-in.</p>
+      <div id="moodChart" class="mood-chart" aria-label="Seven-day calm scores"></div>
+      <div id="moodSummary" class="card result-card"></div>
+      <h2>Your check-ins</h2>
       <div id="moodHistory" class="mood-history"></div>
     </section>
 
@@ -891,5 +884,6 @@
   <script src="worry.js"></script>
   <script src="sleep.js"></script>
   <script src="reflection.js"></script>
+  <script src="mood.js"></script>
 </body>
 </html>

@@ -3017,3 +3017,18 @@ body.sleep-mode { background: #13252e; }
 .saved-entry .reflection-history-mood { font-size: 14px; color: #58706e; }
 .reflection-screen button:focus-visible, .reflection-screen textarea:focus-visible, .reflection-screen select:focus-visible, .reflection-details summary:focus-visible { outline: 3px solid #4c8276; outline-offset: 3px; }
 #journalResult { text-align: center; line-height: 1.5; }
+
+/* Quiet, accessible mood history and daily calm scores. */
+#moodTracker h2 { text-align: center; }
+#moodTracker [hidden] { display: none !important; }
+.mood-influences { border: 1px solid #c7d8d5; border-radius: 14px; margin-top: 24px; padding: 14px; }
+.mood-influences legend { font-size: 15px; line-height: 1.4; }
+.mood-influences label { margin-top: 10px; font-weight: 400; }
+.mood-chart { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 5px; margin: 24px 0; }
+.mood-chart-day { text-align: center; font-size: 12px; color: #21414d; }
+.mood-chart-track { height: 100px; position: relative; background: #dce9e6; border-radius: 6px; margin: 8px 0; overflow: hidden; }
+.mood-chart-bar { position: absolute; bottom: 0; width: 100%; background: #466f69; border-radius: 6px; }
+.mood-entry-controls { display: flex; gap: 10px; }
+.mood-entry-controls button { padding: 12px; }
+.mood-saved-note { white-space: pre-wrap; overflow-wrap: anywhere; }
+.mood-privacy { font-size: 13px; color: #58706e; }
