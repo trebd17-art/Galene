@@ -115,16 +115,26 @@
       </details>
     </section>
 
-    <section id="education" class="screen">
+    <section id="education" class="screen learning-screen">
       <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
       <h2>Learn at your own pace</h2>
-      <p>Small lessons to help you understand your mind.</p>
-      <button class="secondary" onclick="openLesson('Anxiety Basics')">Anxiety Basics</button>
-      <button class="secondary" onclick="openLesson('Overthinking')">Overthinking</button>
-      <button class="secondary" onclick="openLesson('Confidence')">Confidence</button>
-      <button class="secondary" onclick="openLesson('Sleep')">Sleep</button>
-      <div id="lessonResult" class="card result-card hidden" aria-live="polite"></div>
-      <div class="xp-wrap" aria-label="Lesson progress"><div id="lessonProgressFill" class="xp-fill"></div></div>
+      <p class="learning-intro">Small ideas for everyday life. Explore five paths, with three short lessons in each.</p>
+      <button id="learningContinue" onclick="continueLearning()">Continue learning</button>
+      <p id="learningCount" class="learning-meta"></p>
+      <progress id="learningProgress" max="15" value="0" aria-label="Completed lessons"></progress>
+      <div id="learningPaths"></div>
+      <p class="learning-note">All foundational lessons are free. Progress stays in this browser on this device. These lessons offer general education and do not replace individualized medical or mental health care.</p>
+    </section>
+    <section id="educationLesson" class="screen learning-screen">
+      <button class="text-back" onclick="showScreen('education')">← Back to Learning Paths</button>
+      <p id="learningLessonPath" class="learning-meta"></p>
+      <h2 id="learningLessonTitle" tabindex="-1"></h2>
+      <div id="learningLessonBody"></div>
+      <button id="learningTool" class="secondary" onclick="openLearningTool()"></button>
+      <button id="learningComplete" onclick="completeLearningLesson()">Mark lesson complete</button>
+      <p id="learningLessonStatus" role="status" aria-live="polite"></p>
+      <button id="learningNext" class="secondary" onclick="nextLearningLesson()">Next lesson</button>
+      <p class="learning-note">Practice and questions are optional. You can mark a lesson complete after reading and return to it anytime.</p>
     </section>
 
     <section id="assessment" class="screen starter-screen">
@@ -851,5 +861,7 @@
   <script src="games.js"></script>
   <script src="centered.js"></script>
   <script src="new-games.js"></script>
+  <script src="education-content.js"></script>
+  <script src="education.js"></script>
 </body>
 </html>
