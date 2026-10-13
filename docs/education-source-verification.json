@@ -1,0 +1,93 @@
+[
+  {
+    "url": "https://www.nimh.nih.gov/health/topics/anxiety-disorders",
+    "attemptedOn": "2026-10-13",
+    "status": "blocked",
+    "contentVerified": false,
+    "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/feelings-and-symptoms/anxiety-fear-panic/",
+    "attemptedOn": "2026-10-13",
+    "status": "blocked",
+    "contentVerified": false,
+    "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/self-help-cbt-techniques/reframing-unhelpful-thoughts/",
+    "attemptedOn": "2026-10-13",
+    "status": "blocked",
+    "contentVerified": false,
+    "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/self-help-cbt-techniques/tackling-your-worries/",
+    "attemptedOn": "2026-10-13",
+    "status": "blocked",
+    "contentVerified": false,
+    "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.cci.health.wa.gov.au/Resources/Looking-After-Yourself/Worry-and-Rumination",
+    "attemptedOn": "2026-10-13",
+    "status": "blocked",
+    "contentVerified": false,
+    "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.nhs.uk/mental-health/self-help/tips-and-support/raise-low-self-esteem/",
+    "attemptedOn": "2026-10-13",
+    "status": "blocked",
+    "contentVerified": false,
+    "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.nhlbi.nih.gov/health/sleep/healthy-sleep-habits",
+    "attemptedOn": "2026-10-13",
+    "status": "blocked",
+    "contentVerified": false,
+    "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.nhs.uk/every-mind-matters/mental-health-issues/sleep/",
+    "attemptedOn": "2026-10-13",
+    "status": "blocked",
+    "contentVerified": false,
+    "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.nhlbi.nih.gov/health/insomnia/treatment",
+    "attemptedOn": "2026-10-13",
+    "status": "blocked",
+    "contentVerified": false,
+    "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://doi.org/10.5664/jcsm.8986",
+    "attemptedOn": "2026-10-13",
+    "status": "blocked",
+    "contentVerified": false,
+    "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/feelings-and-symptoms/stress/",
+    "attemptedOn": "2026-10-13",
+    "status": "blocked",
+    "contentVerified": false,
+    "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health",
+    "attemptedOn": "2026-10-13",
+    "status": "blocked",
+    "contentVerified": false,
+    "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "url": "https://www.cci.health.wa.gov.au/Resources/Looking-After-Yourself/Assertiveness",
+    "attemptedOn": "2026-10-13",
+    "status": "blocked",
+    "contentVerified": false,
+    "reason": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  }
+]

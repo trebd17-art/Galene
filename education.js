@@ -42,7 +42,7 @@
     body.append(question);
     const sources=node('details','','learning-more');sources.append(node('summary','Sources and further reading'));
     sources.append(node('p','These original summaries offer general wellness education. Explore the public health guidance below for more detail.'));
-    path.sources.forEach(([title,url])=>{const p=node('p',''),a=node('a',title);a.href=url;a.target='_blank';a.rel='noopener noreferrer';p.append(a);sources.append(p);});body.append(sources);
+    (lesson.sources || path.sources).forEach(([title,url])=>{const p=node('p',''),a=node('a',title);a.href=url;a.target='_blank';a.rel='noopener noreferrer';p.append(a);sources.append(p);});sources.append(node('p','Live source verification is pending; no verified review date is recorded.','learning-note'));body.append(sources);
     const complete=progress().completed.includes(lesson.id);$('learningComplete').textContent=complete?'Lesson completed ✓':'Mark lesson complete';$('learningComplete').disabled=complete;
     $('learningTool').textContent={grounding:'Try grounding',worry:'Open Worry Release',sleep:'Open Sleep Wind-down',reflection:'Open Daily Reflection'}[lesson.tool];
     $('learningNext').textContent=lessons.indexOf(lesson)===lessons.length-1?'Back to learning paths':'Next lesson';

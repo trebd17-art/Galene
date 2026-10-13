@@ -3098,3 +3098,15 @@ body.sleep-mode { background: #13252e; }
 .learning-note { font-size: 13px; color: #58706e; line-height: 1.6; }
 .learning-screen button:disabled { opacity: .7; cursor: default; }
 .learning-screen button:focus-visible, .learning-screen summary:focus-visible { outline: 3px solid #466f69; outline-offset: 3px; }
+
+/* Brief, optional motion for taps and earned points. */
+button { transition: transform .16s ease, box-shadow .18s ease, background .18s ease; }
+button:active:not(:disabled) { transform: scale(.97) rotate(-.4deg); }
+#breathingSession button:active, #sleepSession button:active { transform: none; }
+.points-feedback { position: fixed; z-index: 1000; bottom: max(24px,env(safe-area-inset-bottom)); left: 50%; max-width: calc(100vw - 32px); padding: 12px 20px; border-radius: 999px; background: #214f43; color: #fff; font: 600 16px/1.4 system-ui,sans-serif; text-align: center; pointer-events: none; box-shadow: 0 6px 20px rgba(0,0,0,.15); animation: pointsFloat 1.6s ease both; }
+@keyframes pointsFloat { 0% { opacity: 0; transform: translate(-50%,10px) scale(.95); } 18%,72% { opacity: 1; transform: translate(-50%,-8px) scale(1); } 100% { opacity: 0; transform: translate(-50%,-24px); } }
+@media (prefers-reduced-motion: reduce) {
+  button, button:active:not(:disabled), button:hover { transform: none !important; transition: none !important; }
+  .points-feedback { animation: none; transform: translateX(-50%); }
+  .xp-fill { transition: none !important; }
+}

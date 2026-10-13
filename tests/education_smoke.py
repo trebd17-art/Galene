@@ -15,7 +15,7 @@ with sync_playwright() as p:
     page.goto(f'http://127.0.0.1:{server.server_port}',wait_until='networkidle')
     page.locator('#welcome').wait_for(state='visible')
     page.evaluate('showScreen("education")')
-    assert page.locator('.learning-path').count()==5
+    assert page.locator('#learningPaths .learning-path').count()==5
     assert page.locator('.learning-lesson-link').count()==15
     points=page.evaluate('mindPoints')
     page.locator('#learningContinue').click()
