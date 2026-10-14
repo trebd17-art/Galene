@@ -3110,3 +3110,15 @@ button:active:not(:disabled) { transform: scale(.97) rotate(-.4deg); }
   .points-feedback { animation: none; transform: translateX(-50%); }
   .xp-fill { transition: none !important; }
 }
+
+/* Short celebrations, with no persistent motion or flashing. */
+@keyframes pointsFloat { 0% { opacity: 0; transform: translate(-50%,12px) scale(.75); } 20% { opacity: 1; transform: translate(-50%,-12px) scale(1.12); } 35%,75% { opacity: 1; transform: translate(-50%,-8px) scale(1); } 100% { opacity: 0; transform: translate(-50%,-24px) scale(.98); } }
+#groundingSession button:active { transform: none; }
+.reward-celebration { position: fixed; z-index: 999; top: 25%; left: 50%; transform: translateX(-50%); pointer-events: none; max-width: calc(100vw - 32px); }
+.reward-badge { background: #fff5d9; border: 2px solid #d0ae58; color: #314b42; border-radius: 22px; padding: 16px 22px; font: 650 16px/1.5 system-ui,sans-serif; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,.12); animation: rewardBadge .4s ease-out both; }
+.reward-particle { position: absolute; left: 50%; top: 50%; pointer-events: none; color: var(--piece-color); animation: rewardBurst 1s ease-out both; }
+.reward-confetti { width: 7px; height: 11px; border-radius: 2px; background: var(--piece-color); }
+.reward-spark { font-size: 15px; }
+@keyframes rewardBadge { 0% { transform: scale(.8); opacity: 0; } 65% { transform: scale(1.06); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes rewardBurst { 0% { transform: translate(0,0) rotate(0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(var(--dx),var(--dy)) rotate(var(--turn)); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .reward-particle { display: none; } .reward-badge { animation: none; } .points-feedback { animation: none; } }
