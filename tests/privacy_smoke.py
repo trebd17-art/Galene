@@ -50,7 +50,7 @@ with sync_playwright() as p:
     page.reload(wait_until='networkidle')
     assert 'PRIVATE_REFLECTION' not in page.evaluate('JSON.stringify(localStorage)')
     page.evaluate('showScreen("privacy")')
-    assert 'does not offer an import' in page.locator('#privacy').inner_text()
+    assert 'validated JSON backup' in page.locator('#privacy').inner_text()
     for width in [320,390,768]:
         page.set_viewport_size({'width':width,'height':844})
         assert page.locator('#privacy').evaluate('(e)=>e.scrollWidth<=e.clientWidth')

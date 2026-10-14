@@ -3130,3 +3130,7 @@ dialog.reward-celebration::backdrop { background: rgba(20,42,39,.55); }
 @media (prefers-reduced-motion: reduce) { dialog.reward-celebration { animation: none; } }
 
 .participation-toast { position: fixed; z-index: 1000; bottom: 24px; left: 50%; transform: translateX(-50%); max-width: calc(100vw - 32px); border-radius: 20px; padding: 12px 18px; background: #214f43; color: white; font: 600 15px/1.5 system-ui,sans-serif; pointer-events: none; text-align: center; }
+
+#backupPreview[hidden] { display: none !important; }
+#backupFile { max-width: 100%; padding: 12px 0; }
+#backupPreview { padding: 16px; border: 1px solid #c7d8d5; border-radius: 16px; margin-top: 16px; }

@@ -3,7 +3,7 @@
   'use strict';
   let deleting=false;
   const save=saveSteadierMindData;
-  window.saveSteadierMindData=function(){return deleting?false:save.apply(this,arguments);};
+  window.saveSteadierMindData=function(){return deleting||window.steadierMindRestoring?false:save.apply(this,arguments);};
   window.clearSteadierMindData=function(){
     if(!confirm('Delete all SteadierMind entries, setup, plans, and progress in this browser? Downloaded exports will remain. This cannot be undone.'))return;
     const status=document.getElementById('privacyDataStatus');
