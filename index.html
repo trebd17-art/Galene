@@ -64,9 +64,10 @@
       <button class="text-back" onclick="showScreen('welcome')">← Back</button>
       <img src="logo.png" class="small-logo" alt="SteadierMind Logo">
       <h2>Welcome to SteadierMind</h2>
-      <p class="intro">Begin your steady path today.</p>
-      <button onclick="showScreen('mainMenu')">Sign Up</button>
-      <button class="secondary" onclick="showScreen('mainMenu')">Log In</button>
+      <p class="intro">Explore short lessons and self-guided wellness tools. No account is needed in this version.</p>
+      <button onclick="showScreen('mainMenu')">Continue to SteadierMind</button>
+      <p class="learning-note">Saved entries stay in this browser on this device. They do not sync across devices. You can export or clear them in Settings.</p>
+      <p class="learning-note">For ages 13 and older. If you are under 18, ask a parent or guardian to review the terms and give permission.</p>
       <p class="legal">By continuing, you agree to our <a href="#" onclick="showScreen('terms')">Terms & Conditions</a> and <a href="#" onclick="showScreen('privacy')">Privacy Policy</a>.</p>
     </section>
 
@@ -538,7 +539,7 @@
         <p>Tap only the blue focus orbs. Each correct tap creates a calming ripple and builds your Focus Meter. Avoid red distractions.</p>
       </div>
 
-      <div class="difficulty-row"><button id="calmFocusEasyBtn" class="difficulty-btn active-difficulty" onclick="setGameDifficulty('calmFocus','easy')">Easy</button><button id="calmFocusMediumBtn" class="difficulty-btn premium-locked" onclick="setGameDifficulty('calmFocus','medium')">Medium 🔒</button><button id="calmFocusHardBtn" class="difficulty-btn premium-locked" onclick="setGameDifficulty('calmFocus','hard')">Hard 🔒</button></div><div id="calmFocusDifficultyMessage" class="card result-card difficulty-message">Easy mode is available in the free version.</div>
+      <div id="calmFocusDifficultyMessage" class="card result-card difficulty-message">This game is available in the free version.</div>
       <div class="focus-theme-row">
         <button class="theme-chip active-theme" onclick="setCalmFocusTheme('ocean', this)">🌊 Ocean</button>
         <button class="theme-chip" onclick="setCalmFocusTheme('forest', this)">🌲 Forest</button>
@@ -583,12 +584,8 @@
         <p>Tap the correct sensory objects in order: See, Feel, Hear, Smell, Taste. Avoid red worry clouds. Complete all five senses to finish the round.</p>
       </div>
 
-      <div class="difficulty-row">
-        <button id="groundingEasyBtn" class="difficulty-btn active-difficulty" onclick="setGameDifficulty('grounding','easy')">Easy</button>
-        <button id="groundingMediumBtn" class="difficulty-btn premium-locked" onclick="setGameDifficulty('grounding','medium')">Medium 🔒</button>
-        <button id="groundingHardBtn" class="difficulty-btn premium-locked" onclick="setGameDifficulty('grounding','hard')">Hard 🔒</button>
-      </div>
-      <div id="groundingDifficultyMessage" class="card result-card difficulty-message">Easy mode is available in the free version.</div>
+
+      <div id="groundingDifficultyMessage" class="card result-card difficulty-message">This game is available in the free version.</div>
 
       <div class="grounding-stats-grid">
         <div><strong id="groundingGameScore">0</strong><small>Score</small></div>
@@ -819,11 +816,12 @@
           <option value="forest">Forest</option>
         </select>
       </div>
-      <div class="feature-card" onclick="showScreen('privacy')">Privacy Policy</div>
+      <button class="secondary" onclick="showScreen('privacy')">Privacy Policy</button>
+      <button class="secondary" onclick="showScreen('support')">Help & Support</button>
       <button class="secondary" onclick="showScreen('educationalSources')">Educational Sources</button>
-      <div class="feature-card" onclick="showScreen('terms')">Terms & Conditions</div>
-      <div class="feature-card" onclick="showScreen('welcome')">Return to Welcome</div>
-    
+      <button class="secondary" onclick="showScreen('terms')">Terms & Conditions</button>
+      <button class="secondary" onclick="showScreen('welcome')">Return to Welcome</button>
+
       <div class="premium-card">
         <div class="card-heading-row"><div class="circle-icon">💾</div><h3>Saved Data</h3></div>
         <p>Entries, preferences, routine drafts, and progress stay in this browser on this device. Export downloads a readable JSON file. Clearing data does not delete downloaded exports.</p>
@@ -832,25 +830,35 @@
         <p id="privacyDataStatus" role="status" aria-live="polite"></p>
       </div>
 
-<div class="premium-card">
-  <div class="card-heading-row">
-    <div class="circle-icon">🛠️</div>
-    <h3>Developer Tools</h3>
-  </div>
-  <p>Testing tools for development.</p>
-  <button onclick="resetSteadierMindData()">Reset App Data</button>
-  <button class="secondary" onclick="viewSteadierMindData()">View Saved Data</button>
-</div>
+
 </section>
+
+    <section id="support" class="screen learning-screen">
+      <button class="text-back" onclick="showScreen('settings')">← Back to Settings</button>
+      <h2>Help & Support</h2>
+      <h3>Contact SteadierMind</h3>
+      <p>For app help or privacy questions, email <a href="mailto:steadiermind@gmail.com">steadiermind@gmail.com</a>. This inbox is for app support, not counseling or emergency help.</p>
+      <p>For a technical problem, describe what you were trying to do and your browser or device type. Do not include private journal entries, health details, or a full data export unless you deliberately choose to share them.</p>
+      <h3>Where are my entries?</h3>
+      <p>They are saved in this browser on this device. Another browser or device will not show the same entries. Clearing website storage or using a private browsing session can remove them.</p>
+      <h3>Can I back up my data?</h3>
+      <p>Open Settings and select Export My Data. This downloads a readable JSON file. Store it carefully; this version cannot import an export back into the app.</p>
+      <h3>How do I delete my data?</h3>
+      <p>In Settings, select Clear Saved Data and confirm. Downloaded exports and copies you shared must be deleted separately.</p>
+      <h3>What if saving does not work?</h3>
+      <p>Check whether your browser allows website storage and has available space. If the app reports a save failure, keep the page open and retry before reloading.</p>
+      <h3>Support beyond the app</h3>
+      <p>For ongoing mental health concerns, consider a qualified healthcare professional. In the United States, call or text <a href="tel:988">988</a> for crisis support, or visit <a href="https://988lifeline.org/" target="_blank" rel="noopener noreferrer">988lifeline.org</a>. For immediate danger or a medical emergency, call 911. Outside the United States, use local crisis and emergency services.</p>
+    </section>
 
     <section id="privacy" class="screen">
       <button class="text-back" onclick="showScreen('settings')">← Back</button>
       <h2>SteadierMind Privacy Policy</h2>
-      <p>Updated October 13, 2026. SteadierMind operates this browser-based wellness app. This policy describes the current browser-based version.</p>
+      <p>Updated October 14, 2026. Bertrand Dennis III operates SteadierMind. This policy describes the initial free browser-based version.</p>
       <h3>What you choose to save</h3>
       <p>The app can store mood and calm-score check-ins, notes, saved reflections, setup preferences, your personalized plan, routine drafts, activity dates, Mind Points, and game and learning progress. Worry Release and Sleep Wind-down notes are saved only when you choose their save option.</p>
       <h3>Where your entries stay</h3>
-      <p>Your saved app data is stored in this browser on this device using local storage. The current app does not send your entries to an app account or cloud database, and it does not sync them across devices. The current welcome and sign-in buttons do not create a server account.</p>
+      <p>Your saved app data is stored in this browser on this device using local storage. The current app does not send your entries to an app account or cloud database, and it does not sync them across devices. The Continue button does not create a server account.</p>
       <p>Daily Reflection and Mood Tracker writing is saved when you choose Save or Update. Setup choices, routine drafts, and game progress can save automatically as you use them. Closing the app does not delete saved entries. Unsaved reflection and mood writing may be lost on reload.</p>
       <h3>Access, security, and retention</h3>
       <p>Data remains until you delete it, clear this website’s browser storage, or the browser removes it. Device or browser backup behavior depends on your settings. Someone with access to your unlocked device or browser profile may be able to view entries. SteadierMind does not provide password protection or app-level encryption for this local data. Avoid saving information you do not want accessible on a shared device.</p>
@@ -860,20 +868,47 @@
       <p>In Settings, choose Clear Saved Data and confirm. This deletes SteadierMind’s stored entries, plans, setup preferences, and progress in this browser, then reloads the app. A non-personal setup flag may remain so the app can start fresh. It does not erase unrelated websites’ data.</p>
       <p>Deletion does not remove downloaded exports, copies you shared, another browser or device’s data, or backups controlled by your device or browser. Delete those copies separately. Returning to the welcome screen does not delete your entries. Mood Tracker also lets you delete individual check-ins; other saved entries are included in Clear Saved Data.</p>
       <h3>Website requests and external links</h3>
-      <p>The current application code contains no advertising or analytics SDK and does not sell or transmit your saved entries to third parties. Loading the website requires requests to its hosting provider, which may process technical information such as your IP address, requested pages, and browser details according to its own practices. Those hosting practices must be confirmed for the final website.</p>
+      <p>The current application code contains no advertising or analytics SDK and does not sell or transmit your saved entries to third parties. The intended website is steadiermind.com, with hosting planned through Netlify. Once deployed, delivering and securing the website may involve technical information such as IP addresses, requested pages, browser information, and request times. The technical information handled and its retention depend on Netlify’s services and the configured hosting features. Browser-saved journal and mood entries are not included in the website’s normal page requests. See <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer">Netlify’s privacy policy</a> for its provider practices.</p>
       <p>When you open an educational source link, you visit a separate website with its own privacy policy. SteadierMind does not include your journal or mood content in those links. The app uses local storage for its features, rather than advertising cookies.</p>
+      <h3>Support email</h3>
+      <p>If you email steadiermind@gmail.com, the support inbox receives your email address, message, and any attachments you choose to send. These messages are used to answer app or privacy questions. Do not include private entries or medical details unless you deliberately choose to share them.</p>
+      <p>The inbox is provided through Google’s Gmail service. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google’s privacy policy</a>. Support correspondence is retained as needed to address the request and any necessary follow-up or applicable recordkeeping obligations. Requests to delete correspondence are reviewed individually; provider backups may follow separate retention practices. Clearing app data does not delete support emails; contact us to ask about deletion, subject to any applicable recordkeeping requirements.</p>
+      <h3>Audience</h3>
+      <p>SteadierMind is intended for adults and teenagers aged 13 and older. Users under 18 should have parent or guardian permission. It is not intended for children under 13. If you believe a child under 13 has sent personal information to the support inbox, contact us so we can review and address it. Do not send a child’s private entries to demonstrate the concern.</p>
       <h3>Wellness education</h3>
       <p>SteadierMind offers general wellness education and self-guided activities. It does not diagnose conditions, provide treatment, or replace individualized medical or mental health care.</p>
       <h3>Changes and privacy questions</h3>
       <p>For privacy questions, contact SteadierMind at <a href="mailto:steadiermind@gmail.com">steadiermind@gmail.com</a>. Please do not include sensitive journal entries or health details in your initial email.</p>
-      <p>Privacy practices must be updated if accounts, cloud storage, analytics, advertising, purchases, or other services are introduced. Final website hosting practices must be confirmed before launch.</p>
+      <p>Privacy practices must be updated if accounts, cloud storage, analytics, advertising, purchases, or other services are introduced. We will update the revision date and explain material changes before new data practices are introduced.</p>
     </section>
 
     <section id="terms" class="screen">
       <button class="text-back" onclick="showScreen('settings')">← Back</button>
-      <h2>Terms & Conditions</h2>
-      <p>By using SteadierMind, you agree that the app is for wellness, education, and self-support purposes only.</p>
-      <p>SteadierMind does not provide medical advice, diagnose conditions, or replace professional care.</p>
+      <h2>SteadierMind Terms & Conditions</h2>
+      <p>Updated October 14, 2026. These terms describe the initial free website operated by Bertrand Dennis III under the SteadierMind name.</p>
+      <h3>About the service</h3>
+      <p>SteadierMind offers general wellness education, games, reflection, and self-guided relaxation activities. This initial website version is free and does not require a server account. It does not promise a particular outcome or improvement.</p>
+      <h3>Who can use the service</h3>
+      <p>The service is intended for users aged 13 and older. If you are under 18, use it with parent or guardian permission and ask them to review these terms with you. Do not use the service if you are under 13.</p>
+      <h3>Wellness, not individualized care</h3>
+      <p>The content does not diagnose conditions, provide treatment, or replace care from a qualified professional. Activities are optional; pause or stop if an activity is uncomfortable. Do not delay appropriate care because of information in the app.</p>
+      <p>Support email is for app help, not counseling or emergency monitoring. For immediate danger or a medical emergency, use local emergency services. In the United States, call or text 988 for crisis support or call 911 for an emergency.</p>
+      <h3>Privacy and saved entries</h3>
+      <p>Read our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> for the current data practices. Saved entries and progress stay in this browser on this device. They do not automatically sync, and clearing browser storage or changing devices can make them unavailable.</p>
+      <p>Export creates a readable JSON copy that may contain sensitive information. Keep it secure and share it only if you choose. This version cannot import or restore an export. Deleting app data does not delete exports, shared copies, or support emails.</p>
+      <h3>Your choices and acceptable use</h3>
+      <p>Use the service lawfully. Do not interfere with its operation, attempt unauthorized access, distribute harmful code through it, or misuse the support contact to harass others. You retain any rights you have in your own writing; saving a local entry does not transfer ownership to SteadierMind.</p>
+      <h3>Content and third-party references</h3>
+      <p>Rights in the app’s original content and software remain with their respective owners. Personal use does not transfer those rights or authorize using another party’s branding to imply endorsement. Any applicable open-source or third-party license continues to govern the material it covers.</p>
+      <p>Source links are for further reading. Linked organizations do not endorse SteadierMind, and their websites have their own terms and privacy practices. Educational examples and optional practices are not individually validated treatments.</p>
+      <h3>Availability and changes</h3>
+      <p>Features may be updated, interrupted, or discontinued. Uninterrupted availability, permanent local storage, and compatibility with every device are not guaranteed. When practical, significant changes will be explained in the app or on the website.</p>
+      <h3>Future paid features</h3>
+      <p>No subscription is offered in this initial free version. If paid features are introduced, prices, billing terms, cancellation information, and any additional agreement will be presented before purchase. These terms do not authorize a future charge.</p>
+      <h3>Your legal rights</h3>
+      <p>Nothing in these terms excludes rights or protections that cannot lawfully be excluded. These terms are governed by Ohio law and applicable United States federal law, except where mandatory laws in your location provide protections that cannot be overridden. Contact us about a concern so we can try to resolve it; this does not limit any available legal remedy.</p>
+      <h3>Questions and changes to these terms</h3>
+      <p>Contact <a href="mailto:steadiermind@gmail.com">steadiermind@gmail.com</a> with app or terms questions. The revision date will be updated when these terms change. Material changes will be explained before they apply; additional consent will be requested where required.</p>
     </section>
   </main>
   <script src="app.js"></script>
