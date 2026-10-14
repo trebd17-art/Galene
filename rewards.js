@@ -106,8 +106,29 @@
     const title=document.getElementById('levelName');if(title)title.textContent=`Next milestone: ${next} Mind Points`;
     const fill=document.getElementById('xpFill');if(fill)fill.style.width=`${mindPoints%100}%`;
     document.getElementById('rewardsRemainingText').textContent=`${Math.max(0,next-mindPoints)} Mind Points to the next milestone. No points are lost for taking a break.`;
+    const milestone=document.getElementById('rewardsMilestone');
+    milestone.setAttribute('aria-valuenow',mindPoints%100);
+    document.getElementById('rewardsMilestoneFill').style.width=`${mindPoints%100}%`;
+    const floatNumbers=(id,values)=>{const target=document.getElementById(id);target.replaceChildren();values.forEach((value,i)=>{const item=document.createElement('span');item.textContent=value;item.style.setProperty('--float-delay',`${i*-.9}s`);target.append(item);});};
+    floatNumbers('pointsFloat',[mindPoints,'✦',mindPoints,'✧']);
+    floatNumbers('activityFloat',[recent.length,'✧',days,'✦']);
+    const week=document.getElementById('rewardsWeek');week.replaceChildren();
+    const peak=Math.max(1,...Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()-6+i);return recent.filter(e=>e.day===dayKey(d)).length;}));
+    for(let i=0;i<7;i++){
+      const date=new Date();date.setDate(date.getDate()-6+i);
+      const count=recent.filter(e=>e.day===dayKey(date)).length,column=document.createElement('div');
+      column.className='rewards-day';column.setAttribute('aria-label',`${date.toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'})}: ${count} activities`);
+      const number=document.createElement('strong');number.textContent=count;
+      const bar=document.createElement('span');bar.className='rewards-day-bar';bar.style.height=`${8+count/peak*44}px`;bar.setAttribute('aria-hidden','true');
+      const label=document.createElement('small');label.textContent=date.toLocaleDateString(undefined,{weekday:'short'});
+      column.append(number,bar,label);week.append(column);
+    }
     const badges=document.getElementById('participationBadges');badges.replaceChildren();const completed=earned();
-    for(const [id,name,description] of definitions){const card=document.createElement('div');card.className='card';const heading=document.createElement('strong');heading.textContent=`${completed.includes(id)?'✓':'○'} ${name}`;const detail=document.createElement('p');detail.textContent=description;card.append(heading,detail);badges.append(card);}
+    for(const [id,name,description] of definitions){const card=document.createElement('div');card.className='card rewards-badge'+(completed.includes(id)?' is-earned':'');const heading=document.createElement('strong');heading.textContent=`${completed.includes(id)?'✓':'○'} ${name}`;const detail=document.createElement('p');detail.textContent=description;card.append(heading,detail);badges.append(card);}
+  };
+  window.toggleRewardsMotion=function(){
+    const paused=document.getElementById('rewards').classList.toggle('rewards-motion-paused');
+    const button=document.getElementById('rewardsMotionToggle');button.setAttribute('aria-pressed',String(paused));button.textContent=paused?'Resume floating numbers':'Pause floating numbers';
   };
   const update=updateXP;window.updateXP=function(){const result=update.apply(this,arguments);renderRewardsPage();return result;};
   const navigate=showScreen;window.showScreen=function(screen){const result=navigate.apply(this,arguments);if(screen==='rewards')renderRewardsPage();return result;};

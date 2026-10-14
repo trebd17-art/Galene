@@ -3138,3 +3138,37 @@ dialog.reward-celebration::backdrop { background: rgba(20,42,39,.55); }
 .phone[hidden], #bootStatus[hidden], #journalShowMore[hidden] { display: none !important; }
 #journalDate { display: block; width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #c7d8d5; border-radius: 14px; font: inherit; }
 #journalHistoryCount, #journalStorageStatus { font-size: 14px; line-height: 1.5; color: #466f69; }
+
+/* A colorful, celebratory Rewards page, with readable content above the motion. */
+.rewards-screen .rewards-motion-toggle{display:block;margin:0 auto 14px;font-size:13px}
+.rewards-screen .rewards-points-card,.rewards-screen .rewards-activity-card{position:relative;isolation:isolate;overflow:hidden;text-align:center;border-radius:26px;padding:26px 22px;border:1px solid #fff;box-shadow:0 9px 24px #314a6b12}
+.rewards-screen .rewards-points-card{background:linear-gradient(135deg,#ffe8a9,#ffeed9 50%,#f8dff2);color:#563448}
+.rewards-screen .rewards-activity-card{background:linear-gradient(135deg,#d6f6ed,#dff0ff 60%,#e8e4ff);color:#244f62}
+.rewards-points-card h3,.rewards-activity-card h3{margin:10px 0;font-size:22px}
+.rewards-medallion{display:grid;place-items:center;margin:auto;width:58px;height:58px;font-size:34px;color:#805000;background:#fff6cb;border:2px solid #f4cc6f;border-radius:50%;box-shadow:0 5px 0 #e5b65e55}
+.rewards-screen #rewardsXpText{font-size:clamp(24px,6vw,34px);font-weight:850;line-height:1.25;margin:14px 0;color:#593245}
+.rewards-screen #weeklyActivityCount{font-size:20px;font-weight:750;line-height:1.45}
+.rewards-screen #rewardsRemainingText,.rewards-screen .rewards-card-note{font-size:13px;line-height:1.6;margin:14px 0 0}
+.rewards-card-kicker{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin:0}
+.rewards-milestone-track{height:12px;background:#ffffffb3;border-radius:20px;overflow:hidden;box-shadow:inset 0 1px 3px #59324518}
+.rewards-milestone-track span{display:block;height:100%;background:linear-gradient(90deg,#df7b65,#ad629e);border-radius:20px;transition:width .6s ease}
+.rewards-floats{position:absolute;inset:0;z-index:-1;pointer-events:none;user-select:none}
+.rewards-floats span{position:absolute;font-size:26px;font-weight:900;color:#734469;opacity:.14;animation:rewardsFloat 5s ease-in-out infinite;animation-delay:var(--float-delay)}
+.rewards-floats span:nth-child(1){left:6%;top:16%}.rewards-floats span:nth-child(2){right:9%;top:13%}.rewards-floats span:nth-child(3){right:5%;bottom:18%}.rewards-floats span:nth-child(4){left:9%;bottom:18%}
+.rewards-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:20px;padding:14px 8px 10px;border-radius:18px;background:#ffffffa6}
+.rewards-day{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;min-width:0}
+.rewards-day strong{font-size:14px}.rewards-day small{font-size:10px}.rewards-day-bar{display:block;width:100%;max-width:23px;border-radius:9px;background:linear-gradient(#70c7c0,#6999d0)}
+.rewards-badge-heading{text-align:center;margin:28px 0 16px}.rewards-badge-heading span{color:#ae65a0}
+#participationBadges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.rewards-screen .rewards-badge{margin:0;padding:18px 14px;background:#f5f4fa;border:1px solid #dedbea;border-radius:20px;min-width:0}
+.rewards-screen .rewards-badge.is-earned{background:linear-gradient(135deg,#fff0bc,#ffe6e1);border-color:#e8c58c;box-shadow:0 4px 14px #b57b3720}
+.rewards-badge strong{color:#554064;font-size:15px}.rewards-badge p{font-size:12px;line-height:1.5;margin-bottom:0}
+.rewards-screen .rewards-guide{margin-top:24px;padding:20px 16px;background:linear-gradient(135deg,#f1e8ff,#fff3e7);border:1px solid #d9cae7;border-radius:24px;color:#4c3b62}
+.rewards-guide summary{font-size:19px;font-weight:800}.rewards-guide>p{font-size:14px;line-height:1.5}
+.rewards-ways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;text-align:center}
+.rewards-ways>div{display:flex;flex-direction:column;align-items:center;gap:7px;padding:15px 10px;background:#ffffffc9;border-radius:18px;min-width:0}
+.rewards-ways>div>span{font-size:26px;color:#9b5e85}.rewards-ways strong{font-size:14px}.rewards-ways small{font-size:12px;line-height:1.45}.rewards-ways b{margin-top:auto;background:#efe2ff;border-radius:20px;padding:5px 12px;font-size:12px;color:#654378}
+@keyframes rewardsFloat{0%,100%{transform:translateY(6px) rotate(-7deg)}50%{transform:translateY(-13px) rotate(7deg)}}
+.rewards-motion-paused .rewards-floats span{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.rewards-floats span{animation:none}.rewards-milestone-track span{transition:none}.rewards-motion-toggle{display:none!important}}
+@media(max-width:350px){.rewards-screen .rewards-points-card,.rewards-screen .rewards-activity-card{padding:22px 14px}#participationBadges{grid-template-columns:1fr}.rewards-ways{gap:8px}.rewards-day small{font-size:9px}}

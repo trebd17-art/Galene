@@ -776,10 +776,35 @@
       <p class="eyebrow center-title">SteadierMind Progress</p>
       <h2 class="center-title">Rewards</h2>
       <p class="intro compact">Points recognize participation, not how you feel. Take breaks whenever you need.</p>
-      <div class="card"><h3>Your Mind Points</h3><p id="rewardsXpText"></p><p id="rewardsRemainingText"></p></div>
-      <div class="card"><h3>Your recent activity</h3><p id="weeklyActivityCount"></p><p>Activity dates are tracked from this update. Your existing points are preserved.</p></div>
-      <h3>Participation badges</h3><div id="participationBadges"></div>
-      <details class="learning-more"><summary>How Mind Points work</summary><p>Daily check-in or mood entry: 5. New reflection: 10. First completion of a lesson: 5. Finished routine: 10. Game completion: 10. Completed breathing, grounding, or worry session: 5.</p><p>Editing an entry or repeating a completion tap earns no extra points. New-game levels reward their first completion. Rest in Sleep Wind-down has no points to chase. There are no mood-based rewards, penalties, rankings, or promised theme unlocks.</p></details>
+      <button id="rewardsMotionToggle" class="text-back rewards-motion-toggle" type="button" aria-pressed="false" onclick="toggleRewardsMotion()">Pause floating numbers</button>
+      <div class="card rewards-points-card">
+        <div class="rewards-floats" id="pointsFloat" aria-hidden="true"></div>
+        <span class="rewards-medallion" aria-hidden="true">✦</span>
+        <h3>Your Mind Points</h3><p id="rewardsXpText"></p>
+        <div class="rewards-milestone-track" role="progressbar" id="rewardsMilestone" aria-label="Progress toward the next 100-point milestone" aria-valuemin="0" aria-valuemax="100"><span id="rewardsMilestoneFill"></span></div>
+        <p id="rewardsRemainingText"></p>
+      </div>
+      <div class="card rewards-activity-card">
+        <div class="rewards-floats" id="activityFloat" aria-hidden="true"></div>
+        <p class="rewards-card-kicker">Small steps, real progress</p>
+        <h3>Your recent activity</h3><p id="weeklyActivityCount"></p>
+        <div id="rewardsWeek" class="rewards-week" aria-label="Activities by day over the last seven days"></div>
+        <p class="rewards-card-note">Every visit is a chance to make space for yourself. Activity dates are tracked from this update; your existing points are preserved.</p>
+      </div>
+      <h3 class="rewards-badge-heading">Your badge collection <span aria-hidden="true">✧</span></h3><div id="participationBadges"></div>
+      <details class="learning-more rewards-guide" open>
+        <summary>How Mind Points work</summary>
+        <p>Make a little time for yourself. Watch your points grow.</p>
+        <div class="rewards-ways">
+          <div><span aria-hidden="true">☀</span><strong>Check in</strong><small>Daily check-in or mood entry</small><b>5 points</b></div>
+          <div><span aria-hidden="true">✎</span><strong>Reflect</strong><small>Save a new reflection</small><b>10 points</b></div>
+          <div><span aria-hidden="true">✧</span><strong>Discover</strong><small>Complete a lesson for the first time</small><b>5 points</b></div>
+          <div><span aria-hidden="true">✓</span><strong>Make space</strong><small>Finish your starter routine</small><b>10 points</b></div>
+          <div><span aria-hidden="true">❖</span><strong>Play & explore</strong><small>Complete a game; new-game levels reward their first completion</small><b>10 points</b></div>
+          <div><span aria-hidden="true">≈</span><strong>Take a pause</strong><small>Finish breathing, grounding, or worry release</small><b>5 points</b></div>
+        </div>
+        <p class="rewards-card-note">Editing an entry or repeating a completion tap earns no extra points. Sleep Wind-down is a space to rest, with no points to chase. Points recognize participation, not how you feel. No penalties, rankings, or promised theme unlocks—and no points lost for taking a break.</p>
+      </details>
     </section>
 
     <section id="settings" class="screen">
