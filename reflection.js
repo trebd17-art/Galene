@@ -63,6 +63,8 @@
     const previous = index >= 0 ? steadierMindJournalEntries[index] : null;
     const entry = {
       id: draft.id, type: 'dailyReflection', date: previous ? previous.date : new Date().toLocaleString(),
+      createdAt: previous ? previous.createdAt : new Date().toISOString(),
+      createdDay: previous ? previous.createdDay || steadierMindJournalArchive.entryDay(previous) : steadierMindJournalArchive.day(new Date()),
       updatedAt: new Date().toISOString(), mood, responses,
       summary: [`Feeling: ${mood}`, ...responses.map(item => `${item.prompt}\n${item.answer}`)].join('\n\n')
     };
@@ -91,7 +93,7 @@
       if (!steadierMindJournalEntries.length) {
         const empty = document.createElement('p'); empty.textContent = 'Your saved reflections will appear here.'; target.append(empty); return;
       }
-      steadierMindJournalEntries.slice().reverse().forEach(entry => {
+      (window.journalHistorySelection ? journalHistorySelection(steadierMindJournalEntries) : steadierMindJournalEntries.slice().reverse()).forEach(entry => {
         const card = document.createElement('article'); card.className = 'saved-entry';
         const date = document.createElement('strong'); date.textContent = entry.date || 'Saved entry'; card.append(date);
         if (entry.type === 'dailyReflection' && Array.isArray(entry.responses)) {
@@ -108,6 +110,10 @@
         } else {
           const text = document.createElement('p'); text.textContent = entry.text || entry.summary || '';
           text.style.whiteSpace = 'pre-wrap'; card.append(text);
+        }
+        if(window.steadierMindJournalArchive&&!steadierMindJournalArchive.entryDay(entry)){
+          const label=document.createElement('label');label.textContent='Confirm original date for this older entry';
+          const input=document.createElement('input');input.type='date';input.setAttribute('aria-label','Confirm original journal date');input.onchange=()=>setJournalOriginalDay(entry,input.value);label.append(input);card.append(label);
         }
         target.append(card);
       });

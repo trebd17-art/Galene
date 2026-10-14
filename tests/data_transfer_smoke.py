@@ -30,7 +30,7 @@ with sync_playwright() as p:
     with page.expect_download() as d:page.locator('#settings button',has_text='Export My Data').click()
     backup=json.loads(Path(d.value.path()).read_text())
     assert backup['app']=='SteadierMind'
-    backup['journalEntries'].append({'id':'journal-two','date':'10/14/2026','summary':'Imported thought'})
+    backup['journalEntries'].append({'id':'journal-two','date':'10/14/2026','summary':'Imported thought '+('x'*12000)})
     backup['moodHistory'].append({'id':'mood-two','date':'10/14/2026','mood':'Anxious','score':4,'note':'Imported mood'})
     backup['xp']=42
     backup['plan']={'improvements':['Stress'],'challenge':'Work stress','time':'5 minutes','hope':'Calm','userType':'Student','improvementText':'Stress','path':{'name':'Stress','title':'Stress Recovery','daily':['Pause']},'mindType':{'name':'Storm Navigator','description':'A personalized path'},'supportingPaths':[],'createdAt':'10/14/2026'}

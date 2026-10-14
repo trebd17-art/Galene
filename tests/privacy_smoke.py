@@ -36,7 +36,7 @@ with sync_playwright() as p:
     assert 'PRIVATE_REFLECTION' in contents and 'PRIVATE_MOOD' in contents and 'boundaries' in contents
     page.once('dialog',lambda d:d.dismiss())
     page.locator('#settings button',has_text='Clear Saved Data').click()
-    assert 'PRIVATE_REFLECTION' in page.evaluate('localStorage.getItem(STEADIERMIND_STORAGE_KEY)')
+    assert page.evaluate('steadierMindJournalEntries.some(e=>e.summary==="PRIVATE_REFLECTION")')
     page.once('dialog',lambda d:d.accept())
     page.locator('#settings button',has_text='Clear Saved Data').click()
     page.wait_for_load_state('networkidle')

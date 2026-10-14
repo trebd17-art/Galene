@@ -70,7 +70,7 @@
       session.step++; render(); return;
     }
     if (session.saveConsent && (session.worry.trim() || session.action.trim())) {
-      const entry = { date: new Date().toLocaleString(), worrySessionId: session.id, summary: [session.worry.trim() ? 'Worry: ' + session.worry.trim() : '', session.action.trim() ? 'Next step: ' + session.action.trim() : ''].filter(Boolean).join('\n') };
+      const entry = { date: new Date().toLocaleString(), createdAt: new Date().toISOString(), createdDay: steadierMindJournalArchive.day(new Date()), worrySessionId: session.id, summary: [session.worry.trim() ? 'Worry: ' + session.worry.trim() : '', session.action.trim() ? 'Next step: ' + session.action.trim() : ''].filter(Boolean).join('\n') };
       steadierMindJournalEntries.push(entry);
       if (!saveSteadierMindData()) {
         steadierMindJournalEntries.splice(steadierMindJournalEntries.indexOf(entry), 1);

@@ -50,7 +50,7 @@
     capture();
     if (session.step === 3) {
       if (session.saveConsent && session.note.trim()) {
-        const entry = { date: new Date().toLocaleString(), sleepSessionId: session.id, summary: 'For tomorrow: ' + session.note.trim() };
+        const entry = { date: new Date().toLocaleString(), createdAt: new Date().toISOString(), createdDay: steadierMindJournalArchive.day(new Date()), sleepSessionId: session.id, summary: 'For tomorrow: ' + session.note.trim() };
         steadierMindJournalEntries.push(entry);
         if (!saveSteadierMindData()) {
           steadierMindJournalEntries.splice(steadierMindJournalEntries.indexOf(entry), 1);

@@ -3134,3 +3134,7 @@ dialog.reward-celebration::backdrop { background: rgba(20,42,39,.55); }
 #backupPreview[hidden] { display: none !important; }
 #backupFile { max-width: 100%; padding: 12px 0; }
 #backupPreview { padding: 16px; border: 1px solid #c7d8d5; border-radius: 16px; margin-top: 16px; }
+
+.phone[hidden], #bootStatus[hidden], #journalShowMore[hidden] { display: none !important; }
+#journalDate { display: block; width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #c7d8d5; border-radius: 14px; font: inherit; }
+#journalHistoryCount, #journalStorageStatus { font-size: 14px; line-height: 1.5; color: #466f69; }

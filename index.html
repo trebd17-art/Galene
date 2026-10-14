@@ -30,7 +30,8 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="phone">
+  <p id="bootStatus" role="status">Opening your saved journal…</p>
+  <main class="phone" hidden>
     <section id="splash" class="screen active">
       <div class="splash-container">
         <img src="logo.png" class="splash-logo" alt="SteadierMind Logo">
@@ -679,7 +680,13 @@
       </form>
       <details class="reflection-details" id="pastReflections">
         <summary>Past reflections</summary>
-        <div id="journalHistory"></div>
+        <label for="journalDate">Find entries by original date</label>
+      <input id="journalDate" type="date" onchange="filterJournalHistory()">
+      <div class="puzzle-actions"><button class="secondary" onclick="journalAnniversary()">One year ago</button><button class="secondary" onclick="journalDaysAgo()">365 days ago</button></div>
+      <button class="secondary" onclick="clearJournalDate()">Show all dates</button>
+      <p id="journalHistoryCount" role="status"></p>
+      <div id="journalHistory"></div>
+      <button id="journalShowMore" class="secondary" onclick="showMoreJournalEntries()" hidden>Show more entries</button>
       </details>
     </section>
 
@@ -805,7 +812,7 @@
         <button class="secondary" onclick="exportJournalDocument()">Download Journal (printable HTML)</button>
         <button class="secondary" onclick="exportMoodCsv()">Download Moods (CSV)</button>
         <button class="secondary" onclick="exportSteadierMindData()">Export My Data (JSON backup)</button>
-        <label for="backupFile">Import a JSON backup</label>
+        <label for="backupFile">Import a JSON backup (up to 16 MB)</label>
         <input id="backupFile" type="file" accept=".json,application/json" onchange="readBackupFile()">
         <p>Files are checked in this browser, not uploaded. Journals and exports may contain sensitive information. Entries on another browser, device, or website address do not transfer automatically.</p>
         <div id="backupPreview" hidden>
@@ -814,6 +821,8 @@
           <button class="secondary" onclick="applyBackupImport('replace')">Replace all app data from backup</button>
           <button class="secondary" onclick="cancelBackupImport()">Cancel import</button>
         </div>
+        <p id="journalStorageStatus" role="status"></p>
+        <button class="secondary" onclick="steadierMindJournalArchive.flush()">Retry journal archive save</button>
         <p id="transferStatus" role="status" aria-live="polite"></p>
         <button class="secondary" onclick="clearSteadierMindData()">Clear Saved Data</button>
         <p id="privacyDataStatus" role="status" aria-live="polite"></p>
@@ -847,7 +856,7 @@
       <h3>What you choose to save</h3>
       <p>The app can store mood and calm-score check-ins, notes, saved reflections, setup preferences, your personalized plan, routine drafts, activity dates, Mind Points, and game and learning progress. Worry Release and Sleep Wind-down notes are saved only when you choose their save option.</p>
       <h3>Where your entries stay</h3>
-      <p>Your saved app data is stored in this browser on this device using local storage. The current app does not send your entries to an app account or cloud database, and it does not sync them across devices. The Continue button does not create a server account.</p>
+      <p>Saved journal entries use this browser’s IndexedDB database. Other saved app data and a temporary journal recovery log use local storage in this browser on this device. If IndexedDB is unavailable before migration, journals can continue in local storage. The current app does not send your entries to an app account or cloud database, and it does not sync them across devices. The Continue button does not create a server account.</p>
       <p>Daily Reflection and Mood Tracker writing is saved when you choose Save or Update. Setup choices, routine drafts, and game progress can save automatically as you use them. Closing the app does not delete saved entries. Unsaved reflection and mood writing may be lost on reload.</p>
       <h3>Access, security, and retention</h3>
       <p>Data remains until you delete it, clear this website’s browser storage, or the browser removes it. Device or browser backup behavior depends on your settings. Someone with access to your unlocked device or browser profile may be able to view entries. SteadierMind does not provide password protection or app-level encryption for this local data. Avoid saving information you do not want accessible on a shared device.</p>
@@ -900,23 +909,7 @@
       <p>Contact <a href="mailto:steadiermind@gmail.com">steadiermind@gmail.com</a> with app or terms questions. The revision date will be updated when these terms change. Material changes will be explained before they apply; additional consent will be requested where required.</p>
     </section>
   </main>
-  <script src="app.js"></script>
-  <script src="starter.js"></script>
-  <script src="breathing.js"></script>
-  <script src="grounding.js"></script>
-  <script src="worry.js"></script>
-  <script src="sleep.js"></script>
-  <script src="reflection.js"></script>
-  <script src="mood.js"></script>
-  <script src="games.js"></script>
-  <script src="centered.js"></script>
-  <script src="new-games.js"></script>
-  <script src="education-content.js"></script>
-  <script src="education-sources.js"></script>
-  <script src="education.js"></script>
-  <script src="privacy.js"></script>
-  <script src="rewards.js"></script>
-  <script src="feedback.js"></script>
-  <script src="data-transfer.js"></script>
+  <script src="journal-store.js"></script>
+  <script src="bootstrap.js"></script>
 </body>
 </html>

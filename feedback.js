@@ -54,7 +54,7 @@
   window.updateXP=function(){
     const old=previous,result=original.apply(this,arguments),current=Number(mindPoints)||0,gain=current-old;
     previous=current;
-    if(gain>0 && document.readyState!=='loading' && !quiet() && !document.hidden){
+    if(gain>0 && !window.steadierMindInitializing && document.readyState!=='loading' && !quiet() && !document.hidden){
       const milestone=getLevelName(old)!==getLevelName(current)?`${Math.floor(current/100)*100} Mind Points earned`:null;
       const badges=window.consumeRewardBadges?.()||[];
       if(milestone||badges.length||document.getElementById('rewardCelebration'))celebrate(badges.length?'A new badge earned!':milestone?'A new milestone reached!':achievement.label,gain,[...badges,milestone].filter(Boolean).join(' · ')||null);

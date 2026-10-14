@@ -2593,7 +2593,7 @@ document.addEventListener("DOMContentLoaded", function(){
 /* v40 Local Storage System */
 var STEADIERMIND_STORAGE_KEY = "steadyMind.v1.data";
 var steadierMindLoadedFromStorage = false;
-var steadierMindJournalEntries = [];
+var steadierMindJournalEntries = window.steadierMindJournalArchive?.initialEntries || [];
 var steadierMindMoodHistory = [];
 var steadierMindGameProgress = {};
 var steadierMindAchievements = [];
@@ -2636,7 +2636,8 @@ function getSteadierMindSnapshot(){
 function saveSteadierMindData(){
   try {
     var snapshot = getSteadierMindSnapshot();
-    localStorage.setItem(STEADIERMIND_STORAGE_KEY, JSON.stringify(snapshot));
+    if(window.steadierMindJournalArchive){if(!steadierMindJournalArchive.save(snapshot))return false;}
+    else localStorage.setItem(STEADIERMIND_STORAGE_KEY, JSON.stringify(snapshot));
     return true;
   } catch(err) {
     console.warn("SteadierMind save failed:", err);
@@ -2664,7 +2665,7 @@ function loadSteadierMindData(){
       try { if(typeof selectedChallenge !== "undefined") selectedChallenge = data.selectedOptions.challenge; } catch(e){}
     }
 
-    steadierMindJournalEntries = Array.isArray(data.journalEntries) ? data.journalEntries : [];
+    steadierMindJournalEntries = data.journalStorage === "indexeddb-v1" ? steadierMindJournalArchive.initialEntries : Array.isArray(data.journalEntries) ? data.journalEntries : [];
     steadierMindMoodHistory = Array.isArray(data.moodHistory) ? data.moodHistory : [];
     steadierMindGameProgress = data.gameProgress || {};
     steadierMindAchievements = Array.isArray(data.achievements) ? data.achievements : [];
@@ -2741,6 +2742,8 @@ function escapeSteadierMindHTML(value){
 function recordSteadierMindJournalEntry(entry){
   var finalEntry = entry || {};
   finalEntry.date = finalEntry.date || new Date().toLocaleString();
+  finalEntry.createdAt = finalEntry.createdAt || new Date().toISOString();
+  finalEntry.createdDay = finalEntry.createdDay || steadierMindJournalArchive.day(new Date());
   steadierMindJournalEntries.push(finalEntry);
   saveSteadierMindData();
   renderSavedJournalEntries();

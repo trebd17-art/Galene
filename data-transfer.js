@@ -3,14 +3,14 @@
   'use strict';
   const $=id=>document.getElementById(id);let incoming=null,sequence=0;
   const object=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
-  const text=x=>typeof x==='string'&&x.length<=10000;
+  const text=x=>typeof x==='string'&&x.length<=100000;
   const integer=(x,min=0,max=100000000)=>Number.isInteger(x)&&x>=min&&x<=max;
   function require(valid){if(!valid)throw Error('The file contains unsupported or invalid backup data.');}
   function inspect(value,depth=0,counter={n:0}){
-    require(depth<=24&&++counter.n<=100000);
+    require(depth<=24&&++counter.n<=300000);
     if(typeof value==='string')require(text(value));
     if(typeof value==='number')require(Number.isFinite(value));
-    if(Array.isArray(value)){require(value.length<=10000);value.forEach(v=>inspect(v,depth+1,counter));}
+    if(Array.isArray(value)){require(value.length<=30000);value.forEach(v=>inspect(v,depth+1,counter));}
     else if(object(value))for(const [key,v] of Object.entries(value)){require(!['__proto__','prototype','constructor'].includes(key));inspect(v,depth+1,counter);}
   }
   function plain(value){
@@ -22,7 +22,7 @@
   function entries(list,mood){
     require(Array.isArray(list));list.forEach(e=>{
       require(object(e));
-      const allowed=mood?['id','date','day','createdAt','mood','value','score','note','influences']:['id','type','date','updatedAt','mood','text','summary','responses','routineId','worrySessionId','sleepSessionId'];
+      const allowed=mood?['id','date','day','createdAt','mood','value','score','note','influences']:['id','type','date','createdAt','createdDay','updatedAt','mood','text','summary','responses','routineId','worrySessionId','sleepSessionId'];
       require(Object.keys(e).every(k=>allowed.includes(k)));
       for(const [k,v] of Object.entries(e)){
         if(k==='score')require(typeof v==='number'&&v>=1&&v<=10);
@@ -97,8 +97,8 @@
   window.readBackupFile=async function(){
     const token=++sequence;incoming=null;$('backupPreview').hidden=true;
     const file=$('backupFile').files[0];if(!file)return;
-    try{require(file.size<=2*1024*1024);const data=validate(JSON.parse(await file.text()));if(token!==sequence)return;incoming=data;preview();$('transferStatus').textContent='File checked locally. Review the preview before importing.';}
-    catch(error){if(token===sequence){$('transferStatus').textContent='This is not a supported SteadierMind JSON backup, or it is larger than 2 MB. Nothing was changed.';$('backupFile').value='';}}
+    try{require(file.size<=16*1024*1024);const data=validate(JSON.parse(await file.text()));if(token!==sequence)return;incoming=data;preview();$('transferStatus').textContent='File checked locally. Review the preview before importing.';}
+    catch(error){if(token===sequence){$('transferStatus').textContent='This is not a supported SteadierMind JSON backup, or it is larger than 16 MB. Nothing was changed.';$('backupFile').value='';}}
   };
   window.applyBackupImport=function(mode){
     if(!incoming)return;
@@ -106,6 +106,7 @@
     if(mode==='replace'&&!confirm('Replace all current SteadierMind entries, points, setup, and progress with this backup? Export your current data first.'))return;
     const snapshot=mode==='replace'?incoming:{...getSteadierMindSnapshot(),journalEntries:merge(steadierMindJournalEntries,incoming.journalEntries).entries,moodHistory:merge(steadierMindMoodHistory,incoming.moodHistory).entries};
     snapshot.savedAt=new Date().toISOString();
+    if(mode==='replace')snapshot.journalRestore=true;
     const keys=[STEADIERMIND_STORAGE_KEY,'steadyMind.planBuilt','steadyMind.forceNewUser'],before=keys.map(key=>localStorage.getItem(key));
     window.steadierMindRestoring=true;
     try{

@@ -4,11 +4,12 @@
   let deleting=false;
   const save=saveSteadierMindData;
   window.saveSteadierMindData=function(){return deleting||window.steadierMindRestoring?false:save.apply(this,arguments);};
-  window.clearSteadierMindData=function(){
+  window.clearSteadierMindData=async function(){
     if(!confirm('Delete all SteadierMind entries, setup, plans, and progress in this browser? Downloaded exports will remain. This cannot be undone.'))return;
     const status=document.getElementById('privacyDataStatus');
     deleting=true;
     try {
+      await window.steadierMindJournalArchive?.clear();
       for(const storage of [localStorage,sessionStorage]){
         const keys=Array.from({length:storage.length},(_,i)=>storage.key(i));
         keys.filter(key=>/^(steadyMind|steadierMind)(?:[.]|Data$)/i.test(key)).forEach(key=>storage.removeItem(key));

@@ -75,6 +75,8 @@ with sync_playwright() as p:
     assert page.evaluate('steadierMindJournalEntries.filter(e=>e.routineId).length') == 1
     page.evaluate('starterRoutineNext()')
     assert page.evaluate('steadierMindJournalEntries.filter(e=>e.routineId).length') == 1
+    if page.locator('#rewardCelebration').evaluate('(el) => el.open'):
+        page.locator('#rewardContinue').click()
     page.locator('#routinePanel button', has_text='View My Plan').click()
     assert 'Overthinking' in page.locator('#profileCard').inner_text()
     reload_app()
