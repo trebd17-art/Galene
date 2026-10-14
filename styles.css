@@ -3128,3 +3128,5 @@ dialog.reward-celebration::backdrop { background: rgba(20,42,39,.55); }
 #rewardContinue:focus-visible { outline: 3px solid #356a56; outline-offset: 3px; }
 @keyframes achievementReveal { from { transform: scale(.88); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { dialog.reward-celebration { animation: none; } }
+
+.participation-toast { position: fixed; z-index: 1000; bottom: 24px; left: 50%; transform: translateX(-50%); max-width: calc(100vw - 32px); border-radius: 20px; padding: 12px 18px; background: #214f43; color: white; font: 600 15px/1.5 system-ui,sans-serif; pointer-events: none; text-align: center; }

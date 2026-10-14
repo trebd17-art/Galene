@@ -45,8 +45,9 @@ with sync_playwright() as p:
             assert page.locator('#educationLesson').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
         page.locator('#learningComplete').click()
         page.evaluate('completeLearningLesson()')
+        if page.locator('#rewardContinue').count():page.locator('#rewardContinue').click()
     assert page.evaluate('steadierMindGameProgress.learning.completed.length')==15
-    assert page.evaluate('mindPoints')==points
+    assert page.evaluate('mindPoints')==points+75
     page.reload(wait_until='networkidle')
     page.locator('#welcome').wait_for(state='visible')
     page.evaluate('showScreen("education")')

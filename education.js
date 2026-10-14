@@ -59,8 +59,9 @@
   window.completeLearningLesson=function(){
     if(!current||progress().completed.includes(current.id))return;
     const p=progress();
-    if(!saveProgress({...p,completed:[...p.completed,current.id]})){$('learningLessonStatus').textContent='We could not save your completion. Please try again.';return;}
-    renderLesson();renderLibrary();$('learningLessonStatus').textContent='Lesson completed. Your progress is saved on this device.';
+    const points=mindPoints,count=completedActivities;mindPoints+=5;completedActivities++;
+    if(!saveProgress({...p,completed:[...p.completed,current.id]})){mindPoints=points;completedActivities=count;$('learningLessonStatus').textContent='We could not save your completion. Please try again.';return;}
+    updateXP();renderLesson();renderLibrary();$('learningLessonStatus').textContent='Lesson completed. Your progress is saved on this device.';
   };
   window.nextLearningLesson=function(){if(!current)return;const next=lessons[lessons.indexOf(current)+1];if(next)openLesson(next.id);else showScreen('education');};
   window.openLearningTool=function(){

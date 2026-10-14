@@ -497,7 +497,7 @@ function saveJournal(){
     `<strong>Reflection saved.</strong><br>
     Today you felt <strong>${mood}</strong> and gave your thoughts a place to land.<br><br>
     Steady step: ${controlToday || "Choose one small action you can control today."}<br><br>
-    +10 XP`;
+    +10 Mind Points`;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -544,7 +544,7 @@ function completeGroundingGame(){
  result.classList.remove("hidden");
  if(completed<3){result.innerHTML="Try to complete at least 3 sections before finishing.";return}
  mindPoints+=10;completedActivities+=1;updateXP();
- result.innerHTML="<strong>Grounding complete.</strong><br>You brought your mind back to the present moment.<br><br>+10 XP";
+ result.innerHTML="<strong>Grounding complete.</strong><br>You brought your mind back to the present moment.<br><br>+10 Mind Points";
 }
 
 function answerThoughtSort(choice){
@@ -559,7 +559,7 @@ function answerThoughtSort(choice){
    mindPoints+=10;completedActivities+=1;updateXP();
    document.getElementById("thoughtPrompt").textContent="Game complete.";
    document.getElementById("thoughtIndex").textContent=thoughtSortQuestions.length;
-   result.innerHTML="<strong>Thought Sort complete.</strong><br>Score: "+thoughtGameScore+" / "+thoughtSortQuestions.length+"<br><br>You practiced separating facts from assumptions. +10 XP";
+   result.innerHTML="<strong>Thought Sort complete.</strong><br>Score: "+thoughtGameScore+" / "+thoughtSortQuestions.length+"<br><br>You practiced separating facts from assumptions. +10 Mind Points";
    thoughtGameIndex=0;thoughtGameScore=0;return;
   }
   document.getElementById("thoughtPrompt").textContent=thoughtSortQuestions[thoughtGameIndex].text;
@@ -580,7 +580,7 @@ function tapFocusCircle(){
  if(focusScore>=5){
   const result=document.getElementById("focusResult");
   result.classList.remove("hidden");
-  result.innerHTML="<strong>Calm Focus complete.</strong><br>You practiced slow attention and steady movement. +10 XP";
+  result.innerHTML="<strong>Calm Focus complete.</strong><br>You practiced slow attention and steady movement. +10 Mind Points";
   mindPoints+=10;completedActivities+=1;updateXP();
   focusScore=0;
   setTimeout(()=>{document.getElementById("focusScore").textContent=0},800);
@@ -814,7 +814,7 @@ function startGroundingTool(){
     <div class="tool-step"><h3>3 things you can hear</h3><textarea id="toolHear" placeholder="Example: fan, traffic, birds..."></textarea></div>
     <div class="tool-step"><h3>2 things you can smell</h3><textarea id="toolSmell" placeholder="Example: coffee, soap..."></textarea></div>
     <div class="tool-step"><h3>1 thing you can taste</h3><textarea id="toolTaste" placeholder="Example: mint, water..."></textarea></div>
-    <button onclick="completeGroundingTool()">Complete Grounding +10 XP</button>
+    <button onclick="completeGroundingTool()">Complete Grounding +10 Mind Points</button>
   `;
 }
 
@@ -825,7 +825,7 @@ function completeGroundingTool(){
 
   const result = document.getElementById("toolResult");
   if(result){
-    result.innerHTML = `<strong>Grounding complete.</strong><br>You brought your mind back to the present moment.<br><br>+10 XP`;
+    result.innerHTML = `<strong>Grounding complete.</strong><br>You brought your mind back to the present moment.<br><br>+10 Mind Points`;
   }
   safeSuccessSound();
 }
@@ -842,7 +842,7 @@ function startWorryReleaseTool(){
     <div class="tool-step"><h3>Is this a fact, a fear, or an assumption?</h3><textarea id="worryType" placeholder="Example: It is mostly a fear, not a fact."></textarea></div>
     <div class="tool-step"><h3>What is one more balanced thought?</h3><textarea id="balancedThought" placeholder="Example: I may feel nervous, but I can still handle it."></textarea></div>
     <div class="tool-step"><h3>What is one thing you can control today?</h3><textarea id="worryAction" placeholder="Example: Practice for 10 minutes and get to bed on time."></textarea></div>
-    <button onclick="completeWorryReleaseTool()">Release Worry +10 XP</button>
+    <button onclick="completeWorryReleaseTool()">Release Worry +10 Mind Points</button>
   `;
 }
 
@@ -854,7 +854,7 @@ function completeWorryReleaseTool(){
   const action = document.getElementById("worryAction")?.value.trim();
   const result = document.getElementById("toolResult");
   if(result){
-    result.innerHTML = `<strong>Worry released.</strong><br>You moved from worry to action.<br><br>Steady action: ${action || "Choose one small thing you can control."}<br><br>+10 XP`;
+    result.innerHTML = `<strong>Worry released.</strong><br>You moved from worry to action.<br><br>Steady action: ${action || "Choose one small thing you can control."}<br><br>+10 Mind Points`;
   }
   safeSuccessSound();
 }
@@ -871,7 +871,7 @@ function startSleepWindDownTool(){
     <div class="tool-step"><h3>2. Tomorrow can wait</h3><textarea id="tomorrowWait" placeholder="What can wait until tomorrow?"></textarea></div>
     <div class="tool-step"><h3>3. One peaceful thought</h3><textarea id="peacefulThought" placeholder="Example: I did enough for today."></textarea></div>
     <div class="tool-step"><h3>4. Body cue</h3><p>Relax your jaw, lower your shoulders, and take three slow breaths.</p></div>
-    <button onclick="completeSleepWindDownTool()">Complete Wind-Down +10 XP</button>
+    <button onclick="completeSleepWindDownTool()">Complete Wind-Down +10 Mind Points</button>
   `;
 }
 
@@ -882,7 +882,7 @@ function completeSleepWindDownTool(){
 
   const result = document.getElementById("toolResult");
   if(result){
-    result.innerHTML = `<strong>Sleep wind-down complete.</strong><br>Your mind has been given a place to rest.<br><br>+10 XP`;
+    result.innerHTML = `<strong>Sleep wind-down complete.</strong><br>Your mind has been given a place to rest.<br><br>+10 Mind Points`;
   }
   safeSuccessSound();
 }
@@ -1369,14 +1369,14 @@ function completeCalmFocusRound(){
   const area = document.getElementById("calmFocusPlayArea");
   if(area) area.querySelectorAll(".focus-orb,.distraction-orb").forEach(el => el.remove());
 
-  const xpEarned = 10 + calmFocusCombo * 2;
+  const xpEarned = 10;
   mindPoints += xpEarned;
   completedActivities += 1;
   updateXP();
 
   const result = document.getElementById("calmFocusResult");
   if(result){
-    result.innerHTML = `<strong>Calm Focus complete.</strong><br>You practiced steady attention and gently returned from distraction.<br><br>+${xpEarned} XP`;
+    result.innerHTML = `<strong>Calm Focus complete.</strong><br>You practiced steady attention and gently returned from distraction.<br><br>+${xpEarned} Mind Points`;
   }
 
   try { if(typeof successSound === "function") successSound(); } catch(e){}
@@ -1710,7 +1710,7 @@ function startGroundingTool(){
     <div class="grounding-count"><div class="grounding-number">2</div><div><strong>Breathe in.</strong><br>Notice two things you can smell.</div></div>
     <div class="grounding-count"><div class="grounding-number">1</div><div><strong>Return.</strong><br>Notice one thing you can taste, or take one slow breath.</div></div>
     <div class="guided-message"><strong>You are here.</strong><p>This moment is real. The worry is a signal, not a command.</p></div>
-    <button onclick="completeGroundingTool()">Complete Grounding +10 XP</button>
+    <button onclick="completeGroundingTool()">Complete Grounding +10 Mind Points</button>
     <button class="secondary reflect-later-btn" onclick="showScreen('journal')">Journal About This Later</button>`;
 }
 
@@ -1749,7 +1749,7 @@ function selectWorryControl(control){worryControl=control;worryReleaseStep=3;ren
 function finishWorryRelease(action){
   mindPoints+=10;completedActivities+=1;updateXP();
   const result=document.getElementById("toolResult");
-  if(result){result.innerHTML=`<div class="guided-message"><strong>Worry released.</strong><p>You moved from mental noise to one steady response.</p><p><strong>Your steady step:</strong> ${action}</p><p>+10 XP</p></div><button class="secondary reflect-later-btn" onclick="showScreen('journal')">Journal About This Later</button>`;}
+  if(result){result.innerHTML=`<div class="guided-message"><strong>Worry released.</strong><p>You moved from mental noise to one steady response.</p><p><strong>Your steady step:</strong> ${action}</p><p>+10 Mind Points</p></div><button class="secondary reflect-later-btn" onclick="showScreen('journal')">Journal About This Later</button>`;}
   safeSuccessSound();
 }
 
@@ -1765,7 +1765,7 @@ function renderSleepWindDownStep(){
     5:{title:"Settle the mind.",text:"You do not need to solve anything before sleeping.",button:"I can rest now"}
   };
   const step=steps[sleepWindStep];
-  result.innerHTML=`<div class="guided-message"><strong>${step.title}</strong><p>${step.text}</p></div><div class="sleep-affirmation">${step.button}</div><button onclick="nextSleepWindDownStep()">${sleepWindStep>=5?"Complete Wind-Down +10 XP":"Continue"}</button><button class="secondary" onclick="playAmbient('rain')">Play Rain</button><button class="secondary" onclick="playAmbient('ocean')">Play Ocean</button>`;
+  result.innerHTML=`<div class="guided-message"><strong>${step.title}</strong><p>${step.text}</p></div><div class="sleep-affirmation">${step.button}</div><button onclick="nextSleepWindDownStep()">${sleepWindStep>=5?"Complete Wind-Down +10 Mind Points":"Continue"}</button><button class="secondary" onclick="playAmbient('rain')">Play Rain</button><button class="secondary" onclick="playAmbient('ocean')">Play Ocean</button>`;
 }
 function nextSleepWindDownStep(){if(sleepWindStep>=5){completeSleepWindDownTool();return;}sleepWindStep++;renderSleepWindDownStep();}
 
@@ -1880,7 +1880,7 @@ function completeEmergencyTool(){
     worry:"Strengthening thought: You do not have to carry every thought. You can choose one steady step.",
     sleep:"Strengthening thought: Rest is not weakness. Rest is how you recover your strength."
   };
-  if(bubble)bubble.innerHTML=`${endings[emergencyToolType]}<br><br>+10 XP`;
+  if(bubble)bubble.innerHTML=`${endings[emergencyToolType]}<br><br>+10 Mind Points`;
   const nextBtn=document.getElementById("emergencyNextBtn");
   if(nextBtn)nextBtn.textContent="Complete";
   try{if(typeof successSound==="function")successSound();}catch(e){}
@@ -2386,7 +2386,7 @@ function finishGroundingGame(){
   var result = document.getElementById("groundingResult");
   if(result){
     result.classList.remove("hidden");
-    result.innerHTML = "<strong>Grounding complete.</strong><br>You practiced returning to the present through your senses.<br><br>Score: " + groundingGameScore + "<br>+10 XP";
+    result.innerHTML = "<strong>Grounding complete.</strong><br>You practiced returning to the present through your senses.<br><br>Score: " + groundingGameScore + "<br>+10 Mind Points";
   }
 
   try { if(typeof successSound === "function") successSound(); } catch(e){}

@@ -18,28 +18,14 @@ with sync_playwright() as p:
     assert page.locator('#rewardCelebration').count()==0
     before=page.evaluate('mindPoints')
     page.evaluate('mindPoints+=5;updateXP()')
-    assert page.locator('#rewardCelebration').evaluate('(e)=>e.open')
-    assert page.locator('.achievement-points').inner_text()=='+5 Mind Points'
-    page.wait_for_timeout(1800)
-    assert page.locator('#rewardCelebration').is_visible()
-    assert page.locator('#rewardContinue').evaluate('(e)=>e===document.activeElement')
-    page.keyboard.press('Tab')
-    assert page.locator('#rewardContinue').evaluate('(e)=>e===document.activeElement')
+    assert page.locator('#rewardCelebration').count()==0
+    assert '+5 Mind Points' in page.locator('#pointsFeedback').inner_text()
     page.evaluate('updateXP();updateXP()')
     assert page.evaluate('mindPoints')==before+5
-    page.evaluate('mindPoints+=10;updateXP()')
-    assert page.locator('#rewardCelebration').count()==1
-    assert '+15' in page.locator('.achievement-points').inner_text()
-    for width,height in [(320,568),(390,844),(768,800)]:
-        page.set_viewport_size({'width':width,'height':height})
-        rect=page.locator('#rewardCelebration').bounding_box()
-        assert abs(rect['x']+rect['width']/2-width/2)<2
-        assert abs(rect['y']+rect['height']/2-height/2)<2
-        assert page.locator('#rewardCelebration').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
-    page.locator('#rewardContinue').click()
-    assert page.locator('#rewardCelebration').count()==0
+    page.wait_for_timeout(1900)
+    assert page.locator('#pointsFeedback').count()==0
     page.evaluate('mindPoints=95;updateXP();mindPoints=100;updateXP()')
-    assert 'Level 2' in page.locator('#rewardCelebration').inner_text()
+    assert '100 Mind Points earned' in page.locator('#rewardCelebration').inner_text()
     page.keyboard.press('Escape')
     assert page.locator('#rewardCelebration').count()==0
     page.evaluate('openSimpleGame("meadow")')
@@ -57,11 +43,11 @@ with sync_playwright() as p:
         showScreen('starterRoutine');starterRoutineNext();
     }''')
     assert 'routine is complete' in page.locator('#rewardCelebration').inner_text()
-    assert page.locator('.achievement-points').count()==0
+    assert '+10' in page.locator('.achievement-points').inner_text()
     page.evaluate('showScreen("mainMenu")')
     assert page.locator('#rewardCelebration').count()==0
     page.emulate_media(reduced_motion='reduce')
-    page.evaluate('mindPoints+=5;updateXP()')
+    page.evaluate('mindPoints=195;updateXP();mindPoints=200;updateXP()')
     assert page.locator('#rewardCelebration').evaluate('(e)=>getComputedStyle(e).animationName')=='none'
     assert page.locator('.reward-particle').count()==0
     page.locator('#rewardContinue').click()

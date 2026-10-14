@@ -6,6 +6,7 @@
   const quiet=()=>document.body.classList.contains('sleep-mode') || ['breathingSession','groundingSession','sleepSession','welcome','auth'].includes(document.querySelector('.screen.active')?.id);
   function dismiss(){
     const dialog=document.getElementById('rewardCelebration');
+    document.getElementById('pointsFeedback')?.remove();
     if(dialog){dialog.close();dialog.remove();}
     achievement=null;
     if(returnFocus?.isConnected&&!returnFocus.disabled&&returnFocus.matches('button,a,input,select,textarea,[tabindex]')&&returnFocus.getClientRects().length)returnFocus.focus({preventScroll:true});
@@ -54,21 +55,27 @@
     const old=previous,result=original.apply(this,arguments),current=Number(mindPoints)||0,gain=current-old;
     previous=current;
     if(gain>0 && document.readyState!=='loading' && !quiet() && !document.hidden){
-      const milestone=getLevelName(old)!==getLevelName(current)?getLevelName(current):null;
-      celebrate(milestone?'A new milestone reached!':'You made time for yourself.',gain,milestone);
-    }
+      const milestone=getLevelName(old)!==getLevelName(current)?`${Math.floor(current/100)*100} Mind Points earned`:null;
+      const badges=window.consumeRewardBadges?.()||[];
+      if(milestone||badges.length||document.getElementById('rewardCelebration'))celebrate(badges.length?'A new badge earned!':milestone?'A new milestone reached!':achievement.label,gain,[...badges,milestone].filter(Boolean).join(' · ')||null);
+      else {
+        document.getElementById('pointsFeedback')?.remove();
+        const toast=document.createElement('div');toast.id='pointsFeedback';toast.className='participation-toast';toast.setAttribute('role','status');toast.textContent=`Saved ✓ · +${gain} Mind Points`;
+        document.body.append(toast);setTimeout(()=>toast.remove(),1800);
+      }
+    } else window.consumeRewardBadges?.();
     return result;
   };
   for(const name of ['saveSimpleGameWin','completeCalmFocusRound','finishGroundingGame']){
     const originalFinish=window[name];if(!originalFinish)continue;
-    window[name]=function(){const before=completedActivities,result=originalFinish.apply(this,arguments);if(completedActivities>before)celebrate('Level complete!');return result;};
+    window[name]=function(){const before=completedActivities,points=mindPoints,result=originalFinish.apply(this,arguments);if(completedActivities>before){document.getElementById('pointsFeedback')?.remove();celebrate('Level complete!',document.getElementById('rewardCelebration')?0:mindPoints-points);}return result;};
   }
   const routineNext=starterRoutineNext;
   window.starterRoutineNext=function(){
-    const before=getSteadierMindSnapshot().starter?.routine,wasFinished=before?.finished;
+    const before=getSteadierMindSnapshot().starter?.routine,wasFinished=before?.finished,points=mindPoints;
     const result=routineNext.apply(this,arguments),after=getSteadierMindSnapshot().starter?.routine;
     if(!wasFinished&&after?.finished&&after.skipped.filter(step=>step<4).length<4){
-      try{const saved=JSON.parse(localStorage.getItem(STEADIERMIND_STORAGE_KEY));if(saved?.starter?.routine?.id===after.id&&saved.starter.routine.finished)celebrate('Your routine is complete!');}catch(_){}
+      try{const saved=JSON.parse(localStorage.getItem(STEADIERMIND_STORAGE_KEY));if(saved?.starter?.routine?.id===after.id&&saved.starter.routine.finished){document.getElementById('pointsFeedback')?.remove();celebrate('Your routine is complete!',document.getElementById('rewardCelebration')?0:mindPoints-points);}}catch(_){}
     }
     return result;
   };

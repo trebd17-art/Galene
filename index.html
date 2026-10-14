@@ -239,10 +239,10 @@
       </div>
       <div class="premium-card progress-card">
         <div class="card-heading-row"><div class="circle-icon">⭐</div><h3>Steady Progress</h3></div>
-        <strong id="levelName">Level 1: Calm Seeker</strong>
+        <strong id="levelName">Next milestone: 100 Mind Points</strong>
         <p>Complete daily activities to earn Mind Points and unlock new levels.</p>
         <div class="xp-wrap"><div id="xpFill" class="xp-fill"></div></div>
-        <p><strong id="xpText">0 / 100 Mind Points</strong></p>
+        <p><strong id="xpText">0 Mind Points earned</strong></p>
       </div>
       <button class="secondary" onclick="showScreen('weekly')">View Weekly Review</button>
       <button class="secondary" onclick="showScreen('assessment')">Edit Assessment</button>
@@ -263,7 +263,7 @@
       <select id="mood" class="hidden"><option>Steady</option><option>Calm</option><option>Restless</option><option>Overwhelmed</option><option>Tired</option></select>
       <label>What do you need most?</label>
       <select id="need"><option>Calm</option><option>Focus</option><option>Confidence</option><option>Rest</option><option>Motivation</option></select>
-      <button onclick="saveCheckIn()">Save Check-In +5 XP</button>
+      <button onclick="saveCheckIn()">Save Check-In +5 Mind Points</button>
       <div id="checkinResult" class="card result-card hidden"></div>
     </section>
 
@@ -318,7 +318,7 @@
       </div>
 
       <div class="emergency-player-actions">
-        <button class="secondary" onclick="completeEmergencyTool()">Complete +10 XP</button>
+        <button class="secondary" onclick="completeEmergencyTool()">Complete +10 Mind Points</button>
         <button class="secondary" onclick="showScreen('journal')">Journal About This Later</button>
       </div>
 
@@ -442,7 +442,7 @@
           <li>Manage anxiety instead of fighting it.</li>
           <li>Practice small calm actions.</li>
           <li>Build confidence through repetition.</li>
-          <li>Earn XP for healthy mental habits.</li>
+          <li>Earn Mind Points for healthy mental habits.</li>
         </ul>
       </div>
     </section>
@@ -688,7 +688,7 @@
       <div class="progress"><span>1</span><span>2</span><span class="active-step">3</span><span>4</span></div>
       <h2>Your Weekly Review</h2>
       <div id="weeklyCard" class="card result-card">Complete activities this week to see your progress.</div>
-      <div class="card">Streak: <strong id="streakText">0 days</strong></div>
+      <div class="card">Recent activity: <strong id="streakText">No recorded activity yet</strong></div>
       <div class="card">Activities Completed: <strong id="activitiesText">0</strong></div>
       <div class="card">Keep going. Small steady steps build a steadier mind.</div>
     </section>
@@ -768,34 +768,11 @@
       <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
       <p class="eyebrow center-title">SteadierMind Progress</p>
       <h2 class="center-title">Rewards</h2>
-      <p class="intro compact">Earn XP by completing healthy mental habits. Every 250 XP moves you to the next level.</p>
-      <div class="premium-card">
-        <div class="card-heading-row"><div class="circle-icon">🌊</div><h3>Current Level</h3></div>
-        <div id="rewardsLevelCard" class="reward-level-card">Level 1: Calm Seeker</div>
-        <div class="xp-wrap"><div id="rewardsXpFill" class="xp-fill"></div></div>
-        <p><strong id="rewardsXpText">0 / 250 XP</strong></p>
-        <p id="rewardsRemainingText">250 XP until Level 2.</p>
-      </div>
-      <div class="premium-card">
-        <div class="card-heading-row"><div class="circle-icon leaf">🎁</div><h3>Upcoming Unlocks</h3></div>
-        <div class="unlock-list">
-          <div class="unlock-item"><strong>Level 2</strong><span>🌲 Forest Theme</span></div>
-          <div class="unlock-item"><strong>Level 4</strong><span>🌊 Ocean Theme</span></div>
-          <div class="unlock-item"><strong>Level 6</strong><span>🌧️ Rain Soundscape</span></div>
-          <div class="unlock-item"><strong>Level 8</strong><span>🌙 Night Theme</span></div>
-          <div class="unlock-item"><strong>Level 10</strong><span>🏔️ Storm Navigator Badge</span></div>
-          <div class="unlock-item"><strong>Level 15</strong><span>🗼 Lighthouse Breathing Animation</span></div>
-          <div class="unlock-item"><strong>Level 20</strong><span>🛡️ Resilient Mind Badge</span></div>
-        </div>
-      </div>
-      <div class="premium-card">
-        <div class="card-heading-row"><div class="circle-icon storm">⭐</div><h3>How XP Works</h3></div>
-        <ul class="soft-list">
-          <li>Daily Check-In: +5 XP</li><li>Mood Tracker: +5 XP</li><li>Emergency Tool: +10 XP</li>
-          <li>Grounding Game: +10 XP</li><li>Thought Sort: +15 XP</li><li>Calm Focus: +15 XP</li>
-          <li>Anchor: +15 XP</li><li>Centered Level: +25 XP</li><li>Reflection Journal: +15 XP</li>
-        </ul>
-      </div>
+      <p class="intro compact">Points recognize participation, not how you feel. Take breaks whenever you need.</p>
+      <div class="card"><h3>Your Mind Points</h3><p id="rewardsXpText"></p><p id="rewardsRemainingText"></p></div>
+      <div class="card"><h3>Your recent activity</h3><p id="weeklyActivityCount"></p><p>Activity dates are tracked from this update. Your existing points are preserved.</p></div>
+      <h3>Participation badges</h3><div id="participationBadges"></div>
+      <details class="learning-more"><summary>How Mind Points work</summary><p>Daily check-in or mood entry: 5. New reflection: 10. First completion of a lesson: 5. Finished routine: 10. Game completion: 10. Completed breathing, grounding, or worry session: 5.</p><p>Editing an entry or repeating a completion tap earns no extra points. New-game levels reward their first completion. Rest in Sleep Wind-down has no points to chase. There are no mood-based rewards, penalties, rankings, or promised theme unlocks.</p></details>
     </section>
 
     <section id="settings" class="screen">
@@ -803,7 +780,7 @@
       <h2>Settings</h2>
       <div class="sound-settings card">
         <strong>Sound</strong>
-        <p>Use gentle sounds for buttons, XP, and breathing guidance.</p>
+        <p>Use gentle sounds for buttons, Mind Points, and breathing guidance.</p>
         <label class="toggle-row">
           <span>Enable Sounds</span>
           <input type="checkbox" id="soundToggle" checked onchange="toggleSoundSetting()">
@@ -926,6 +903,7 @@
   <script src="education-sources.js"></script>
   <script src="education.js"></script>
   <script src="privacy.js"></script>
+  <script src="rewards.js"></script>
   <script src="feedback.js"></script>
 </body>
 </html>

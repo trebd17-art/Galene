@@ -42,3 +42,7 @@ Updated October 14, 2026. Preparation record, not a certification of store appro
 - Verify on real target devices, including reduced motion, narrow screens, accessibility, and interrupted sessions.
 
 Public URLs will be the chosen website origin followed by /support.html and /privacy.html; no domain or deployment is assumed here.
+
+## Rewards update: October 14, 2026
+
+Existing points are preserved. Rewards now use participation badges, neutral 100-point milestones, and dated activity records for the last seven days. Historical dates are not invented. Check-in/mood: 5; reflection: 10; first lesson completion: 5; completed routine: 10; game completion: 10; completed breathing/grounding/worry session: 5. Sleep stays free of point incentives, while tool completion can contribute to the variety badge. Badges remain earned when individual entries are deleted; Clear Saved Data removes the local reward history as well. No promised theme unlocks, performance-dependent Calm Focus points, or resettable streak remain in the active rewards flow.
