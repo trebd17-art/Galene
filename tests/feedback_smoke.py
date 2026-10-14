@@ -15,52 +15,63 @@ with sync_playwright() as p:
     page.goto(f'http://127.0.0.1:{server.server_port}',wait_until='networkidle')
     page.locator('#welcome').wait_for(state='visible')
     page.evaluate('showScreen("mainMenu")')
-    assert page.locator('#pointsFeedback').count()==0
+    assert page.locator('#rewardCelebration').count()==0
     before=page.evaluate('mindPoints')
     page.evaluate('mindPoints+=5;updateXP()')
-    assert page.locator('#pointsFeedback [role=status]').inner_text()=='+5 Mind Points ✨'
+    assert page.locator('#rewardCelebration').evaluate('(e)=>e.open')
+    assert page.locator('.achievement-points').inner_text()=='+5 Mind Points'
+    page.wait_for_timeout(1800)
+    assert page.locator('#rewardCelebration').is_visible()
+    assert page.locator('#rewardContinue').evaluate('(e)=>e===document.activeElement')
+    page.keyboard.press('Tab')
+    assert page.locator('#rewardContinue').evaluate('(e)=>e===document.activeElement')
     page.evaluate('updateXP();updateXP()')
     assert page.evaluate('mindPoints')==before+5
     page.evaluate('mindPoints+=10;updateXP()')
-    assert page.locator('#pointsFeedback').count()==1
-    assert '+10' in page.locator('#pointsFeedback').inner_text()
-    page.wait_for_timeout(1800)
-    assert page.locator('#pointsFeedback').count()==0
+    assert page.locator('#rewardCelebration').count()==1
+    assert '+15' in page.locator('.achievement-points').inner_text()
+    for width,height in [(320,568),(390,844),(768,800)]:
+        page.set_viewport_size({'width':width,'height':height})
+        rect=page.locator('#rewardCelebration').bounding_box()
+        assert abs(rect['x']+rect['width']/2-width/2)<2
+        assert abs(rect['y']+rect['height']/2-height/2)<2
+        assert page.locator('#rewardCelebration').evaluate('(e)=>e.scrollWidth<=e.clientWidth')
+    page.locator('#rewardContinue').click()
+    assert page.locator('#rewardCelebration').count()==0
     page.evaluate('mindPoints=95;updateXP();mindPoints=100;updateXP()')
     assert 'Level 2' in page.locator('#rewardCelebration').inner_text()
-    assert page.locator('.reward-confetti').count()==20
+    page.keyboard.press('Escape')
+    assert page.locator('#rewardCelebration').count()==0
     page.evaluate('openSimpleGame("meadow")')
     page.evaluate('''() => {
         const cards=steadierMindGameProgress.simpleGame_meadow.draft.cards;
         for(const icon of new Set(cards))cards.forEach((value,index)=>{if(value===icon)document.querySelectorAll('.memory-grid button')[index].click();});
     }''')
     assert 'Level complete' in page.locator('#rewardCelebration').inner_text()
-    page.evaluate('showScreen("mainMenu")')
-    assert page.locator('#rewardCelebration').count()==0
-    page.evaluate("document.querySelector('#mainMenu #homePlanCTA').dispatchEvent(new PointerEvent('pointerdown',{bubbles:true}))")
-    assert page.locator('#mainMenu #homePlanCTA').evaluate('(e)=>e.getAnimations().some(a=>a.id==="button-reward-bounce")')
+    assert '+10' in page.locator('.achievement-points').inner_text()
+    page.locator('#rewardContinue').click()
+    page.locator('#simpleGameNext').click()
+    assert 'Level 2 of 5' in page.locator('#simpleGameProgress').inner_text()
     page.evaluate('''() => {
         getSteadierMindSnapshot().starter.routine={id:'celebration-test',step:4,before:'Anxious',reflection:'A brief thought',action:'Rest',after:'Steady',skipped:[],finished:false};
         showScreen('starterRoutine');starterRoutineNext();
     }''')
     assert 'routine is complete' in page.locator('#rewardCelebration').inner_text()
-    page.evaluate('starterRoutineNext()')
-    assert page.locator('#rewardCelebration').count()==1
+    assert page.locator('.achievement-points').count()==0
     page.evaluate('showScreen("mainMenu")')
+    assert page.locator('#rewardCelebration').count()==0
     page.emulate_media(reduced_motion='reduce')
     page.evaluate('mindPoints+=5;updateXP()')
-    assert page.locator('#pointsFeedback').evaluate('(e)=>getComputedStyle(e).animationName')=='none'
+    assert page.locator('#rewardCelebration').evaluate('(e)=>getComputedStyle(e).animationName')=='none'
     assert page.locator('.reward-particle').count()==0
-    page.evaluate('openGroundingSession();mindPoints+=5;updateXP()')
-    assert page.locator('#pointsFeedback').count()==0
-    page.evaluate('openBreathingSession();mindPoints+=5;updateXP()')
-    assert page.locator('#pointsFeedback').count()==0
-    page.evaluate('openSleepSession();mindPoints+=5;updateXP()')
-    assert page.locator('#pointsFeedback').count()==0
+    page.locator('#rewardContinue').click()
+    for command in ['openGroundingSession()','openBreathingSession()','openSleepSession()']:
+        page.evaluate(command+';mindPoints+=5;updateXP()')
+        assert page.locator('#rewardCelebration').count()==0
     page.reload(wait_until='networkidle')
     page.locator('#welcome').wait_for(state='visible')
-    assert page.locator('#pointsFeedback').count()==0
+    assert page.locator('#rewardCelebration').count()==0
     assert not errors,errors
-    print('PASS: bouncy presses, sparkling points, game/routine celebrations, milestone badge, single rewards, cleanup, reduced motion, quiet tools, restore')
+    print('PASS: centered persistent card, accurate combined points, keyboard focus/Escape, mobile sizing, Continue/game navigation, milestones, routine without fake XP, reduced motion, quiet tools, reload')
     browser.close()
 server.shutdown()

@@ -1,10 +1,17 @@
 /* Playful visual feedback; activity logic remains the owner of points. */
 (function () {
   'use strict';
-  let previous=Number(mindPoints)||0, timer=null, celebrationTimer=null;
+  let previous=Number(mindPoints)||0, achievement=null, returnFocus=null;
   const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
   const quiet=()=>document.body.classList.contains('sleep-mode') || ['breathingSession','groundingSession','sleepSession','welcome','auth'].includes(document.querySelector('.screen.active')?.id);
-  function dismiss(){clearTimeout(timer);clearTimeout(celebrationTimer);document.getElementById('pointsFeedback')?.remove();document.getElementById('rewardCelebration')?.remove();}
+  function dismiss(){
+    const dialog=document.getElementById('rewardCelebration');
+    if(dialog){dialog.close();dialog.remove();}
+    achievement=null;
+    if(returnFocus?.isConnected&&!returnFocus.disabled&&returnFocus.matches('button,a,input,select,textarea,[tabindex]')&&returnFocus.getClientRects().length)returnFocus.focus({preventScroll:true});
+    else document.querySelector('.screen.active button:not(:disabled):not([hidden])')?.focus({preventScroll:true});
+    returnFocus=null;
+  }
   function particles(parent,count,kind){
     if(reduced())return;
     for(let i=0;i<count;i++){
@@ -17,30 +24,44 @@
       piece.style.setProperty('--piece-color',['#e8ba57','#80c6ad','#9cb7e7','#df9caa'][i%4]);parent.append(piece);
     }
   }
-  function celebrate(label,badge=false){
+  function celebrate(label,points=0,milestone=null){
     if(quiet()||document.hidden)return;
-    clearTimeout(celebrationTimer);document.getElementById('rewardCelebration')?.remove();
-    const celebration=document.createElement('div');celebration.id='rewardCelebration';celebration.className='reward-celebration';
-    const message=document.createElement('div');message.className='reward-badge';message.setAttribute('role','status');message.textContent=`${badge?'🏅':'✓'} ${label}`;
-    celebration.append(message);particles(celebration,20,'reward-confetti');document.body.append(celebration);
-    celebrationTimer=setTimeout(()=>celebration.remove(),1600);
+    let dialog=document.getElementById('rewardCelebration');
+    if(!dialog){
+      returnFocus=document.activeElement;
+      achievement={label,points:0,milestone:null};
+      dialog=document.createElement('dialog');dialog.id='rewardCelebration';dialog.className='reward-celebration';
+      dialog.setAttribute('aria-labelledby','rewardTitle');dialog.setAttribute('aria-describedby','rewardDescription');
+      dialog.addEventListener('cancel',event=>{event.preventDefault();dismiss();});
+      dialog.addEventListener('keydown',event=>{if(event.key==='Tab'){event.preventDefault();dialog.querySelector('#rewardContinue')?.focus();}});
+      document.body.append(dialog);
+    }
+    achievement.label=label;achievement.points+=points;if(milestone)achievement.milestone=milestone;
+    dialog.replaceChildren();
+    const badge=document.createElement('div');badge.className='achievement-icon';badge.setAttribute('aria-hidden','true');badge.textContent=achievement.milestone?'🏅':'✓';
+    const title=document.createElement('h2');title.id='rewardTitle';title.textContent='You did it!';
+    const description=document.createElement('p');description.id='rewardDescription';description.textContent=achievement.label;
+    dialog.append(badge,title,description);
+    if(achievement.points){const earned=document.createElement('p');earned.className='achievement-points';earned.textContent=`+${achievement.points} Mind Points`;dialog.append(earned);}
+    if(achievement.milestone){const milestoneText=document.createElement('p');milestoneText.className='achievement-milestone';milestoneText.textContent=achievement.milestone;dialog.append(milestoneText);}
+    const proceed=document.createElement('button');proceed.type='button';proceed.id='rewardContinue';proceed.textContent='Continue';proceed.onclick=dismiss;dialog.append(proceed);
+    particles(dialog,20,'reward-confetti');
+    if(!dialog.open)dialog.showModal();
+    proceed.focus({preventScroll:true});
   }
   const original=updateXP;
   window.updateXP=function(){
     const old=previous,result=original.apply(this,arguments),current=Number(mindPoints)||0,gain=current-old;
     previous=current;
     if(gain>0 && document.readyState!=='loading' && !quiet() && !document.hidden){
-      dismiss();
-      const bubble=document.createElement('div');bubble.id='pointsFeedback';bubble.className='points-feedback';
-      const text=document.createElement('span');text.setAttribute('role','status');text.setAttribute('aria-live','polite');text.textContent=`+${gain} Mind Points ✨`;
-      bubble.append(text);particles(bubble,8,'reward-spark');document.body.append(bubble);timer=setTimeout(dismiss,1600);
-      if(getLevelName(old)!==getLevelName(current))celebrate(getLevelName(current),true);
+      const milestone=getLevelName(old)!==getLevelName(current)?getLevelName(current):null;
+      celebrate(milestone?'A new milestone reached!':'You made time for yourself.',gain,milestone);
     }
     return result;
   };
   for(const name of ['saveSimpleGameWin','completeCalmFocusRound','finishGroundingGame']){
     const originalFinish=window[name];if(!originalFinish)continue;
-    window[name]=function(){const before=completedActivities,result=originalFinish.apply(this,arguments);if(completedActivities>before&&!document.getElementById('rewardCelebration'))celebrate('Level complete!');return result;};
+    window[name]=function(){const before=completedActivities,result=originalFinish.apply(this,arguments);if(completedActivities>before)celebrate('Level complete!');return result;};
   }
   const routineNext=starterRoutineNext;
   window.starterRoutineNext=function(){

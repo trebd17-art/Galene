@@ -40,6 +40,7 @@ with sync_playwright() as p:
             points=page.evaluate('mindPoints')
             page.evaluate('saveSimpleGameWin();saveSimpleGameWin()')
             assert page.evaluate('mindPoints')==points
+            if page.locator('#rewardContinue').count(): page.locator('#rewardContinue').click()
             if level<4: page.locator('#simpleGameNext').click()
         assert page.evaluate('(key)=>steadierMindGameProgress["simpleGame_"+key].completed.length',key)==5
     # Reload and game switching retain separate completed levels.
