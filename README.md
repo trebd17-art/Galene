@@ -1,5 +1,17 @@
 # SteadierMind v40
 
+## Educational video
+
+In Education → Understanding anxiety → Understanding the alarm response, play
+“Understanding Anxiety’s Alarm Response” (1 minute 40 seconds). The video starts
+only on request, includes visible captions, and pauses when you leave the lesson
+or hide the browser tab. MP4 download and full narration transcript links appear
+under the player. The video, poster, English WebVTT captions, and transcript are
+self-hosted in `media/`; no video service or credentials are required.
+
+Serve the checkout with `python3 -m http.server 8000` and open the app through
+that server. Include the `media/` directory when deploying the static app.
+
 Updates:
 - Added Local Storage saving.
 - Saves XP, completed activities, personalized plan, selected profile options, journal entries, mood history, game progress, achievements, and game levels.

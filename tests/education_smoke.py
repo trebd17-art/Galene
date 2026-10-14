@@ -20,9 +20,19 @@ with sync_playwright() as p:
     points=page.evaluate('mindPoints')
     page.locator('#learningContinue').click()
     assert page.locator('#learningLessonTitle').inner_text()=='Understanding the alarm response'
+    video=page.locator('#learningVideo')
+    assert video.is_visible()
+    assert video.get_attribute('autoplay') is None
+    assert video.evaluate('(v)=>v.paused')
+    page.evaluate('document.getElementById("learningVideo").play()')
+    page.wait_for_function('document.getElementById("learningVideo").currentTime > 0.5')
+    assert 90 <= video.evaluate('(v)=>v.duration') <= 120
+    captions=page.request.get(f'http://127.0.0.1:{server.server_port}/'+video.locator('track').get_attribute('src'))
+    assert captions.ok and captions.text().startswith('WEBVTT')
     assert page.evaluate('steadierMindGameProgress.learning.completed.length')==0
     page.evaluate('openLearningTool()')
     assert page.locator('#groundingSession').is_visible()
+    assert video.evaluate('(v)=>v.paused')
     page.evaluate('showScreen("educationLesson")')
     page.evaluate('window.actualSave=saveSteadierMindData;saveSteadierMindData=()=>false')
     page.locator('#learningComplete').click()
@@ -33,6 +43,7 @@ with sync_playwright() as p:
     assert len(catalog)==15
     for lesson in catalog:
         page.evaluate('(id)=>openLesson(id)',lesson['id'])
+        assert page.locator('#learningAlarmVideo').is_visible() == (lesson['id']=='alarm')
         assert page.locator('#learningLessonTitle').inner_text()==lesson['title']
         assert page.locator('.learning-block').count()==3
         page.locator('.learning-question button').nth((lesson['answer']+1)%3).click()

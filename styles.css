@@ -3086,6 +3086,9 @@ body.sleep-mode { background: #13252e; }
 .learning-path summary { cursor: pointer; font-size: 18px; font-weight: 650; color: #21414d; line-height: 1.5; }
 .learning-path .learning-lesson-link { text-align: left; border-radius: 14px; line-height: 1.5; padding: 14px; background: #dce9e6; color: #21414d; }
 .learning-block { margin: 28px 0; }
+.learning-video { margin: 24px 0; }
+.learning-video video { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 9; background: #f6f3e9; border-radius: 14px; }
+.learning-video p { line-height: 1.6; }
 .learning-block h3 { margin-bottom: 10px; font-size: 18px; }
 .learning-block p, .learning-more p { line-height: 1.65; }
 .learning-more { margin: 22px 0; padding: 16px; border-top: 1px solid #d5e2df; }

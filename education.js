@@ -29,6 +29,8 @@
   function section(title,text){const block=node('section','','learning-block');block.append(node('h3',title),node('p',text));return block;}
   function renderLesson(){
     if(!current)return;const lesson=current,path=paths.find(item=>item.id===lesson.path);
+    $('learningVideo').pause();
+    $('learningAlarmVideo').hidden=lesson.id!=='alarm';
     $('learningLessonPath').textContent=`${path.name} · About 2 min`;
     $('learningLessonTitle').textContent=lesson.title;
     const body=$('learningLessonBody');body.replaceChildren();
@@ -71,6 +73,7 @@
     else if(current.tool==='sleep')openSleepSession(back);
     else showScreen('journal');
   };
-  const navigate=showScreen;window.showScreen=function(screen){const result=navigate.apply(this,arguments);if(screen==='education')renderLibrary();return result;};
+  const navigate=showScreen;window.showScreen=function(screen){if(screen!=='educationLesson')$('learningVideo').pause();const result=navigate.apply(this,arguments);if(screen==='education')renderLibrary();return result;};
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)$('learningVideo').pause();});
   document.addEventListener('DOMContentLoaded',renderLibrary);
 })();
