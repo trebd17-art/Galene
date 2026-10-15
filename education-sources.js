@@ -15,7 +15,7 @@
     care:['NIMH: Caring for Your Mental Health','https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health'],
     boundaries:['Centre for Clinical Interventions: Assertiveness','https://www.cci.health.wa.gov.au/Resources/Looking-After-Yourself/Assertiveness']
   };
-  const mapping={alarm:['anxiety','panic'],sensations:['panic','anxiety'],support:['panic','anxiety'],facts:['reframe'],loops:['worry'],uncertainty:['uncertainty'],smallsteps:['esteem'],selftalk:['esteem','reframe'],setbacks:['esteem','care'],winddown:['habits'],bedtimeworry:['worry','sleep'],sleepexpectations:['insomnia','guideline'],stresssignals:['stress','care'],boundaries:['boundaries'],restsupport:['care']};
+  const mapping={alarm:['anxiety','panic'],sensations:['panic','anxiety'],support:['panic','anxiety'],facts:['reframe'],loops:['worry'],uncertainty:['uncertainty'],smallsteps:['esteem'],selftalk:['esteem','reframe'],setbacks:['esteem','care'],winddown:['habits'],bedtimeworry:['worry','sleep'],sleepexpectations:['insomnia','guideline','sleep'],stresssignals:['stress','care'],boundaries:['boundaries'],restsupport:['care']};
   steadierMindLessons.forEach(lesson=>{lesson.sources=mapping[lesson.id].map(key=>sources[key]);lesson.sourceVerification='pending';});
   document.addEventListener('DOMContentLoaded',()=>{
     const target=document.getElementById('educationalSourceList');

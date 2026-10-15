@@ -4,6 +4,10 @@ from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from functools import partial
 from pathlib import Path
 import threading
+import json
+video_catalog=json.loads((Path(__file__).resolve().parents[1]/'media/education-video-catalog.json').read_text())
+video_lengths={item['lesson']:item['duration'] for item in video_catalog}
+video_lengths.update({'sensations':106.5,'support':112.8})
 server = ThreadingHTTPServer(('127.0.0.1',0),partial(SimpleHTTPRequestHandler,directory=str(Path(__file__).resolve().parents[1])))
 threading.Thread(target=server.serve_forever,daemon=True).start()
 with sync_playwright() as p:
@@ -50,15 +54,15 @@ with sync_playwright() as p:
     assert len(catalog)==15
     for lesson in catalog:
         page.evaluate('(id)=>openLesson(id)',lesson['id'])
-        assert page.locator('#learningAlarmVideo').is_visible() == (lesson['id'] in ['alarm','sensations','support'])
-        if lesson['id'] in ['sensations','support']:
+        assert page.locator('#learningAlarmVideo').is_visible()
+        if lesson['id']!='alarm':
             source=video.locator('source').get_attribute('src')
             assert page.locator('#learningVideoDownload').get_attribute('href')==source
             assert lesson['title'].lower() in page.locator('#learningVideoTitle').inner_text().lower()
             assert video.evaluate('(v)=>v.paused')
             page.locator('#learningVideo').evaluate('(v)=>v.play()')
             page.wait_for_function('document.getElementById("learningVideo").currentTime > 0.2')
-            expected_duration={'sensations':106.5,'support':112.8}[lesson['id']]
+            expected_duration=video_lengths[lesson['id']]
             assert abs(video.evaluate('(v)=>v.duration')-expected_duration)<1
             assert video.evaluate('(v)=>[v.videoWidth,v.videoHeight]')==[1920,1080]
             with page.expect_download() as result:
@@ -68,6 +72,10 @@ with sync_playwright() as p:
             assert download.suggested_filename==source.rsplit('/',1)[-1]
             video.evaluate('(v)=>v.pause()')
         assert page.locator('#learningLessonTitle').inner_text()==lesson['title']
+        if lesson['id'] in {item['lesson'] for item in video_catalog}:
+            metadata=next(item for item in video_catalog if item['lesson']==lesson['id'])
+            links=page.locator('#learningLessonBody a').evaluate_all('(links)=>links.map(a=>a.href)')
+            assert all(ref['url'] in links for ref in metadata['references'])
         assert page.locator('.learning-block').count()==3
         page.locator('.learning-question button').nth((lesson['answer']+1)%3).click()
         assert lesson['explanation'] in page.locator('.learning-question').inner_text()

@@ -1,0 +1,202 @@
+[
+  {
+    "lesson": "facts",
+    "slug": "facts-predictions-and-uncertainty",
+    "title": "Facts, predictions, and uncertainty",
+    "topic": "thinking",
+    "duration": 92.84145833333334,
+    "closing": "Notice the thought. Check the evidence.",
+    "footer": "SteadierMind provides general wellness education, not diagnosis or individualized treatment.",
+    "references": [
+      {
+        "title": "NHS: Reframing unhelpful thoughts",
+        "url": "https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/self-help-cbt-techniques/reframing-unhelpful-thoughts/"
+      }
+    ]
+  },
+  {
+    "lesson": "loops",
+    "slug": "planning-or-a-worry-loop",
+    "title": "Planning or a worry loop?",
+    "topic": "thinking",
+    "duration": 101.99179166666667,
+    "closing": "Is this helping me choose a next step?",
+    "footer": "SteadierMind provides general wellness education, not diagnosis or individualized treatment.",
+    "references": [
+      {
+        "title": "NHS: Tackling your worries",
+        "url": "https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/self-help-cbt-techniques/tackling-your-worries/"
+      }
+    ]
+  },
+  {
+    "lesson": "uncertainty",
+    "slug": "making-room-for-uncertainty",
+    "title": "Making room for uncertainty",
+    "topic": "thinking",
+    "duration": 102.02250000000001,
+    "closing": "Enough information for a reasonable next step.",
+    "footer": "SteadierMind provides general wellness education, not diagnosis or individualized treatment.",
+    "references": [
+      {
+        "title": "Centre for Clinical Interventions: Worry and Rumination",
+        "url": "https://www.cci.health.wa.gov.au/Resources/Looking-After-Yourself/Worry-and-Rumination"
+      }
+    ]
+  },
+  {
+    "lesson": "smallsteps",
+    "slug": "start-smaller-than-you-think",
+    "title": "Start smaller than you think",
+    "topic": "confidence",
+    "duration": 95.58612500000001,
+    "closing": "Make the first step small enough to try.",
+    "footer": "SteadierMind provides general wellness education, not diagnosis or individualized treatment.",
+    "references": [
+      {
+        "title": "NHS: Raising low self-esteem",
+        "url": "https://www.nhs.uk/mental-health/self-help/tips-and-support/raise-low-self-esteem/"
+      }
+    ]
+  },
+  {
+    "lesson": "selftalk",
+    "slug": "a-more-supportive-inner-voice",
+    "title": "A more supportive inner voice",
+    "topic": "confidence",
+    "duration": 98.39879166666667,
+    "closing": "Be honest. Be fair. Leave room to learn.",
+    "footer": "SteadierMind provides general wellness education, not diagnosis or individualized treatment.",
+    "references": [
+      {
+        "title": "NHS: Raising low self-esteem",
+        "url": "https://www.nhs.uk/mental-health/self-help/tips-and-support/raise-low-self-esteem/"
+      },
+      {
+        "title": "NHS: Reframing unhelpful thoughts",
+        "url": "https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/self-help-cbt-techniques/reframing-unhelpful-thoughts/"
+      }
+    ]
+  },
+  {
+    "lesson": "setbacks",
+    "slug": "recovering-from-a-setback",
+    "title": "Recovering from a setback",
+    "topic": "confidence",
+    "duration": 94.65775000000001,
+    "closing": "Pause. Adjust. Choose your next step.",
+    "footer": "SteadierMind provides general wellness education, not diagnosis or individualized treatment.",
+    "references": [
+      {
+        "title": "NHS: Raising low self-esteem",
+        "url": "https://www.nhs.uk/mental-health/self-help/tips-and-support/raise-low-self-esteem/"
+      },
+      {
+        "title": "NIMH: Caring for Your Mental Health",
+        "url": "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health"
+      }
+    ]
+  },
+  {
+    "lesson": "winddown",
+    "slug": "building-a-gentle-wind-down",
+    "title": "Building a gentle wind-down",
+    "topic": "sleep",
+    "duration": 98.79708333333335,
+    "closing": "Choose one gentle change for tonight.",
+    "footer": "SteadierMind provides general wellness education, not diagnosis or individualized treatment.",
+    "references": [
+      {
+        "title": "NHLBI: Healthy Sleep Habits",
+        "url": "https://www.nhlbi.nih.gov/health/sleep/healthy-sleep-habits"
+      }
+    ]
+  },
+  {
+    "lesson": "bedtimeworry",
+    "slug": "when-thoughts-follow-you-to-bed",
+    "title": "When thoughts follow you to bed",
+    "topic": "sleep",
+    "duration": 100.18220833333334,
+    "closing": "A brief reminder. A time to return to it.",
+    "footer": "SteadierMind provides general wellness education, not diagnosis or individualized treatment.",
+    "references": [
+      {
+        "title": "NHS: Tackling your worries",
+        "url": "https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/self-help-cbt-techniques/tackling-your-worries/"
+      },
+      {
+        "title": "NHS: Sleep",
+        "url": "https://www.nhs.uk/every-mind-matters/mental-health-issues/sleep/"
+      }
+    ]
+  },
+  {
+    "lesson": "sleepexpectations",
+    "slug": "rest-without-chasing-perfect-sleep",
+    "title": "Rest without chasing perfect sleep",
+    "topic": "sleep",
+    "duration": 100.681875,
+    "closing": "Support rest. Seek help when sleep stays difficult.",
+    "footer": "SteadierMind provides general wellness education, not diagnosis or individualized treatment.",
+    "references": [
+      {
+        "title": "NHLBI: Insomnia—Treatment",
+        "url": "https://www.nhlbi.nih.gov/health/insomnia/treatment"
+      },
+      {
+        "title": "NHS: Sleep",
+        "url": "https://www.nhs.uk/every-mind-matters/mental-health-issues/sleep/"
+      }
+    ]
+  },
+  {
+    "lesson": "stresssignals",
+    "slug": "noticing-your-stress-signals",
+    "title": "Noticing your stress signals",
+    "topic": "balance",
+    "duration": 98.34679166666666,
+    "closing": "Notice your signal. Consider what you need.",
+    "footer": "SteadierMind provides general wellness education, not diagnosis or individualized treatment.",
+    "references": [
+      {
+        "title": "NHS: Stress",
+        "url": "https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/feelings-and-symptoms/stress/"
+      },
+      {
+        "title": "NIMH: Caring for Your Mental Health",
+        "url": "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health"
+      }
+    ]
+  },
+  {
+    "lesson": "boundaries",
+    "slug": "protecting-a-little-space",
+    "title": "Protecting a little space",
+    "topic": "balance",
+    "duration": 100.63454166666668,
+    "closing": "Clear. Respectful. Realistic.",
+    "footer": "SteadierMind provides general wellness education, not diagnosis or individualized treatment.",
+    "references": [
+      {
+        "title": "Centre for Clinical Interventions: Assertiveness",
+        "url": "https://www.cci.health.wa.gov.au/Resources/Looking-After-Yourself/Assertiveness"
+      }
+    ]
+  },
+  {
+    "lesson": "restsupport",
+    "slug": "rest-and-connection-belong-in-the-plan",
+    "title": "Rest and connection belong in the plan",
+    "topic": "balance",
+    "duration": 100.19050000000001,
+    "closing": "Your needs belong in the plan, too.",
+    "footer": "SteadierMind provides general wellness education, not diagnosis or individualized treatment.",
+    "references": [
+      {
+        "title": "NIMH: Caring for Your Mental Health",
+        "url": "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health"
+      }
+    ]
+  }
+]

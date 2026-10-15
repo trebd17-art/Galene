@@ -18,6 +18,12 @@ still pending before publication. See `docs/anxiety-videos-review.md`.
 Serve the checkout with `python3 -m http.server 8000` and open the app through
 that server. Include the `media/` directory when deploying the static app.
 
+Review copies now cover all 15 education lessons. The twelve newest videos cover
+overthinking, confidence, sleep, and everyday balance. They retain the supplied
+scripts and closing text, and add source titles and the shared wellness footer to
+their closing slides. See [the video review index](docs/twelve-videos-review.md)
+for MP4s, storyboards, transcripts, and pending source verification.
+
 Updates:
 - Added Local Storage saving.
 - Saves XP, completed activities, personalized plan, selected profile options, journal entries, mood history, game progress, achievements, and game levels.
