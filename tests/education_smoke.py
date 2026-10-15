@@ -27,6 +27,7 @@ with sync_playwright() as p:
     page.evaluate('document.getElementById("learningVideo").play()')
     page.wait_for_function('document.getElementById("learningVideo").currentTime > 0.5')
     assert 90 <= video.evaluate('(v)=>v.duration') <= 120
+    assert video.evaluate('(v)=>[v.videoWidth,v.videoHeight]') == [1920,1080]
     captions=page.request.get(f'http://127.0.0.1:{server.server_port}/'+video.locator('track').get_attribute('src'))
     assert captions.ok and captions.text().startswith('WEBVTT')
     assert page.evaluate('steadierMindGameProgress.learning.completed.length')==0
