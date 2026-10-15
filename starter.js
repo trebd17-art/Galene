@@ -90,6 +90,32 @@
     showScreen('starterResult');
   }
   window.buildPlanAndSave = buildStartingPlan;
+  // Keep the profile concise; render saved preferences as text, including restored data.
+  renderSavedPlan = function () {
+    const plan = savedSteadyPlan;
+    const built = !!plan && hasBuiltPlan();
+    const pending = built && state.routine && !state.routine.finished;
+    const done = built && state.routine && state.routine.finished;
+    const tool = recommendation().tool;
+    $('profileFocusTitle').textContent = built ? (plan.improvementText || 'Everyday wellbeing') : 'Make room for what matters';
+    $('profileFocusSummary').textContent = built ? 'A little space for the things you want to work on.' : 'Choose a focus and a pace that work for you.';
+    $('profileTimeChip').textContent = built ? `${plan.time || '5 minutes'} a day` : 'At your pace';
+    $('profileRoutineTitle').textContent = pending ? 'Pick up where you left off' : done ? 'A little space, whenever you need it' : 'Your daily reset';
+    $('dailyPlanCard').textContent = built ? `A moment for ${tool === 'grounding' ? 'grounding' : tool === 'sleep' ? 'winding down' : 'gentle breathing'}, a reflection, and one manageable next step.` : 'Choose your preferences to create a short routine that fits your day.';
+    $('profileRoutineCTA').textContent = !built ? 'Build my routine →' : pending ? 'Continue my routine →' : done ? 'Start a new routine →' : 'Start my routine →';
+    $('profileCard').replaceChildren();
+    const rows = built ? [['About you', plan.userType], ['Your focus', plan.improvementText], ['Current challenge', plan.challenge], ['Desired feeling', plan.hope], ['Time each day', plan.time], ['Plan created', plan.createdAt]] : [];
+    rows.forEach(([label, value]) => {
+      const row = document.createElement('div'); row.className = 'profile-preference-row';
+      const name = document.createElement('span'); name.textContent = label;
+      const answer = document.createElement('strong'); answer.textContent = value || 'Not specified';
+      row.append(name, answer); $('profileCard').append(row);
+    });
+    if(!built) $('profileCard').textContent = 'Build a starting routine to save your preferences.';
+    $('pathCard').textContent = built ? [plan.path?.title || plan.path?.name, ...(plan.supportingPaths || [])].filter(Boolean).join(' · ') || 'Steady daily habits' : 'Your path will appear here.';
+    $('mindTypeCard').textContent = built ? plan.mindType?.description || 'Your preferences guide your routine. You can change them anytime.' : 'Your starting reflection will appear here.';
+    updateXP();
+  };
   function renderResult() {
     const { goal, tool } = recommendation();
     const focus = goal === 'Balance' ? 'everyday wellbeing' : state.setup.goals.map(x => x.toLowerCase()).join(' and ');
@@ -228,7 +254,7 @@
     if (screenId === 'starterResult') renderResult();
     if (screenId === 'starterRoutine') renderRoutine();
     if (screenId === 'emergencyToolPlayer' && !usingRoutineTool) document.querySelector('#emergencyToolPlayer .text-back').textContent = '← Back to Calming Tools';
-    if (screenId === 'dashboard' && savedSteadyPlan && hasBuiltPlan()) { currentProfile = savedSteadyPlan; renderSavedPlan(); }
+    if (screenId === 'dashboard') { currentProfile = savedSteadyPlan; $('profilePreferences').open = false; renderSavedPlan(); }
   };
   const refreshHome = refreshHomeCardV50;
   refreshHomeCardV50 = function () {

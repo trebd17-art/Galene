@@ -227,42 +227,36 @@
       <button id="routineSkip" class="secondary" onclick="starterRoutineNext(true)">Skip this activity</button>
     </section>
 
-    <section id="dashboard" class="screen premium-dashboard">
-      <button class="secondary" onclick="showScreen('assessment')">Edit my starting routine</button>
-      <button onclick="startStarterRoutine()">Start my routine</button>
+    <section id="dashboard" class="screen premium-dashboard profile-refresh">
       <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
-      <div class="dashboard-hero">
-        <div><p class="eyebrow">Your personalized path</p><h2>Your SteadierMind Profile</h2></div>
-        <div class="hero-art" aria-hidden="true"><div class="sun"></div><div class="hill hill-one"></div><div class="hill hill-two"></div><div class="path-line"></div></div>
+      <header class="profile-intro"><p class="eyebrow">A little space for you</p><h2>Your SteadierMind Profile</h2><p>Your focus. Your pace. One small step at a time.</p></header>
+      <div class="profile-focus-card">
+        <div class="profile-landscape" aria-hidden="true"><span class="profile-sun"></span><span class="profile-hill profile-hill-back"></span><span class="profile-hill"></span></div>
+        <div class="profile-focus-copy"><p class="eyebrow">Your focus</p><h3 id="profileFocusTitle">Make room for what matters</h3><p id="profileFocusSummary">Choose a focus and a pace that work for you.</p><span id="profileTimeChip" class="profile-time-chip">At your pace</span></div>
       </div>
-      <div class="premium-card profile-card-lg">
-        <div class="card-heading-row"><div class="circle-icon">👤</div><h3>Your SteadierMind Profile</h3></div>
-        <div id="profileCard" class="premium-profile-grid">Complete the assessment to create your personalized profile.</div>
+      <div class="profile-routine-card">
+        <p class="eyebrow">A moment for today</p><h3 id="profileRoutineTitle">Your daily reset</h3>
+        <p id="dailyPlanCard">A short routine to settle, reflect, and choose your next step.</p>
+        <div class="profile-routine-steps" aria-label="Routine activities"><span>01 · Settle</span><span>02 · Reflect</span><span>03 · Choose</span></div>
+        <button id="profileRoutineCTA" onclick="startStarterRoutine()">Start my routine →</button>
+        <p class="profile-gentle-note">Go at your own pace. You can skip any activity.</p>
       </div>
-      <div class="premium-card mind-card">
-        <div class="card-heading-row"><div class="circle-icon storm">🌩️</div><h3>Your Mind Type</h3></div>
-        <div id="mindTypeCard" class="premium-copy">Your mind type will appear here after your assessment.</div>
-        <div class="wave-art" aria-hidden="true"></div>
-      </div>
-      <div class="premium-card path-card">
-        <div class="card-heading-row"><div class="circle-icon leaf">🌿</div><h3>Your Personalized Path</h3></div>
-        <div id="pathCard" class="premium-copy">Your primary path will appear here after your assessment.</div>
-        <div class="path-art-small" aria-hidden="true"></div>
-      </div>
-      <div class="premium-card today-card">
-        <div class="card-heading-row"><div class="circle-icon sun-icon">☀️</div><h3>Today's Dashboard</h3></div>
-        <div id="dailyPlanCard" class="today-focus-box">Start with one small steady action today.</div>
-        <button id="homePlanCTA" class="start-now"  onclick="event.stopPropagation(); handleHomePlanCTA(event)">Build My Plan →</button>
-      </div>
-      <div class="premium-card progress-card">
-        <div class="card-heading-row"><div class="circle-icon">⭐</div><h3>Steady Progress</h3></div>
-        <strong id="levelName">Next milestone: 100 Mind Points</strong>
-        <p>Complete daily activities to earn Mind Points and unlock new levels.</p>
+      <div class="profile-progress-card">
+        <div class="profile-progress-heading"><h3>Your steady progress</h3><span aria-hidden="true">✦</span></div>
+        <p id="xpText">0 Mind Points earned</p>
         <div class="xp-wrap"><div id="xpFill" class="xp-fill"></div></div>
-        <p><strong id="xpText">0 Mind Points earned</strong></p>
+        <p id="levelName" class="profile-milestone">Next milestone: 100 Mind Points</p>
+        <button class="profile-review-link" onclick="showScreen('weekly')">View weekly review <span aria-hidden="true">→</span></button>
       </div>
-      <button class="secondary" onclick="showScreen('weekly')">View Weekly Review</button>
-      <button class="secondary" onclick="showScreen('assessment')">Edit Assessment</button>
+      <details id="profilePreferences" class="profile-preferences">
+        <summary><span>Your preferences<small>View your choices or adjust your routine</small></span><span class="profile-details-arrow" aria-hidden="true">⌄</span></summary>
+        <div class="profile-preferences-body">
+          <div id="profileCard" class="profile-preference-list">Build a starting routine to save your preferences.</div>
+          <div class="profile-supporting-detail"><h4>Your supporting path</h4><div id="pathCard">Your path will appear here.</div></div>
+          <div class="profile-supporting-detail"><h4>From your starting answers</h4><div id="mindTypeCard">Your starting reflection will appear here.</div></div>
+          <button class="secondary" onclick="showScreen('assessment')">Edit my preferences</button>
+        </div>
+      </details>
     </section>
 
     <section id="checkin" class="screen">
