@@ -89,7 +89,6 @@
     sources.append(node('p','These original summaries offer general wellness education. Explore the public health guidance below for more detail.'));
     (lesson.sources || path.sources).forEach(([title,url])=>{const p=node('p',''),a=node('a',title);a.href=url;a.target='_blank';a.rel='noopener noreferrer';p.append(a);sources.append(p);});sources.append(node('p','Live source verification is pending; no verified review date is recorded.','learning-note'));body.append(sources);
     const complete=progress().completed.includes(lesson.id);$('learningComplete').textContent=complete?'Lesson completed ✓':'Mark lesson complete';$('learningComplete').disabled=complete;
-    $('learningTool').textContent={grounding:'Try grounding',worry:'Open Worry Release',sleep:'Open Sleep Wind-down',reflection:'Open Daily Reflection'}[lesson.tool];
     $('learningNext').textContent=lessons.indexOf(lesson)===lessons.length-1?'Back to learning paths':'Next lesson';
   }
   window.openLesson=function(id){
@@ -109,13 +108,6 @@
     updateXP();renderLesson();renderLibrary();$('learningLessonStatus').textContent='Lesson completed. Your progress is saved on this device.';
   };
   window.nextLearningLesson=function(){if(!current)return;const next=lessons[lessons.indexOf(current)+1];if(next)openLesson(next.id);else showScreen('education');};
-  window.openLearningTool=function(){
-    if(!current)return;const back=()=>{showScreen('educationLesson');renderLesson();};
-    if(current.tool==='grounding')openGroundingSession(back,false,'Back to lesson',back);
-    else if(current.tool==='worry')openWorrySession(back);
-    else if(current.tool==='sleep')openSleepSession(back);
-    else showScreen('journal');
-  };
   const navigate=showScreen;window.showScreen=function(screen){if(screen!=='educationLesson')$('learningVideo').pause();const result=navigate.apply(this,arguments);if(screen==='education')renderLibrary();return result;};
   document.addEventListener('visibilitychange',()=>{if(document.hidden)$('learningVideo').pause();});
   document.addEventListener('DOMContentLoaded',renderLibrary);

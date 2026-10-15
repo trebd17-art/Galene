@@ -41,10 +41,7 @@ with sync_playwright() as p:
     assert video.evaluate('(v)=>v.paused')
     page.locator('#learningTopicLessons button').first.click()
     assert page.evaluate('steadierMindGameProgress.learning.completed.length')==0
-    page.evaluate('openLearningTool()')
-    assert page.locator('#groundingSession').is_visible()
-    assert video.evaluate('(v)=>v.paused')
-    page.evaluate('showScreen("educationLesson")')
+    assert page.locator('#learningTool').count()==0
     page.evaluate('window.actualSave=saveSteadierMindData;saveSteadierMindData=()=>false')
     page.locator('#learningComplete').click()
     assert page.evaluate('steadierMindGameProgress.learning.completed.length')==0
@@ -107,18 +104,18 @@ with sync_playwright() as p:
     page.evaluate('showScreen("education")')
     assert '15 of 15' in page.locator('#learningCount').inner_text()
     assert page.locator('#learningProgress').get_attribute('value')=='15'
-    page.evaluate('openLesson("loops");openLearningTool()')
-    assert page.locator('#worrySession').is_visible()
-    page.evaluate('openLesson("winddown");openLearningTool()')
-    assert page.locator('#sleepSession').is_visible()
-    page.evaluate('openLesson("smallsteps");openLearningTool()')
-    assert page.locator('#journal').is_visible()
+    page.evaluate('openLesson("alarm")')
+    page.locator('#learningNext').click()
+    assert page.locator('#learningLessonTitle').inner_text()=='Making sense of physical sensations'
+    page.evaluate('openLesson("restsupport")')
+    page.locator('#learningNext').click()
+    assert page.locator('#education').is_visible()
     page.evaluate('delete steadierMindGameProgress.learning;openLesson("facts")')
     page.reload(wait_until='networkidle')
     page.locator('#welcome').wait_for(state='visible')
     page.evaluate('showScreen("education");continueLearning()')
     assert page.locator('#learningLessonTitle').inner_text()=='Facts, predictions, and uncertainty'
     assert not errors,errors
-    print('PASS: 15 lessons, five paths, optional quizzes, explicit completion, no duplicates/extra XP, save failure/retry, reload/continue, related tools, mobile widths')
+    print('PASS: 15 lessons, five paths, optional quizzes, completion and next lesson navigation, no duplicates/extra XP, save failure/retry, reload/continue, mobile widths')
     browser.close()
 server.shutdown()
