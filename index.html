@@ -125,6 +125,13 @@
       <button class="secondary" onclick="showScreen('educationalSources')">Educational Sources</button>
       <p class="learning-note">All foundational lessons are free. Progress stays in this browser on this device. These lessons offer general education and do not replace individualized medical or mental health care.</p>
     </section>
+    <section id="educationTopic" class="screen learning-screen">
+      <button class="text-back" onclick="showScreen('education')">← All education topics</button>
+      <h2 id="learningTopicTitle" tabindex="-1"></h2>
+      <p id="learningTopicIntro" class="learning-intro"></p>
+      <p id="learningTopicCount" class="learning-meta"></p>
+      <div id="learningTopicLessons" class="learning-path"></div>
+    </section>
     <section id="educationalSources" class="screen learning-screen">
       <button class="text-back" onclick="showScreen('education')">← Back to Learning Paths</button>
       <h2>Educational Sources</h2>
@@ -133,7 +140,7 @@
       <div id="educationalSourceList"></div>
     </section>
     <section id="educationLesson" class="screen learning-screen">
-      <button class="text-back" onclick="showScreen('education')">← Back to Learning Paths</button>
+      <button id="learningLessonBack" class="text-back" onclick="backToLearningTopic()">← Back to topic</button>
       <p id="learningLessonPath" class="learning-meta"></p>
       <h2 id="learningLessonTitle" tabindex="-1"></h2>
       <section id="learningAlarmVideo" class="learning-video" aria-labelledby="learningVideoTitle" hidden>

@@ -48,9 +48,20 @@
     $('learningContinue').textContent=p.completed.length===lessons.length?'Explore lessons again':'Continue learning';
   }
   function section(title,text){const block=node('section','','learning-block');block.append(node('h3',title),node('p',text));return block;}
+  window.openLearningTopic=function(id){
+    const path=paths.find(item=>item.id===id);if(!path){showScreen('education');return;}
+    const members=lessons.filter(lesson=>lesson.path===path.id),p=progress();
+    $('learningTopicTitle').textContent=path.name;
+    $('learningTopicIntro').textContent=path.intro;
+    $('learningTopicCount').textContent=`${members.filter(lesson=>p.completed.includes(lesson.id)).length} of ${members.length} lessons completed`;
+    $('learningTopicLessons').replaceChildren(...members.map(lesson=>button(`${p.completed.includes(lesson.id)?'✓ ':''}${lesson.title} · About 2 min`,()=>openLesson(lesson.id),'learning-lesson-link')));
+    showScreen('educationTopic');$('learningTopicTitle').focus({preventScroll:true});
+  };
+  window.backToLearningTopic=function(){openLearningTopic(current?.path);};
   function renderLesson(){
     if(!current)return;const lesson=current,path=paths.find(item=>item.id===lesson.path);
     renderVideo(lesson);
+    $('learningLessonBack').textContent=`← Back to ${path.name}`;
     $('learningLessonPath').textContent=`${path.name} · About 2 min`;
     $('learningLessonTitle').textContent=lesson.title;
     const body=$('learningLessonBody');body.replaceChildren();

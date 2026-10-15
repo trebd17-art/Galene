@@ -30,6 +30,12 @@ with sync_playwright() as p:
     assert video.evaluate('(v)=>[v.videoWidth,v.videoHeight]') == [1920,1080]
     captions=page.request.get(f'http://127.0.0.1:{server.server_port}/'+video.locator('track').get_attribute('src'))
     assert captions.ok and captions.text().startswith('WEBVTT')
+    page.locator('#learningLessonBack').click()
+    assert page.locator('#educationTopic').is_visible()
+    assert page.locator('#learningTopicTitle').inner_text()=='Understanding anxiety'
+    assert page.locator('#learningTopicLessons button').count()==3
+    assert video.evaluate('(v)=>v.paused')
+    page.locator('#learningTopicLessons button').first.click()
     assert page.evaluate('steadierMindGameProgress.learning.completed.length')==0
     page.evaluate('openLearningTool()')
     assert page.locator('#groundingSession').is_visible()
@@ -74,6 +80,18 @@ with sync_playwright() as p:
         page.locator('#learningComplete').click()
         page.evaluate('completeLearningLesson()')
         if page.locator('#rewardContinue').count():page.locator('#rewardContinue').click()
+        page.locator('#learningLessonBack').click()
+        assert page.locator('#educationTopic').is_visible()
+        topic=page.evaluate('(id)=>steadierMindLearningPaths.find(p=>p.id===id)',lesson['path'])
+        assert page.locator('#learningTopicTitle').inner_text()==topic['name']
+        members=[item for item in catalog if item['path']==lesson['path']]
+        links=page.locator('#learningTopicLessons button')
+        assert links.count()==3
+        assert all(member['title'] in links.nth(i).inner_text() for i,member in enumerate(members))
+        if lesson==catalog[-1]:
+            assert page.locator('#learningTopicCount').inner_text()=='3 of 3 lessons completed'
+            page.get_by_role('button',name='All education topics').click()
+            assert page.locator('#education').is_visible()
     assert page.evaluate('steadierMindGameProgress.learning.completed.length')==15
     assert page.evaluate('mindPoints')==points+75
     page.reload(wait_until='networkidle')
