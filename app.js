@@ -1199,6 +1199,10 @@ let calmFocusMeter = 50;
 let calmFocusTheme = "ocean";
 let calmFocusSpawnTimer = null;
 let calmFocusWanderTimer = null;
+let calmFocusRoundTimer = null;
+let calmFocusSecondsLeft = 60;
+let calmFocusEndsAt = 0;
+let calmFocusOrbSlots = [];
 
 function openCalmFocusGame(){
   showScreen("calmFocusGameScreen");
@@ -1219,6 +1223,12 @@ function setCalmFocusTheme(theme, button){
 function startCalmFocusRound(){
   resetCalmFocusGame();
   calmFocusRunning = true;
+  calmFocusEndsAt = performance.now() + 60000;
+  calmFocusRoundTimer = setInterval(() => {
+    calmFocusSecondsLeft = Math.max(0, Math.ceil((calmFocusEndsAt - performance.now()) / 1000));
+    updateCalmFocusStats();
+    if(calmFocusSecondsLeft === 0) completeCalmFocusRound();
+  }, 200);
   const result = document.getElementById("calmFocusResult");
   if(result) result.innerHTML = "Tap blue focus orbs. Avoid red distraction orbs.";
   spawnCalmFocusOrbs();
@@ -1232,7 +1242,10 @@ function resetCalmFocusGame(){
   calmFocusMisses = 0;
   calmFocusCombo = 1;
   calmFocusMeter = 50;
+  calmFocusSecondsLeft = 60;
+  calmFocusEndsAt = 0;
 
+  if(calmFocusRoundTimer){ clearInterval(calmFocusRoundTimer); calmFocusRoundTimer = null; }
   if(calmFocusSpawnTimer){ clearInterval(calmFocusSpawnTimer); calmFocusSpawnTimer = null; }
   if(calmFocusWanderTimer){ clearInterval(calmFocusWanderTimer); calmFocusWanderTimer = null; }
 
@@ -1252,6 +1265,7 @@ function resetCalmFocusGame(){
 
 function updateCalmFocusStats(){
   const set = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
+  set("calmFocusTime", calmFocusSecondsLeft + "s");
   set("calmFocusScore", calmFocusScore);
   set("calmFocusMisses", calmFocusMisses);
   set("calmFocusCombo", "x" + calmFocusCombo);
@@ -1267,8 +1281,20 @@ function spawnCalmFocusOrbs(){
 
   area.querySelectorAll(".focus-orb,.distraction-orb").forEach(el => el.remove());
 
-  const focusCount = 2 + Math.min(Math.floor(calmFocusScore / 3), 3);
-  const distractionCount = 1 + Math.min(Math.floor(calmFocusScore / 5), 3);
+  // Shuffled cells leave room for the floating animation without overlapping targets.
+  const columns = Math.max(1, Math.floor((area.clientWidth - 16) / 88));
+  const rows = Math.max(1, Math.floor((area.clientHeight - 16) / 88));
+  calmFocusOrbSlots = [];
+  for(let row=0; row<rows; row++) for(let col=0; col<columns; col++) {
+    calmFocusOrbSlots.push({x: 8 + col * (area.clientWidth - 16) / columns,
+      y: 20 + row * (area.clientHeight - 16) / rows});
+  }
+  for(let i=calmFocusOrbSlots.length-1; i>0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [calmFocusOrbSlots[i], calmFocusOrbSlots[j]] = [calmFocusOrbSlots[j], calmFocusOrbSlots[i]];
+  }
+  const focusCount = Math.min(2, calmFocusOrbSlots.length);
+  const distractionCount = Math.min(4 + Math.floor((60 - calmFocusSecondsLeft) / 20), calmFocusOrbSlots.length - focusCount);
 
   for(let i=0; i<focusCount; i++) createCalmFocusOrb("focus");
   for(let i=0; i<distractionCount; i++) createCalmFocusOrb("distraction");
@@ -1287,10 +1313,10 @@ function createCalmFocusOrb(type){
     else handleDistractionTap(orb);
   };
 
-  const maxX = Math.max(area.clientWidth - 86, 20);
-  const maxY = Math.max(area.clientHeight - 86, 20);
-  orb.style.left = Math.max(12, Math.random() * maxX) + "px";
-  orb.style.top = Math.max(12, Math.random() * maxY) + "px";
+  const slot = calmFocusOrbSlots.pop();
+  if(!slot) return;
+  orb.style.left = slot.x + "px";
+  orb.style.top = slot.y + "px";
   orb.style.animationDelay = (Math.random() * 1.8) + "s";
   area.appendChild(orb);
 }
@@ -1309,9 +1335,6 @@ function handleFocusOrbTap(orb){
   const result = document.getElementById("calmFocusResult");
   if(result) result.innerHTML = `Focused x${calmFocusCombo}. Stay present.`;
 
-  if(calmFocusMeter >= 100 || calmFocusScore >= 12){
-    completeCalmFocusRound();
-  }
 }
 
 function handleDistractionTap(orb){
@@ -1361,7 +1384,11 @@ function returnToPresent(){
 }
 
 function completeCalmFocusRound(){
-  if(!calmFocusRunning) return;
+  if(!calmFocusRunning || performance.now() < calmFocusEndsAt) return;
+  calmFocusSecondsLeft = 0;
+  updateCalmFocusStats();
+  if(calmFocusRoundTimer){ clearInterval(calmFocusRoundTimer); calmFocusRoundTimer = null; }
+  document.getElementById("mindWanderOverlay")?.classList.add("hidden");
   calmFocusRunning = false;
   if(calmFocusSpawnTimer){ clearInterval(calmFocusSpawnTimer); calmFocusSpawnTimer = null; }
   if(calmFocusWanderTimer){ clearInterval(calmFocusWanderTimer); calmFocusWanderTimer = null; }

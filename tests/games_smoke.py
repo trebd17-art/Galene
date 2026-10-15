@@ -3,6 +3,7 @@ from playwright.sync_api import sync_playwright
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from functools import partial
 from pathlib import Path
+from datetime import datetime, timezone, timedelta
 import threading
 server = ThreadingHTTPServer(('127.0.0.1',0),partial(SimpleHTTPRequestHandler,directory=str(Path(__file__).resolve().parents[1])))
 threading.Thread(target=server.serve_forever,daemon=True).start()
@@ -52,6 +53,30 @@ with sync_playwright() as p:
     assert page.locator('#gameSessionNotice').is_visible()
     page.evaluate('delete document.hidden;startCalmFocusRound()')
     assert page.locator('#gameSessionNotice').count()==0
+    page.clock.install()
+    page.clock.pause_at(datetime.now(timezone.utc) + timedelta(seconds=1))
+    page.evaluate('openCalmFocusGame();startCalmFocusRound()')
+    assert page.locator('.focus-orb').count()==2
+    assert page.locator('.distraction-orb').count()==4
+    page.evaluate("""() => {for(let i=0;i<8;i++){spawnCalmFocusOrbs();document.querySelectorAll('.focus-orb').forEach(handleFocusOrbTap);}}""")
+    assert page.evaluate('calmFocusRunning')  # Full meter/high score must not end early.
+    points=page.evaluate('mindPoints')
+    page.clock.run_for(41200)
+    page.evaluate('spawnCalmFocusOrbs()')
+    assert page.locator('.distraction-orb').count()==6
+    assert page.locator('#calmFocusTime').text_content()=='19s', page.evaluate('[calmFocusSecondsLeft,performance.now(),calmFocusEndsAt]')
+    assert page.evaluate('calmFocusRunning')
+    page.clock.run_for(19000)
+    assert not page.evaluate('calmFocusRunning')
+    assert page.locator('#calmFocusTime').text_content()=='0s'
+    assert page.evaluate('mindPoints')==points+10
+    assert page.evaluate('calmFocusRoundTimer') is None
+    assert page.locator('#mindWanderOverlay').is_hidden()
+    page.evaluate('completeCalmFocusRound()')
+    assert page.evaluate('mindPoints')==points+10
+    page.evaluate('startCalmFocusRound();showScreen("games")')
+    assert page.evaluate('calmFocusRoundTimer') is None
+    page.clock.resume()
     page.evaluate('openAnchorGame();startAnchorGame();anchorScore=999;checkAnchorEnd()')
     points=page.evaluate('mindPoints')
     page.evaluate('checkAnchorEnd()')
