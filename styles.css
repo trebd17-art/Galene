@@ -182,8 +182,8 @@ button:active,
 }
 
 .splash-logo {
-  width: 245px;
-  max-width: 82%;
+  width: 280px;
+  max-width: 100%;
   margin-bottom: 24px;
   object-fit: contain;
   animation: logoFloat 4.5s ease-in-out infinite;
@@ -200,6 +200,12 @@ button:active,
   object-fit: contain;
   border-radius: 0;
   background: transparent;
+}
+
+#welcome .app-logo {
+  width: 240px;
+  max-width: 90%;
+  height: auto;
 }
 
 .small-logo {
