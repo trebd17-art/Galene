@@ -52,7 +52,8 @@ with sync_playwright() as p:
             assert video.evaluate('(v)=>v.paused')
             page.locator('#learningVideo').evaluate('(v)=>v.play()')
             page.wait_for_function('document.getElementById("learningVideo").currentTime > 0.2')
-            assert 110 < video.evaluate('(v)=>v.duration') < 130
+            expected_duration={'sensations':106.5,'support':112.8}[lesson['id']]
+            assert abs(video.evaluate('(v)=>v.duration')-expected_duration)<1
             assert video.evaluate('(v)=>[v.videoWidth,v.videoHeight]')==[1920,1080]
             with page.expect_download() as result:
                 page.locator('#learningVideoDownload').click()

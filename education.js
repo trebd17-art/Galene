@@ -5,8 +5,8 @@
   let current=null,choice=null;
   const lessonVideos={
     alarm:{slug:'understanding-anxiety-alarm-response',title:'Understanding Anxiety’s Alarm Response',length:'1 minute 42 second'},
-    sensations:{slug:'making-sense-of-physical-sensations',title:'Making Sense of Physical Sensations',length:'1 minute 56 second'},
-    support:{slug:'avoidance-and-getting-support',title:'Avoidance and Getting Support',length:'2 minute 3 second'}
+    sensations:{slug:'making-sense-of-physical-sensations',title:'Making Sense of Physical Sensations',length:'1 minute 47 second'},
+    support:{slug:'avoidance-and-getting-support',title:'Avoidance and Getting Support',length:'1 minute 53 second'}
   };
   function renderVideo(lesson){
     const video=$('learningVideo'),details=lessonVideos[lesson.id];

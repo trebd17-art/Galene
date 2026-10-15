@@ -10,8 +10,8 @@ under the player. The video, poster, English WebVTT captions, and transcript are
 self-hosted in `media/`; no video service or credentials are required.
 
 The next two anxiety lessons also have captioned videos: “Making Sense of Physical
-Sensations” (1 minute 56 seconds) and “Avoidance and Getting Support” (2 minutes
-3 seconds). Each has its own download, transcript, poster, and WebVTT captions.
+Sensations” (1 minute 47 seconds) and “Avoidance and Getting Support” (1 minute
+53 seconds). Each has its own download, transcript, poster, and WebVTT captions.
 These two videos are prepared for review; current-page source verification is
 still pending before publication. See `docs/anxiety-videos-review.md`.
 
