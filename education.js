@@ -3,6 +3,27 @@
   'use strict';
   const $=id=>document.getElementById(id), lessons=window.steadierMindLessons, paths=window.steadierMindLearningPaths;
   let current=null,choice=null;
+  const lessonVideos={
+    alarm:{slug:'understanding-anxiety-alarm-response',title:'Understanding Anxiety’s Alarm Response',length:'1 minute 42 second'},
+    sensations:{slug:'making-sense-of-physical-sensations',title:'Making Sense of Physical Sensations',length:'1 minute 56 second'},
+    support:{slug:'avoidance-and-getting-support',title:'Avoidance and Getting Support',length:'2 minute 3 second'}
+  };
+  function renderVideo(lesson){
+    const video=$('learningVideo'),details=lessonVideos[lesson.id];
+    video.pause();$('learningAlarmVideo').hidden=!details;
+    if(!details)return;
+    $('learningVideoTitle').textContent=details.title;
+    $('learningVideoDescription').textContent=`Watch the ${details.length} animation, or read the lesson below. Captions are included in the video.`;
+    const base=`media/${details.slug}`;
+    $('learningVideoDownload').href=base+'.mp4';
+    $('learningVideoDownload').textContent='Download video (MP4)';
+    $('learningVideoTranscript').href=base+'.txt';
+    if((video.dataset.lesson||'alarm')!==lesson.id){
+      video.querySelector('source').src=base+'.mp4';
+      video.querySelector('track').src=base+'.vtt';
+      video.poster=base+'.png';video.dataset.lesson=lesson.id;video.load();
+    }
+  }
   const progress=()=>steadierMindGameProgress.learning || {completed:[],last:null};
   function node(tag,text,cls){const e=document.createElement(tag);e.textContent=text;if(cls)e.className=cls;return e;}
   function button(text,fn,cls){const e=node('button',text,cls);e.type='button';e.onclick=fn;return e;}
@@ -29,8 +50,7 @@
   function section(title,text){const block=node('section','','learning-block');block.append(node('h3',title),node('p',text));return block;}
   function renderLesson(){
     if(!current)return;const lesson=current,path=paths.find(item=>item.id===lesson.path);
-    $('learningVideo').pause();
-    $('learningAlarmVideo').hidden=lesson.id!=='alarm';
+    renderVideo(lesson);
     $('learningLessonPath').textContent=`${path.name} · About 2 min`;
     $('learningLessonTitle').textContent=lesson.title;
     const body=$('learningLessonBody');body.replaceChildren();

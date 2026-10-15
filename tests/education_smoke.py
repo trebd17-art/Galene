@@ -44,7 +44,22 @@ with sync_playwright() as p:
     assert len(catalog)==15
     for lesson in catalog:
         page.evaluate('(id)=>openLesson(id)',lesson['id'])
-        assert page.locator('#learningAlarmVideo').is_visible() == (lesson['id']=='alarm')
+        assert page.locator('#learningAlarmVideo').is_visible() == (lesson['id'] in ['alarm','sensations','support'])
+        if lesson['id'] in ['sensations','support']:
+            source=video.locator('source').get_attribute('src')
+            assert page.locator('#learningVideoDownload').get_attribute('href')==source
+            assert lesson['title'].lower() in page.locator('#learningVideoTitle').inner_text().lower()
+            assert video.evaluate('(v)=>v.paused')
+            page.locator('#learningVideo').evaluate('(v)=>v.play()')
+            page.wait_for_function('document.getElementById("learningVideo").currentTime > 0.2')
+            assert 110 < video.evaluate('(v)=>v.duration') < 130
+            assert video.evaluate('(v)=>[v.videoWidth,v.videoHeight]')==[1920,1080]
+            with page.expect_download() as result:
+                page.locator('#learningVideoDownload').click()
+            download=result.value
+            assert download.failure() is None
+            assert download.suggested_filename==source.rsplit('/',1)[-1]
+            video.evaluate('(v)=>v.pause()')
         assert page.locator('#learningLessonTitle').inner_text()==lesson['title']
         assert page.locator('.learning-block').count()==3
         page.locator('.learning-question button').nth((lesson['answer']+1)%3).click()
