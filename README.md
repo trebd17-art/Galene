@@ -3,7 +3,7 @@
 ## Educational video
 
 In Education → Understanding anxiety → Understanding the alarm response, play
-“Understanding Anxiety’s Alarm Response” (1 minute 40 seconds). The video starts
+“Understanding Anxiety’s Alarm Response” (1 minute 46 seconds). The video starts
 only on request, includes visible captions, and pauses when you leave the lesson
 or hide the browser tab. MP4 download and full narration transcript links appear
 under the player. The video, poster, English WebVTT captions, and transcript are
