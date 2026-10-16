@@ -3356,3 +3356,10 @@ dialog.reward-celebration{background:linear-gradient(135deg,#fff6dc,#f8eafb);bor
 .completion-note:empty{display:none}
 .completion-note:not(:empty){padding:16px;border-radius:18px;background:#e1efe7;border:1px solid #b5d0c0;color:#244f42;line-height:1.6}
 #sleepSession .activity-time{color:#c0d2cb}
+
+/* Original line symbols for the six game selection cards. */
+#games .game-symbol{--symbol-paper:#fffcf5;--symbol-wash:#f4dfb9;color:#80603c}
+#games .game-icon-card:nth-child(2n) .game-symbol{--symbol-paper:#f6fffc;--symbol-wash:#cbe7e0;color:#396d68}
+#games .game-icon-card:nth-child(3n) .game-symbol{--symbol-paper:#fffbff;--symbol-wash:#e3d7ef;color:#76577e}
+#games .game-symbol svg{display:block;width:34px;height:34px;overflow:visible}
+#games .game-symbol .symbol-wash{fill:var(--symbol-wash)}

@@ -31,7 +31,7 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="logo-picture.png" />
   <title>SteadierMind</title>
-  <link rel="stylesheet" href="styles.css?v=20261016-first-impressions" />
+  <link rel="stylesheet" href="styles.css?v=20261016-game-symbols" />
 </head>
 <body>
   <p id="bootStatus" role="status">Opening your saved journal…</p>
@@ -438,13 +438,13 @@
 
 
         <button class="game-icon-card" onclick="openCalmFocusGame()">
-          <span class="game-icon">🎯</span>
+          <span class="game-icon game-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M11 5H7a2 2 0 0 0-2 2v4m16-6h4a2 2 0 0 1 2 2v4M5 21v4a2 2 0 0 0 2 2h4m10 0h4a2 2 0 0 0 2-2v-4"/><circle cx="16" cy="16" r="6" class="symbol-wash"/><circle cx="16" cy="16" r="2" fill="currentColor" stroke="none"/></svg></span>
           <strong>Calm Focus</strong>
           <small>Slow attention practice · 1 min</small>
         </button>
 
         <button class="game-icon-card" onclick="openGroundingGame()">
-          <span class="game-icon">🌿</span>
+          <span class="game-icon game-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M7 27h18M10 22c0-2 12-2 12 0s-12 2-12 0Zm2-5c0-2 8-2 8 0s-8 2-8 0Z" class="symbol-wash"/><path d="M16 14V9m0 3c-6 0-8-3-8-7 6 0 8 3 8 7Zm0-2c0-5 3-7 8-7 0 5-3 7-8 7Z"/></svg></span>
           <strong>Grounding</strong>
           <small>5-4-3-2-1 reset · About 1–3 min</small>
         </button>
@@ -454,14 +454,14 @@
 
       <h3 class="center-title">More ways to play</h3>
       <div class="game-icon-grid">
-        <button class="game-icon-card" onclick="openSimpleGame('meadow')"><span class="game-icon">🌻</span><strong>Memory Meadow</strong><small>Match pairs · About 1–3 min per level</small></button>
-        <button class="game-icon-card" onclick="openSimpleGame('detective')"><span class="game-icon">🔎</span><strong>Thought Detective</strong><small>Explore everyday thoughts · About 1–3 min per level</small></button>
-        <button class="game-icon-card" onclick="openSimpleGame('pond')"><span class="game-icon">🐸</span><strong>Pattern Pond</strong><small>Remember a sequence · About 1–3 min per level</small></button>
-        <button class="game-icon-card" onclick="openSimpleGame('garden')"><span class="game-icon">🌱</span><strong>Pocket Garden</strong><small>Plan a balanced day · About 1–3 min per level</small></button>
+        <button class="game-icon-card" onclick="openSimpleGame('meadow')"><span class="game-icon game-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4" y="8" width="13" height="18" rx="4" class="symbol-wash"/><rect x="15" y="5" width="13" height="18" rx="4" fill="var(--symbol-paper)"/><path d="M10 21v-7m0 4c-3 0-3-3-3-3 3 0 3 3 3 3Zm11 0v-7m0 4c3 0 3-3 3-3-3 0-3 3-3 3Z"/></svg></span><strong>Memory Meadow</strong><small>Match pairs · About 1–3 min per level</small></button>
+        <button class="game-icon-card" onclick="openSimpleGame('detective')"><span class="game-icon game-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m22 22 6 6" stroke-width="2.8"/><circle cx="14" cy="14" r="10" class="symbol-wash"/><path d="M9 11h10M9 15h7m-7 4h4"/></svg></span><strong>Thought Detective</strong><small>Explore everyday thoughts · About 1–3 min per level</small></button>
+        <button class="game-icon-card" onclick="openSimpleGame('pond')"><span class="game-icon game-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><ellipse cx="16" cy="22" rx="12" ry="6" class="symbol-wash"/><ellipse cx="16" cy="22" rx="6" ry="2.5"/><path d="m16 3 4 7-4 7-4-7Z" fill="var(--symbol-paper)"/></svg></span><strong>Pattern Pond</strong><small>Remember a sequence · About 1–3 min per level</small></button>
+        <button class="game-icon-card" onclick="openSimpleGame('garden')"><span class="game-icon game-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m8 19 2 9h12l2-9Z" class="symbol-wash"/><path d="M7 19h18M16 19V9m0 6C9 15 6 11 6 6c7 0 10 4 10 9Zm0-4c0-5 4-8 10-8 0 6-4 8-10 8Z"/></svg></span><strong>Pocket Garden</strong><small>Plan a balanced day · About 1–3 min per level</small></button>
       </div>
 
       <div class="premium-card game-values-card">
-        <div class="card-heading-row"><div class="circle-icon">🎮</div><h3>Game Core Values</h3></div>
+        <div class="card-heading-row"><div class="circle-icon game-symbol" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m16 4 3.5 8.5L28 16l-8.5 3.5L16 28l-3.5-8.5L4 16l8.5-3.5Z" class="symbol-wash"/></svg></div><h3>Game Core Values</h3></div>
         <p>SteadierMind games are nonviolent, calming, and designed to teach mental wellness skills through interaction.</p>
         <ul class="soft-list">
           <li>Manage anxiety instead of fighting it.</li>
