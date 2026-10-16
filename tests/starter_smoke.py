@@ -46,7 +46,14 @@ with sync_playwright() as p:
     page.locator('#starterResult').wait_for(state='visible')
     assert '2-minute' in page.locator('#starterSummary').inner_text()
     assert 'grounding' in page.locator('#starterSummary').inner_text()
-    page.locator('#starterResult button', has_text='Start My First Routine').click()
+    page.evaluate('showScreen("mainMenu")')
+    page.wait_for_timeout(3200)  # Include delayed legacy home-card refreshes.
+    assert page.locator('#mainMenu #homePlanCTA').inner_text() == 'View My Plan →'
+    page.locator('#mainMenu #homePlanCTA').click()
+    assert page.locator('#dashboard').is_visible()
+    assert page.evaluate('getSteadierMindSnapshot().starter.routine') is None
+    page.locator('#profileRoutineCTA').click()
+
     page.locator('[name="routineBefore"][value="Restless"]').check()
     page.locator('#routineNext').click()
     assert '30 seconds' in page.locator('#routineDescription').inner_text()
@@ -61,6 +68,7 @@ with sync_playwright() as p:
     page.locator('#starterReflection').fill('A saved reflection <script>no execution</script>')
     reload_app()
     page.wait_for_timeout(200)
+    assert page.locator('#mainMenu #homePlanCTA').inner_text() == 'Continue My Routine →'
     page.locator('#mainMenu #homePlanCTA').click()
     assert page.locator('#routineHeading').inner_text() == 'Reflect'
     assert 'saved reflection' in page.locator('#starterReflection').input_value()
@@ -125,7 +133,14 @@ with sync_playwright() as p:
     page.locator('[name="starterMinutes"][value="10"]').check()
     page.locator('#setupNext').click()
     assert '10-minute' in page.locator('#starterSummary').inner_text()
-    page.locator('#starterResult button', has_text='Start My First Routine').click()
+    page.evaluate('showScreen("mainMenu")')
+    page.wait_for_timeout(3200)  # Include delayed legacy home-card refreshes.
+    assert page.locator('#mainMenu #homePlanCTA').inner_text() == 'View My Plan →'
+    page.locator('#mainMenu #homePlanCTA').click()
+    assert page.locator('#dashboard').is_visible()
+    assert page.evaluate('getSteadierMindSnapshot().starter.routine') is None
+    page.locator('#profileRoutineCTA').click()
+
     for _ in range(5):
         page.locator('#routineSkip').click()
     assert '0 of 4' in page.locator('#routinePanel').inner_text()

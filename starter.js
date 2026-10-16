@@ -263,8 +263,7 @@
     if (!hasBuiltPlan()) return;
     const btn = document.querySelector('#mainMenu #homePlanCTA');
     const pending = state.routine && !state.routine.finished;
-    const finished = state.routine && state.routine.finished;
-    btn.textContent = pending ? 'Continue My Routine →' : finished ? 'View My Plan →' : 'Start My Routine →';
+    btn.textContent = pending ? 'Continue My Routine →' : 'View My Plan →';
     btn.onclick = event => { event.stopPropagation(); openHomeRoutine(); };
     document.querySelector('#mainMenu .daily-priority-card').onclick = openHomeRoutine;
   };
@@ -275,8 +274,8 @@
   refreshBuildContinuePlanCard = function () { oldBuildContinueRefresh(); refreshHomeCardV50(); };
   function openHomeRoutine() {
     if (!hasBuiltPlan()) showScreen('assessment');
-    else if (state.routine && state.routine.finished) showScreen('dashboard');
-    else startStarterRoutine();
+    else if (state.routine && !state.routine.finished) startStarterRoutine();
+    else showScreen('dashboard');
   }
   document.addEventListener('click', event => {
     if (event.target.closest('#mainMenu .daily-priority-card')) {
