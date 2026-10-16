@@ -31,7 +31,7 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="logo-picture.png" />
   <title>SteadierMind</title>
-  <link rel="stylesheet" href="styles.css?v=20261016-push-reminders" />
+  <link rel="stylesheet" href="styles.css?v=20261016-explore-theme" />
 </head>
 <body>
   <p id="bootStatus" role="status">Opening your saved journal…</p>
@@ -118,10 +118,12 @@
       </details>
     </section>
 
-    <section id="education" class="screen learning-screen">
+    <section id="education" class="screen learning-screen explore-screen">
       <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
+      <header class="explore-hero"><span class="explore-medallion" aria-hidden="true">✧</span><p class="explore-kicker">Small ideas, new perspectives</p>
       <h2>Learn at your own pace</h2>
       <p class="learning-intro">Small ideas for everyday life. Explore five paths, with three short lessons in each.</p>
+      </header>
       <button id="learningContinue" onclick="continueLearning()">Continue learning</button>
       <p id="learningCount" class="learning-meta"></p>
       <progress id="learningProgress" max="15" value="0" aria-label="Completed lessons"></progress>
@@ -129,21 +131,21 @@
       <button class="secondary" onclick="showScreen('educationalSources')">Educational Sources</button>
       <p class="learning-note">All foundational lessons are free. Progress stays in this browser on this device. These lessons offer general education and do not replace individualized medical or mental health care.</p>
     </section>
-    <section id="educationTopic" class="screen learning-screen">
+    <section id="educationTopic" class="screen learning-screen explore-screen">
       <button class="text-back" onclick="showScreen('education')">← All education topics</button>
       <h2 id="learningTopicTitle" tabindex="-1"></h2>
       <p id="learningTopicIntro" class="learning-intro"></p>
       <p id="learningTopicCount" class="learning-meta"></p>
       <div id="learningTopicLessons" class="learning-path"></div>
     </section>
-    <section id="educationalSources" class="screen learning-screen">
+    <section id="educationalSources" class="screen learning-screen explore-screen">
       <button class="text-back" onclick="showScreen('education')">← Back to Learning Paths</button>
       <h2>Educational Sources</h2>
       <p>References and further reading for each lesson. Examples and optional practices are original educational activities; these organizations do not endorse SteadierMind.</p>
       <p>Source verification is pending. These references have not yet been checked against their live pages for narration.</p>
       <div id="educationalSourceList"></div>
     </section>
-    <section id="educationLesson" class="screen learning-screen">
+    <section id="educationLesson" class="screen learning-screen explore-screen">
       <button id="learningLessonBack" class="text-back" onclick="backToLearningTopic()">← Back to topic</button>
       <p id="learningLessonPath" class="learning-meta"></p>
       <h2 id="learningLessonTitle" tabindex="-1"></h2>
@@ -416,11 +418,12 @@
       </details>
     </section>
 
-    <section id="games" class="screen game-menu-screen">
+    <section id="games" class="screen game-menu-screen explore-screen">
       <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
-      <p class="eyebrow center-title">SteadierMind Games</p>
+      <header class="explore-hero"><span class="explore-medallion" aria-hidden="true">❖</span><p class="explore-kicker">A little space to play</p>
       <h2 class="center-title">Choose Your Game</h2>
       <p class="intro compact">Pick a short skill-building game. Each one trains calm, focus, confidence, or emotional balance.</p>
+      </header>
 
       <div class="game-icon-grid">
 
@@ -462,7 +465,7 @@
       </div>
     </section>
 
-    <section id="simpleGame" class="screen simple-game-screen">
+    <section id="simpleGame" class="screen simple-game-screen explore-screen">
       <button class="text-back" onclick="showScreen('games')">← Back to Games</button>
       <h2 id="simpleGameTitle"></h2>
       <p id="simpleGameIntro"></p>
@@ -476,7 +479,7 @@
       <p class="simple-game-privacy">No timer. Progress is saved in this browser on this device.</p>
     </section>
 
-    <section id="centeredIntro" class="screen centered-puzzle-intro">
+    <section id="centeredIntro" class="screen centered-puzzle-intro explore-screen">
       <button class="text-back" onclick="showScreen('games')">← Back to Games</button>
       <h2>Centered</h2>
       <p class="intro compact">Find your way through.</p>
@@ -485,7 +488,7 @@
       <p>Five short puzzles. No timer. Your progress stays on this device.</p>
       <button onclick="openCenteredGame()">Explore Centered</button>
     </section>
-    <section id="centeredGame" class="screen centered-puzzle">
+    <section id="centeredGame" class="screen centered-puzzle explore-screen">
       <button class="text-back" onclick="showScreen('games')">← Back to Games</button>
       <p class="eyebrow center-title">Centered · Find your way through</p>
       <h2 id="centeredPuzzleTitle"></h2>
@@ -502,7 +505,7 @@
       <button class="secondary" onclick="startCenteredGame()">Restart this level</button>
     </section>
 
-    <section id="thoughtSortGameScreen" class="screen thought-sort-game-screen">
+    <section id="thoughtSortGameScreen" class="screen thought-sort-game-screen explore-screen">
       <button class="text-back" onclick="showScreen('games')">← Back to Game Menu</button>
       <h2>Thought Sort</h2>
       <p>Sort thoughts into Helpful, Uncertain, or Unhelpful. Build clarity while staying calm.</p>
@@ -544,7 +547,7 @@
       <button class="secondary" onclick="resetThoughtSortGame()">Restart Thought Sort</button>
     </section>
 
-    <section id="calmFocusGameScreen" class="screen calm-focus-screen">
+    <section id="calmFocusGameScreen" class="screen calm-focus-screen explore-screen">
       <button class="text-back" onclick="showScreen('games')">← Back to Game Menu</button>
       <h2>Calm Focus</h2>
       <p>Tap the blue focus orbs, avoid red distraction orbs, and build calm attention.</p>
@@ -590,7 +593,7 @@
       <button class="secondary" onclick="resetCalmFocusGame()">Restart Calm Focus</button>
     </section>
 
-    <section id="groundingGameScreen" class="screen grounding-game-screen">
+    <section id="groundingGameScreen" class="screen grounding-game-screen explore-screen">
       <button class="text-back" onclick="showScreen('games')">← Back to Game Menu</button>
       <h2>Grounding Game</h2>
       <p>Find sensory anchors before anxious thoughts take over. This trains your attention to return to the present moment.</p>
@@ -626,7 +629,7 @@
       <button class="secondary" onclick="resetGroundingGame()">Restart Grounding</button>
     </section>
 
-    <section id="anchorGameScreen" class="screen anchor-game-screen">
+    <section id="anchorGameScreen" class="screen anchor-game-screen explore-screen">
       <button class="text-back" onclick="showScreen('games')">← Back to Game Menu</button>
       <h2>Anchor</h2>
       <p>Stay steady while waves of anxious thoughts drift across the screen.</p>
@@ -705,22 +708,27 @@
       </details>
     </section>
 
-    <section id="weekly" class="screen">
+    <section id="weekly" class="screen explore-screen">
       <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
-      <div class="progress"><span>1</span><span>2</span><span class="active-step">3</span><span>4</span></div>
+      <header class="explore-hero"><span class="explore-medallion" aria-hidden="true">✦</span><p class="explore-kicker">Your steady progress</p>
       <h2>Your Weekly Review</h2>
-      <div id="weeklyCard" class="card result-card">Complete activities this week to see your progress.</div>
-      <div class="card">Recent activity: <strong id="streakText">No recorded activity yet</strong></div>
-      <div class="card">Activities Completed: <strong id="activitiesText">0</strong></div>
-      <div class="card">Keep going. Small steady steps build a steadier mind.</div>
+      <p class="intro compact">Notice the time you’ve made for yourself, one small step at a time.</p>
+      </header>
+      <div id="weeklyCard" class="card result-card explore-panel"><h3>Make space for yourself</h3><p>Your recent activity and completed activities appear below. You can come back at your own pace.</p></div>
+      <div class="card explore-stat-card"><span class="explore-stat-icon" aria-hidden="true">☀</span><h3>Recent activity</h3><strong id="streakText">No recorded activity yet</strong><p>Every visit is a chance to make a little space.</p></div>
+      <div class="card explore-stat-card"><span class="explore-stat-icon" aria-hidden="true">✧</span><h3>Activities completed</h3><strong id="activitiesText">0</strong><p>Your total participation, one activity at a time.</p></div>
+      <p class="explore-footnote">Progress can include taking a break. There is no streak to protect.</p>
     </section>
 
-    <section id="moodTracker" class="screen">
+    <section id="moodTracker" class="screen explore-screen">
       <button class="text-back" onclick="showScreen('mainMenu')">← Back to Menu</button>
+      <header class="explore-hero"><span class="explore-medallion" aria-hidden="true">♡</span><p class="explore-kicker">A moment to check in</p>
       <h2>Mood Tracker</h2>
       <p>Track how your mind is doing over time. Small check-ins reveal patterns.</p>
+      </header>
 
-      <form id="moodForm">
+      <form id="moodForm" class="explore-panel">
+        <h3>Your check-in</h3>
         <label for="calmScore">How calm do you feel?</label>
         <select id="calmScore" required>
           <option value="">Choose a score</option>
@@ -744,10 +752,12 @@
       </form>
       <p id="moodStatus" role="status" aria-live="polite"></p>
       <div id="moodSuggestion" hidden></div>
+      <div class="explore-panel explore-trends">
       <h2>Your recent trends</h2>
       <p>Daily average calm scores for the last seven days. Empty days mean no check-in.</p>
       <div id="moodChart" class="mood-chart" aria-label="Seven-day calm scores"></div>
       <div id="moodSummary" class="card result-card"></div>
+      </div>
       <h2>Your check-ins</h2>
       <div id="moodHistory" class="mood-history"></div>
     </section>

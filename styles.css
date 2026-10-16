@@ -3235,3 +3235,65 @@ dialog.reward-celebration::backdrop { background: rgba(20,42,39,.55); }
 .reminder-card .toggle-row small { display: block; font-size: 11px; font-weight: 400; margin-top: 5px; }
 .reminder-card .reminder-note .text-back { font-size: inherit; display: inline; padding: 0; margin: 0; width: auto; text-decoration: underline; }
 .reminder-card button[hidden] { display: none !important; }
+
+/* Explore shares Rewards' warm pastels, medallions, and softly rounded cards. */
+.explore-screen { --explore-ink:#4c3b62; --explore-soft:linear-gradient(135deg,#f1e8ff,#fff3e7); }
+#education.explore-screen, #educationTopic.explore-screen, #educationLesson.explore-screen { --explore-soft:linear-gradient(135deg,#d6f6ed,#dff0ff 60%,#e8e4ff); }
+#weekly.explore-screen { --explore-soft:linear-gradient(135deg,#ffe8a9,#ffeed9 50%,#f8dff2); }
+.explore-screen .explore-hero { position:relative; isolation:isolate; overflow:hidden; text-align:center; padding:26px 20px; margin:18px 0 24px; border-radius:26px; border:1px solid #fff; background:var(--explore-soft); box-shadow:0 9px 24px #314a6b12; }
+.explore-hero::before, .explore-hero::after { content:'✧'; position:absolute; z-index:-1; color:#734469; opacity:.13; font-size:65px; pointer-events:none; }
+.explore-hero::before { left:-8px; top:12px; transform:rotate(-12deg); }
+.explore-hero::after { right:-5px; bottom:8px; font-size:90px; transform:rotate(12deg); }
+.explore-medallion { display:grid;place-items:center;margin:0 auto 16px;width:58px;height:58px;font-size:32px;color:#805000;background:#fff6cb;border:2px solid #f4cc6f;border-radius:50%;box-shadow:0 5px 0 #e5b65e55; }
+.explore-screen .explore-kicker { color:#634e70;font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;margin:0 0 12px;line-height:1.6; }
+.explore-screen .explore-hero h2 { color:#49395b;text-align:center;font-size:27px!important;line-height:1.2!important;letter-spacing:-.5px;margin:0 0 12px; }
+.explore-screen .explore-hero p:last-child { font-size:14px;line-height:1.7;color:#526276;margin:0; }
+.explore-screen .explore-panel, .explore-screen .learning-path, .explore-screen .game-icon-card, .explore-screen > .card, .explore-screen > .premium-card { border-radius:24px;border:1px solid #dedbea;box-shadow:0 7px 20px #314a6b0d;background:linear-gradient(135deg,#fffdf8,#f5f2fc);padding:22px 18px;margin:18px 0; }
+.explore-screen .learning-path:nth-child(3n+1), .explore-screen .game-icon-card:nth-child(3n+1) { background:linear-gradient(135deg,#fff0bc,#ffe6e1);border-color:#ead4b4; }
+.explore-screen .learning-path:nth-child(3n+2), .explore-screen .game-icon-card:nth-child(3n+2) { background:linear-gradient(135deg,#d6f6ed,#e5efff);border-color:#cce1df; }
+.explore-screen .learning-path:nth-child(3n), .explore-screen .game-icon-card:nth-child(3n) { background:linear-gradient(135deg,#f1e8ff,#fcece5); }
+.explore-screen .learning-path h3, .explore-screen .explore-panel h3 { color:#4c3b62;font-size:20px;line-height:1.35;margin-top:0; }
+.explore-screen .learning-path p { color:#526276;font-size:14px;line-height:1.6; }
+.explore-screen .learning-path button { background:#ffffffc9;border:1px solid #fff;border-radius:16px;color:#344f61;box-shadow:0 3px 8px #314a6b08;text-align:left; }
+.explore-screen .game-icon-card { margin:0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 14px;color:#4c3b62; }
+.explore-screen .game-icon { display:grid;place-items:center;width:56px;height:56px;margin:0;border-radius:50%;background:#ffffffb3;box-shadow:0 4px 10px #314a6b10;font-size:28px; }
+.explore-screen .game-icon-card strong { font-size:16px;color:#4c3b62;line-height:1.35; }
+.explore-screen .game-icon-card small { color:#526276;font-size:12px;line-height:1.5; }
+.explore-screen > h2, .explore-screen > h3 { color:#4c3b62;text-align:center; }
+.explore-screen > h2 { line-height:1.25; }
+.explore-screen .explore-stat-card { text-align:center;background:var(--explore-soft);padding:26px 22px; }
+.explore-stat-card h3 { font-size:20px;color:#4c3b62;margin:12px 0; }
+.explore-stat-card > strong { font-size:26px;line-height:1.35;color:#593245;display:block; }
+.explore-stat-card > p { font-size:13px;color:#526276;line-height:1.6;margin-bottom:0; }
+.explore-stat-icon { display:grid;place-items:center;width:52px;height:52px;margin:auto;font-size:28px;background:#ffffffb3;border-radius:50%;color:#805000; }
+.explore-footnote { text-align:center;font-size:13px;line-height:1.6;color:#526276; }
+#moodTracker.explore-screen #moodForm { background:linear-gradient(145deg,#fff7e4,#fffaf4 45%,#f5eafa); }
+#moodTracker.explore-screen .explore-panel h3 { text-align:center;margin-bottom:24px; }
+#moodTracker.explore-screen .mood-influences { background:#ffffffa6;border-color:#ded4e7;border-radius:18px;padding:16px 12px; }
+#moodTracker.explore-screen .mood-influences label { display:flex;align-items:center;gap:10px;min-height:30px; }
+#moodTracker.explore-screen .mood-influences input { width:18px;height:18px;margin:0;flex-shrink:0;accent-color:#805b89; }
+#moodTracker.explore-screen .explore-trends { background:linear-gradient(135deg,#d6f6ed,#dff0ff 60%,#e8e4ff); }
+#moodTracker.explore-screen .explore-trends h2 { font-size:22px!important;line-height:1.3!important;color:#244f62;margin-top:0; }
+#moodTracker.explore-screen .explore-trends > p { font-size:13px;line-height:1.6;text-align:center;color:#526276; }
+#moodTracker.explore-screen .mood-chart-track { background:#ffffffa6;border-radius:9px; }
+#moodTracker.explore-screen .mood-chart-bar { background:linear-gradient(#70c7c0,#6999d0);border-radius:9px; }
+#moodTracker.explore-screen #moodSummary { margin:18px 0 0;background:#ffffffad;border:1px solid #fff;border-radius:18px;font-size:13px; }
+#moodTracker.explore-screen .saved-entry { border:1px solid #dedbea;border-radius:20px;padding:18px;background:linear-gradient(135deg,#fff9ec,#f4eefb);margin:14px 0; }
+.explore-screen .learning-video { border:1px solid #d4e1e7;border-radius:24px;background:linear-gradient(135deg,#edf9f5,#eef0ff);padding:18px 14px; }
+.explore-screen .learning-more { background:#f5f1fb;border:1px solid #dedbea;border-radius:18px;padding:15px; }
+.explore-screen button:focus-visible, .explore-screen summary:focus-visible { outline:3px solid #805b89;outline-offset:3px; }
+#mainMenu .home-explore-links button { justify-content:flex-start;text-align:left;border:1px solid #dedbea;border-radius:18px;padding:20px 34px 20px 65px;margin:10px 0;background:linear-gradient(135deg,#f1e8ff,#fff3e7);font-size:14px;box-shadow:0 4px 12px #314a6b08; }
+#mainMenu .home-explore-links button:nth-child(2n) { background:linear-gradient(135deg,#d6f6ed,#e5efff); }
+#mainMenu .home-explore-links button:nth-child(3n) { background:linear-gradient(135deg,#fff0bc,#ffe6e1); }
+#mainMenu .home-explore-links button::before { content:'♡';position:absolute;left:16px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#ffffffb3;color:#76577e;font-size:22px; }
+#mainMenu .home-explore-links button:nth-child(2)::before { content:'✧'; }
+#mainMenu .home-explore-links button:nth-child(3)::before { content:'✦'; }
+#mainMenu .home-explore-links button:nth-child(4)::before { content:'❖'; }
+#mainMenu .home-explore-links button:nth-child(5)::before { content:'★'; }
+#mainMenu .home-explore-links button span { right:16px; }
+@media(max-width:350px) { .explore-screen .explore-hero{padding:24px 15px}.explore-screen .explore-hero h2{font-size:24px!important}.explore-screen .explore-panel,.explore-screen .learning-path{padding:20px 14px}.explore-screen .game-icon-card{padding:20px 10px} }
+.explore-screen progress { appearance:none;display:block;width:100%;height:10px;border:0;border-radius:20px;overflow:hidden;background:#e8e3ee; }
+.explore-screen progress::-webkit-progress-bar { background:#e8e3ee;border-radius:20px; }
+.explore-screen progress::-webkit-progress-value { background:linear-gradient(90deg,#70c7c0,#9b83c7);border-radius:20px; }
+.explore-screen progress::-moz-progress-bar { background:linear-gradient(90deg,#70c7c0,#9b83c7);border-radius:20px; }
+#weekly.explore-screen .explore-stat-card:nth-of-type(3) { background:linear-gradient(135deg,#d6f6ed,#dff0ff 60%,#e8e4ff); }
