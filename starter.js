@@ -51,6 +51,7 @@
     const goal = goals[0] || 'Balance';
     const tool = feeling === 'Overwhelmed' || goal === 'Focus' ? 'grounding' : goal === 'Sleep' ? 'sleep' : 'breathing';
     const prompts = {
+      Anxiety: 'What feels uncertain right now, and what would feel supportive?',
       Stress: 'What is one pressure you can make a little smaller today?',
       Overthinking: 'What thought keeps returning, and what do you know for certain about it?',
       Sleep: 'What can wait until tomorrow so you can make space for rest?',
@@ -59,6 +60,7 @@
       Balance: 'What would feel like a kind, manageable next step today?'
     };
     const actions = {
+      Anxiety: ['Notice one nearby detail', 'Choose one manageable next step', 'Ask someone I trust for support'],
       Stress: ['Take a short pause', 'Make one request for help', 'Choose one task to postpone'],
       Overthinking: ['Write down one known fact', 'Set aside a worry for later', 'Return to one task'],
       Sleep: ['Put my phone aside', 'Prepare a quiet space', 'Write down tomorrow’s task'],
@@ -71,7 +73,7 @@
   function buildStartingPlan() {
     const { goals, feeling, minutes, profile } = state.setup;
     const goal = goals[0] || 'Balance';
-    const challenge = { Stress: 'Work stress', Overthinking: 'Overthinking', Sleep: 'Difficulty sleeping', Focus: 'Focus', Confidence: 'Low confidence', Balance: 'Everyday wellbeing' }[goal];
+    const challenge = { Anxiety: 'Anxiety', Stress: 'Work stress', Overthinking: 'Overthinking', Sleep: 'Difficulty sleeping', Focus: 'Focus', Confidence: 'Low confidence', Balance: 'Everyday wellbeing' }[goal];
     const improvements = goals.map(item => item === 'Sleep' ? 'Sleep trouble' : item);
     savedSteadyPlan = {
       improvements, challenge, time: `${minutes} minutes`, hope: goal === 'Confidence' ? 'Confident' : goal === 'Focus' ? 'Focused' : 'Calm',
@@ -292,14 +294,14 @@
       const raw = restoredSnapshot;
       if (raw && raw.starter && raw.starter.setup) {
         const draft = raw.starter;
-        state.setup.goals = Array.isArray(draft.setup.goals) ? draft.setup.goals.filter(x => ['Stress', 'Overthinking', 'Sleep', 'Focus', 'Confidence'].includes(x)).slice(0, 2) : [];
+        state.setup.goals = Array.isArray(draft.setup.goals) ? draft.setup.goals.filter(x => ['Anxiety', 'Stress', 'Overthinking', 'Sleep', 'Focus', 'Confidence'].includes(x)).slice(0, 2) : [];
         state.setup.step = Math.max(0, Math.min(2, Number(draft.setup.step) || 0));
         state.setup.feeling = ['Restless', 'Overwhelmed', 'Anxious', 'Steady', 'Prefer not to say'].includes(draft.setup.feeling) ? draft.setup.feeling : 'Prefer not to say';
         state.setup.minutes = [2, 5, 10].includes(draft.setup.minutes) ? draft.setup.minutes : 5;
         state.setup.profile = draft.setup.profile || '';
         if (draft.routine && Number.isInteger(draft.routine.step) && draft.routine.step >= 0 && draft.routine.step <= 4 && Array.isArray(draft.routine.skipped)) state.routine = draft.routine;
       } else if (hasBuiltPlan() && savedSteadyPlan) {
-        state.setup.goals = (savedSteadyPlan.improvements || []).map(x => x === 'Sleep trouble' ? 'Sleep' : x).filter(x => ['Stress', 'Overthinking', 'Sleep', 'Focus', 'Confidence'].includes(x)).slice(0, 2);
+        state.setup.goals = (savedSteadyPlan.improvements || []).map(x => x === 'Sleep trouble' ? 'Sleep' : x).filter(x => ['Anxiety', 'Stress', 'Overthinking', 'Sleep', 'Focus', 'Confidence'].includes(x)).slice(0, 2);
         state.setup.minutes = [2, 5, 10].includes(parseInt(savedSteadyPlan.time, 10)) ? parseInt(savedSteadyPlan.time, 10) : 5;
         state.setup.profile = savedSteadyPlan.userType || '';
       }
