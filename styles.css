@@ -3363,3 +3363,10 @@ dialog.reward-celebration{background:linear-gradient(135deg,#fff6dc,#f8eafb);bor
 #games .game-icon-card:nth-child(3n) .game-symbol{--symbol-paper:#fffbff;--symbol-wash:#e3d7ef;color:#76577e}
 #games .game-symbol svg{display:block;width:34px;height:34px;overflow:visible}
 #games .game-symbol .symbol-wash{fill:var(--symbol-wash)}
+
+/* Half-card grid tracks center incomplete Memory Meadow rows. */
+.memory-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.memory-grid button{grid-column:span 2}
+.memory-grid button:last-child:nth-child(3n+1){grid-column:3 / span 2}
+.memory-grid button:nth-last-child(2):nth-child(3n+1){grid-column:2 / span 2}
+.memory-grid button:last-child:nth-child(3n+2){grid-column:4 / span 2}
