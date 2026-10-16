@@ -3224,3 +3224,14 @@ dialog.reward-celebration::backdrop { background: rgba(20,42,39,.55); }
 #dashboard .profile-preferences button { font-size: 13px; margin-bottom: 0; }
 #dashboard button:focus-visible, #dashboard summary:focus-visible { outline: 3px solid #35756d; outline-offset: 4px; }
 @media (max-width: 360px) { #dashboard .profile-focus-copy { max-width: 92%; padding: 21px; } #dashboard .profile-routine-card, #dashboard .profile-progress-card { padding: 20px; } }
+
+.reminder-card { text-align: left; }
+.reminder-heading { display: flex; align-items: center; gap: 12px; justify-content: space-between; }
+.reminder-heading h3 { margin: 0; font-size: 18px; }
+#reminderState { flex-shrink: 0; padding: 5px 9px; border-radius: 20px; background: #e2eee5; color: #255d51; font-size: 11px; font-weight: 700; }
+.reminder-card p { line-height: 1.65; }
+.reminder-card .reminder-note, #reminderStatus { font-size: 12px; color: #526d70; }
+.reminder-card select { max-width: 100%; }
+.reminder-card .toggle-row small { display: block; font-size: 11px; font-weight: 400; margin-top: 5px; }
+.reminder-card .reminder-note .text-back { font-size: inherit; display: inline; padding: 0; margin: 0; width: auto; text-decoration: underline; }
+.reminder-card button[hidden] { display: none !important; }

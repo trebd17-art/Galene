@@ -26,8 +26,12 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#25645f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="logo-picture.png" />
   <title>SteadierMind</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20261016-push-reminders" />
 </head>
 <body>
   <p id="bootStatus" role="status">Opening your saved journal…</p>
@@ -836,6 +840,22 @@
           <option value="forest">Forest</option>
         </select>
       </div>
+      <div class="card reminder-card">
+        <div class="reminder-heading"><h3>A gentle daily reminder</h3><span id="reminderState">Off</span></div>
+        <p>A small pause, even when SteadierMind is closed. Completely optional.</p>
+        <form id="reminderForm">
+          <label for="reminderTime">Reminder time</label><select id="reminderTime"></select>
+          <label for="reminderTimezone">Timezone</label><select id="reminderTimezone"></select>
+          <p class="reminder-note">Once a day. Quiet hours: 9 PM–8 AM in your selected timezone. Delivery may be delayed or missed while offline.</p>
+          <label class="toggle-row" for="reminderDiscreet"><span>Discreet message<small>“Your daily reminder is here.”</small></span><input id="reminderDiscreet" type="checkbox" checked></label>
+          <p class="reminder-note">Otherwise, receive a gentle message such as “One manageable step is enough.” The SteadierMind name is visible on either option. No journal or mood content appears.</p>
+          <p class="reminder-note">Enabling sends this device’s push subscription, chosen time, timezone, and message preference to our reminder service. Delivery uses your browser’s push provider. <button type="button" class="text-back" onclick="showScreen('privacy')">Read the privacy policy</button></p>
+          <button id="reminderEnable" type="submit" disabled>Turn on daily reminders</button>
+        </form>
+        <button id="reminderTest" class="secondary" hidden>Preview on this device</button>
+        <button id="reminderDisable" class="secondary" hidden>Turn off reminders</button>
+        <p id="reminderStatus" role="status" aria-live="polite">Checking reminder availability…</p>
+      </div>
       <button class="secondary" onclick="showScreen('privacy')">Privacy Policy</button>
       <button class="secondary" onclick="showScreen('support')">Help & Support</button>
       <button class="secondary" onclick="showScreen('educationalSources')">Educational Sources</button>
@@ -888,7 +908,7 @@
     <section id="privacy" class="screen">
       <button class="text-back" onclick="showScreen('settings')">← Back</button>
       <h2>SteadierMind Privacy Policy</h2>
-      <p>Updated October 14, 2026. Bertrand Dennis III operates SteadierMind. This policy describes the initial free browser-based version.</p>
+      <p>Updated October 16, 2026. Bertrand Dennis III operates SteadierMind. This policy describes the initial free browser-based version.</p>
       <h3>What you choose to save</h3>
       <p>The app can store mood and calm-score check-ins, notes, saved reflections, setup preferences, your personalized plan, routine drafts, activity dates, Mind Points, and game and learning progress. Worry Release and Sleep Wind-down notes are saved only when you choose their save option.</p>
       <h3>Where your entries stay</h3>
@@ -904,6 +924,10 @@
       <h3>Website requests and external links</h3>
       <p>The current application code contains no advertising or analytics SDK and does not sell or transmit your saved entries to third parties. The intended website is steadiermind.com, with hosting planned through Netlify. Once deployed, delivering and securing the website may involve technical information such as IP addresses, requested pages, browser information, and request times. The technical information handled and its retention depend on Netlify’s services and the configured hosting features. Browser-saved journal and mood entries are not included in the website’s normal page requests. See <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer">Netlify’s privacy policy</a> for its provider practices.</p>
       <p>When you open an educational source link, you visit a separate website with its own privacy policy. SteadierMind does not include your journal or mood content in those links. The app uses local storage for its features, rather than advertising cookies.</p>
+      <h3>Optional daily reminders</h3>
+      <p>Reminders are off by default. If you enable them, Netlify stores this device’s push subscription endpoint and delivery keys, your chosen time and timezone, discreet-message preference, last reminder date, and preference update time. A random device token lets this browser update or delete its subscription; it is stored separately from journal backups. No journal writing, mood entries, assessment answers, or activity history is sent with a reminder subscription.</p>
+      <p>Netlify Functions schedules delivery through your browser’s push provider, such as Apple, Google, Mozilla, or Microsoft. The provider handles notification routing and technical delivery information under its own practices. Notifications show the SteadierMind name and may be visible on your lock screen. Discreet mode uses “Your daily reminder is here.” Delivery is best effort and may be delayed or missed by device settings, connectivity, or power restrictions.</p>
+      <p>Turn off reminders in Settings to delete the active subscription from our reminder store and unsubscribe this browser. Clear Saved Data attempts this first; if removal fails, it asks you to retry. Simply clearing browser storage, uninstalling, or replacing your device may not notify the server. Expired subscriptions are removed when a delivery reports that they are no longer valid. Browser or device notification settings can also block delivery. Hosting and push-provider logs or backups may follow their separate retention practices.</p>
       <h3>Support email</h3>
       <p>If you email steadiermind@gmail.com, the support inbox receives your email address, message, and any attachments you choose to send. These messages are used to answer app or privacy questions. Do not include private entries or medical details unless you deliberately choose to share them.</p>
       <p>The inbox is provided through Google’s Gmail service. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google’s privacy policy</a>. Support correspondence is retained as needed to address the request and any necessary follow-up or applicable recordkeeping obligations. Requests to delete correspondence are reviewed individually; provider backups may follow separate retention practices. Clearing app data does not delete support emails; contact us to ask about deletion, subject to any applicable recordkeeping requirements.</p>
@@ -946,6 +970,6 @@
     </section>
   </main>
   <script src="journal-store.js"></script>
-  <script src="bootstrap.js?v=20261016-routine-home"></script>
+  <script src="bootstrap.js?v=20261016-push-reminders"></script>
 </body>
 </html>

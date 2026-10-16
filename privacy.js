@@ -9,6 +9,7 @@
     const status=document.getElementById('privacyDataStatus');
     deleting=true;
     try {
+      await window.disableSteadierMindReminders?.();
       await window.steadierMindJournalArchive?.clear();
       for(const storage of [localStorage,sessionStorage]){
         const keys=Array.from({length:storage.length},(_,i)=>storage.key(i));
