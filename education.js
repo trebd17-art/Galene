@@ -54,7 +54,7 @@
       group.append(summary,node('p',path.intro));
       const members=lessons.filter(lesson=>lesson.path===path.id);
       group.append(node('p',`${members.filter(lesson=>p.completed.includes(lesson.id)).length} of 3 completed`,'learning-meta'));
-      members.forEach(lesson=>group.append(button(`${p.completed.includes(lesson.id)?'✓ ':''}${lesson.title} · About 2 min`,()=>openLesson(lesson.id),'learning-lesson-link')));
+      members.forEach(lesson=>group.append(button(`${p.completed.includes(lesson.id)?'✓ ':''}${lesson.title} · About 3–5 min · Video, reading & optional question`,()=>openLesson(lesson.id),'learning-lesson-link')));
       $('learningPaths').append(group);
     });
     $('learningContinue').textContent=p.completed.length===lessons.length?'Explore lessons again':'Continue learning';
@@ -66,7 +66,7 @@
     $('learningTopicTitle').textContent=path.name;
     $('learningTopicIntro').textContent=path.intro;
     $('learningTopicCount').textContent=`${members.filter(lesson=>p.completed.includes(lesson.id)).length} of ${members.length} lessons completed`;
-    $('learningTopicLessons').replaceChildren(...members.map(lesson=>button(`${p.completed.includes(lesson.id)?'✓ ':''}${lesson.title} · About 2 min`,()=>openLesson(lesson.id),'learning-lesson-link')));
+    $('learningTopicLessons').replaceChildren(...members.map(lesson=>button(`${p.completed.includes(lesson.id)?'✓ ':''}${lesson.title} · About 3–5 min · Video, reading & optional question`,()=>openLesson(lesson.id),'learning-lesson-link')));
     showScreen('educationTopic');$('learningTopicTitle').focus({preventScroll:true});
   };
   window.backToLearningTopic=function(){openLearningTopic(current?.path);};
@@ -74,7 +74,7 @@
     if(!current)return;const lesson=current,path=paths.find(item=>item.id===lesson.path);
     renderVideo(lesson);
     $('learningLessonBack').textContent=`← Back to ${path.name}`;
-    $('learningLessonPath').textContent=`${path.name} · About 2 min`;
+    $('learningLessonPath').textContent=`${path.name} · About 3–5 min · Video, reading & optional question`;
     $('learningLessonTitle').textContent=lesson.title;
     const body=$('learningLessonBody');body.replaceChildren();
     body.append(section('One idea',lesson.idea),section('An everyday example',lesson.example),section('Try it, if you like',lesson.practice));

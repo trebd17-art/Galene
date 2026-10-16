@@ -54,6 +54,7 @@
     stopBreathingExercise();
     session = { id: Date.now().toString(), step: 0, worry: '', action: '', control: '', response: '', saveConsent: false, skipped: [], finished: false, onContinue, inRoutine };
     $('worrySaveStatus').textContent = '';
+    $('toolsCompletionStatus').textContent = '';
     showScreen('worrySession'); render();
   };
   window.nextWorryStep = function (skip = false) {
@@ -79,10 +80,11 @@
       }
       renderSavedJournalEntries();
     }
+    const savedNote = session.saveConsent && (session.worry.trim() || session.action.trim());
     const callback = session.onContinue;
     session.finished = true; session.worry = ''; session.action = '';
     if (session.skipped.length < 3) completeActivity();
-    if (callback) callback(); else showScreen('tools');
+    if (callback) callback(); else { showScreen('tools'); $('toolsCompletionStatus').textContent = savedNote ? 'Your worry release is complete. Your written entry is saved in this browser.' : 'Your worry release is complete. No written entry was saved.'; }
   };
   window.previousWorryStep = function () {
     if (!session || session.finished || session.step === 0) return;
@@ -107,6 +109,7 @@
   };
   const previousShow = showScreen;
   showScreen = function (screenId) {
+    if (screenId !== 'tools') $('toolsCompletionStatus').textContent = '';
     // Preserve only while visiting grounding from this flow; discard on other exits.
     if (session && (document.querySelector('#worrySession.active') || session.inGrounding) && !['worrySession', 'groundingSession'].includes(screenId)) {
       session.worry = ''; session.action = ''; session.inGrounding = false; session.finished = true;

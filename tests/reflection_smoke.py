@@ -45,6 +45,8 @@ with sync_playwright() as p:
     page.locator('#reflectionSave').click()
     assert page.evaluate('steadierMindJournalEntries.length') == 1
     assert page.evaluate('mindPoints') == points + 10
+    if page.locator('#rewardCelebration').count():
+        page.locator('#rewardContinue').click()
     entry = page.evaluate('steadierMindJournalEntries[0]')
     assert entry['mood'] == 'Anxious'
     assert len(entry['responses']) == 4

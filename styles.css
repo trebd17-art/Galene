@@ -3347,3 +3347,12 @@ body:not(.sleep-mode){background:linear-gradient(155deg,#e8e1f0,#dbeee7 60%,#f5e
 #rewards .rewards-guide{background:var(--app-lavender)}
 dialog.reward-celebration{background:linear-gradient(135deg,#fff6dc,#f8eafb);border-color:#d9badd;color:var(--app-text)}
 #rewardContinue{background:var(--app-action);color:white}
+
+/* Clear expectations and a direct route to journal backups. */
+.activity-time{text-align:center;font-size:13px;line-height:1.6;color:#526276;margin:10px 0 20px}
+.journal-storage-note{margin:20px 0;padding:16px;background:#fff8e8;border:1px solid #e6d5b2;border-radius:18px}
+.journal-storage-note p{font-size:13px;line-height:1.6;margin:0;color:#4c4654}
+.journal-storage-note button{font-size:13px;margin:8px 0 0;text-align:left}
+.completion-note:empty{display:none}
+.completion-note:not(:empty){padding:16px;border-radius:18px;background:#e1efe7;border:1px solid #b5d0c0;color:#244f42;line-height:1.6}
+#sleepSession .activity-time{color:#c0d2cb}

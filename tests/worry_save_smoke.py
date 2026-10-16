@@ -26,6 +26,7 @@ with sync_playwright() as p:
     assert page.evaluate('mindPoints') == points
     page.evaluate('saveSteadierMindData = window.originalSave')
     page.locator('#worryNext').click()
+    assert 'entry is saved in this browser' in page.locator('#toolsCompletionStatus').inner_text()
     assert page.evaluate('steadierMindJournalEntries.length') == 1
     assert page.evaluate('mindPoints') == points + 5
     page.evaluate('nextWorryStep()')

@@ -31,7 +31,7 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="logo-picture.png" />
   <title>SteadierMind</title>
-  <link rel="stylesheet" href="styles.css?v=20261016-app-pastels" />
+  <link rel="stylesheet" href="styles.css?v=20261016-first-impressions" />
 </head>
 <body>
   <p id="bootStatus" role="status">Opening your saved journal…</p>
@@ -291,11 +291,12 @@
       <h2 class="center-title">Choose a Calming Tool</h2>
       <p class="intro compact">Pick the support you need right now. Each tool guides you one step at a time.</p>
 
+      <p id="toolsCompletionStatus" class="completion-note" role="status" aria-live="polite"></p>
       <div class="emergency-tool-grid">
-        <button class="emergency-tool-card urgent-card" onclick="openEmergencyTool('breathing')"><span class="tool-icon">🚨</span><strong>Gentle Breathing</strong><small>Breathe and settle your body</small></button>
-        <button class="emergency-tool-card" onclick="openEmergencyTool('grounding')"><span class="tool-icon">🌿</span><strong>Grounding</strong><small>Return to the present moment</small></button>
-        <button class="emergency-tool-card" onclick="openEmergencyTool('worry')"><span class="tool-icon">🕊️</span><strong>Worry Release</strong><small>Find a manageable next step</small></button>
-        <button class="emergency-tool-card" onclick="openEmergencyTool('sleep')"><span class="tool-icon">🌙</span><strong>Sleep Wind-Down</strong><small>Prepare your mind for rest</small></button>
+        <button class="emergency-tool-card urgent-card" onclick="openEmergencyTool('breathing')"><span class="tool-icon">🚨</span><strong>Gentle Breathing</strong><small>Breathe and settle your body · 1 min</small></button>
+        <button class="emergency-tool-card" onclick="openEmergencyTool('grounding')"><span class="tool-icon">🌿</span><strong>Grounding</strong><small>Return to the present moment · About 2–3 min</small></button>
+        <button class="emergency-tool-card" onclick="openEmergencyTool('worry')"><span class="tool-icon">🕊️</span><strong>Worry Release</strong><small>Find a manageable next step · About 2–3 min</small></button>
+        <button class="emergency-tool-card" onclick="openEmergencyTool('sleep')"><span class="tool-icon">🌙</span><strong>Sleep Wind-Down</strong><small>Prepare your mind for rest · About 3–5 min</small></button>
       </div>
 
       <div class="ambient-controls card">
@@ -351,6 +352,8 @@
 
     <section id="sleepSession" class="screen sleep-session">
       <button class="text-back" onclick="leaveSleepSession()">← Back</button>
+
+      <p class="activity-time">About 3–5 min · Stay as long as feels useful</p>
       <p id="sleepProgress" class="starter-eyebrow" aria-live="polite"></p>
       <h2 id="sleepHeading" tabindex="-1"></h2>
       <p id="sleepDescription"></p>
@@ -365,6 +368,8 @@
 
     <section id="worrySession" class="screen starter-screen worry-session">
       <button class="text-back" onclick="leaveWorrySession()">← Back</button>
+
+      <p class="activity-time">About 2–3 min · Writing is optional</p>
       <p id="worryProgress" class="starter-eyebrow" aria-live="polite"></p>
       <div class="starter-meter"><div id="worryProgressFill"></div></div>
       <h2 id="worryHeading" tabindex="-1"></h2>
@@ -379,6 +384,8 @@
     <section id="groundingSession" class="screen grounding-session">
       <button class="text-back" onclick="leaveGroundingSession()">← Back</button>
       <h2>A moment to ground yourself</h2>
+      <p class="activity-time">About 2–3 min · Move through each sense at your own pace</p>
+
       <p>If it feels comfortable, notice what’s around you. Name things silently or aloud. You don’t need to type.</p>
       <p id="groundingProgress" class="starter-eyebrow" aria-live="polite"></p>
       <div class="starter-meter"><div id="groundingProgressFill"></div></div>
@@ -409,7 +416,7 @@
         <button id="gentleBreathingFinish" class="secondary" onclick="finishGentleBreathing()">Finish early</button>
       </div>
       <div id="gentleBreathingEnd" hidden>
-        <p role="status">Take a moment to notice how you feel.</p>
+        <p id="gentleBreathingCompletion" role="status">Take a moment to notice how you feel.</p>
         <button id="gentleBreathingContinue" onclick="continueAfterBreathing()">Continue</button>
       </div>
       <button id="gentleBreathingGrounding" class="text-back" onclick="switchBreathingToGrounding()">Try grounding instead</button>
@@ -433,13 +440,13 @@
         <button class="game-icon-card" onclick="openCalmFocusGame()">
           <span class="game-icon">🎯</span>
           <strong>Calm Focus</strong>
-          <small>Slow attention practice</small>
+          <small>Slow attention practice · 1 min</small>
         </button>
 
         <button class="game-icon-card" onclick="openGroundingGame()">
           <span class="game-icon">🌿</span>
           <strong>Grounding</strong>
-          <small>5-4-3-2-1 reset</small>
+          <small>5-4-3-2-1 reset · About 1–3 min</small>
         </button>
 
 
@@ -447,10 +454,10 @@
 
       <h3 class="center-title">More ways to play</h3>
       <div class="game-icon-grid">
-        <button class="game-icon-card" onclick="openSimpleGame('meadow')"><span class="game-icon">🌻</span><strong>Memory Meadow</strong><small>Match pairs · 5 levels</small></button>
-        <button class="game-icon-card" onclick="openSimpleGame('detective')"><span class="game-icon">🔎</span><strong>Thought Detective</strong><small>Explore everyday thoughts · 5 levels</small></button>
-        <button class="game-icon-card" onclick="openSimpleGame('pond')"><span class="game-icon">🐸</span><strong>Pattern Pond</strong><small>Remember a sequence · 5 levels</small></button>
-        <button class="game-icon-card" onclick="openSimpleGame('garden')"><span class="game-icon">🌱</span><strong>Pocket Garden</strong><small>Plan a balanced day · 5 levels</small></button>
+        <button class="game-icon-card" onclick="openSimpleGame('meadow')"><span class="game-icon">🌻</span><strong>Memory Meadow</strong><small>Match pairs · About 1–3 min per level</small></button>
+        <button class="game-icon-card" onclick="openSimpleGame('detective')"><span class="game-icon">🔎</span><strong>Thought Detective</strong><small>Explore everyday thoughts · About 1–3 min per level</small></button>
+        <button class="game-icon-card" onclick="openSimpleGame('pond')"><span class="game-icon">🐸</span><strong>Pattern Pond</strong><small>Remember a sequence · About 1–3 min per level</small></button>
+        <button class="game-icon-card" onclick="openSimpleGame('garden')"><span class="game-icon">🌱</span><strong>Pocket Garden</strong><small>Plan a balanced day · About 1–3 min per level</small></button>
       </div>
 
       <div class="premium-card game-values-card">
@@ -469,6 +476,8 @@
       <button class="text-back" onclick="showScreen('games')">← Back to Games</button>
       <h2 id="simpleGameTitle"></h2>
       <p id="simpleGameIntro"></p>
+      <p class="activity-time">About 1–3 min per level · No timer</p>
+
       <p id="simpleGameProgress" class="center-title"></p>
       <div id="simpleGameLevels" class="puzzle-levels" aria-label="Choose a level"></div>
       <div id="simpleGameBoard" class="simple-game-board"></div>
@@ -476,7 +485,8 @@
       <button id="simpleGameRetry" onclick="saveSimpleGameWin()" hidden>Retry saving progress</button>
       <button id="simpleGameNext" onclick="nextSimpleGame()" hidden>Next level</button>
       <button class="secondary" onclick="restartSimpleGame()">Restart this level</button>
-      <p class="simple-game-privacy">No timer. Progress is saved in this browser on this device.</p>
+      <button class="secondary" onclick="showScreen('games')">Finish and return to Games</button>
+      <p class="simple-game-privacy">You can leave between moves and return to this level. No timer. Progress is saved in this browser on this device.</p>
     </section>
 
     <section id="centeredIntro" class="screen centered-puzzle-intro explore-screen">
@@ -506,7 +516,7 @@
     </section>
 
     <section id="thoughtSortGameScreen" class="screen thought-sort-game-screen explore-screen">
-      <button class="text-back" onclick="showScreen('games')">← Back to Game Menu</button>
+      <button class="text-back" onclick="showScreen('games')">← Back to Games</button>
       <h2>Thought Sort</h2>
       <p>Sort thoughts into Helpful, Uncertain, or Unhelpful. Build clarity while staying calm.</p>
 
@@ -548,7 +558,7 @@
     </section>
 
     <section id="calmFocusGameScreen" class="screen calm-focus-screen explore-screen">
-      <button class="text-back" onclick="showScreen('games')">← Back to Game Menu</button>
+      <button class="text-back" onclick="showScreen('games')">← Back to Games</button>
       <h2>Calm Focus</h2>
       <p>Tap the blue focus orbs, avoid red distraction orbs, and build calm attention.</p>
 
@@ -591,11 +601,13 @@
       <div id="calmFocusResult" class="card result-card">Tap Start Focus to begin.</div>
       <button onclick="startCalmFocusRound()">Start Focus</button>
       <button class="secondary" onclick="resetCalmFocusGame()">Restart Calm Focus</button>
+      <button class="text-back" onclick="resetCalmFocusGame();document.getElementById('calmFocusResult').textContent='Round ended. Start again whenever you’re ready.'">Finish round</button>
     </section>
 
     <section id="groundingGameScreen" class="screen grounding-game-screen explore-screen">
-      <button class="text-back" onclick="showScreen('games')">← Back to Game Menu</button>
+      <button class="text-back" onclick="showScreen('games')">← Back to Games</button>
       <h2>Grounding Game</h2>
+      <p class="activity-time">About 1–3 min · Finish the round whenever you need</p>
       <p>Find sensory anchors before anxious thoughts take over. This trains your attention to return to the present moment.</p>
 
       <div class="premium-card">
@@ -627,10 +639,11 @@
       <div id="groundingResult" class="card result-card hidden"></div>
       <button onclick="startGroundingGameRound()">Start</button>
       <button class="secondary" onclick="resetGroundingGame()">Restart Grounding</button>
+      <button class="text-back" onclick="resetGroundingGame();document.getElementById('groundingResult').classList.remove('hidden');document.getElementById('groundingResult').textContent='Round ended. Start again whenever you’re ready.'">Finish round</button>
     </section>
 
     <section id="anchorGameScreen" class="screen anchor-game-screen explore-screen">
-      <button class="text-back" onclick="showScreen('games')">← Back to Game Menu</button>
+      <button class="text-back" onclick="showScreen('games')">← Back to Games</button>
       <h2>Anchor</h2>
       <p>Stay steady while waves of anxious thoughts drift across the screen.</p>
 
@@ -671,7 +684,9 @@
     <section id="journal" class="screen reflection-screen">
       <button class="text-back" onclick="showScreen('mainMenu')">← Back to Home</button>
       <h2>Daily Reflection</h2>
+      <p class="activity-time">About 2–5 min · A few words are enough</p>
       <p class="reflection-intro">A little space to understand your day. Answer what feels useful; you can leave any question blank.</p>
+      <aside class="journal-storage-note" aria-label="Journal storage"><p>Your entries stay in this browser on this device. They do not sync automatically. Clearing browser data can remove them.</p><button type="button" class="text-back" onclick="showScreen('settings');document.getElementById('savedDataHeading').focus();document.getElementById('savedDataHeading').scrollIntoView({block:'start'})">Go to backup options →</button></aside>
       <form id="reflectionForm">
         <label for="journalMood">How are you feeling?</label>
         <select id="journalMood"><option>Prefer not to say</option><option>Calm</option><option>Anxious</option><option>Overwhelmed</option><option>Sad</option><option>Frustrated</option><option>Lonely</option><option>Hopeful</option><option>Motivated</option><option>Tired</option></select>
@@ -873,7 +888,7 @@
       <button class="secondary" onclick="showScreen('welcome')">Return to Welcome</button>
 
       <div class="premium-card">
-        <div class="card-heading-row"><div class="circle-icon">💾</div><h3>Saved Data</h3></div>
+        <div class="card-heading-row"><div class="circle-icon">💾</div><h3 id="savedDataHeading" tabindex="-1">Saved Data</h3></div>
         <p>Entries, preferences, routine drafts, and progress stay in this browser on this device. Export downloads a readable JSON file. Clearing data does not delete downloaded exports.</p>
         <button class="secondary" onclick="exportJournalDocument()">Download Journal (printable HTML)</button>
         <button class="secondary" onclick="exportMoodCsv()">Download Moods (CSV)</button>
@@ -980,6 +995,6 @@
     </section>
   </main>
   <script src="journal-store.js"></script>
-  <script src="bootstrap.js?v=20261016-speech115"></script>
+  <script src="bootstrap.js?v=20261016-first-impressions"></script>
 </body>
 </html>

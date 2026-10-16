@@ -25,6 +25,7 @@
     $('gentleBreathingPause').textContent = session.running ? 'Pause' : 'Resume';
     $('gentleBreathingControls').hidden = session.ended;
     $('gentleBreathingEnd').hidden = !session.ended;
+    $('gentleBreathingCompletion').textContent = session.completed ? 'Your breathing session is complete. Take a moment to notice how you feel.' : 'You finished your breathing pause early. You can return whenever you like.';
     $('gentleBreathingGrounding').hidden = session.ended;
     $('gentleBreathingContinue').textContent = session.inRoutine ? 'Continue My Routine' : 'Back to Calming Tools';
   }
