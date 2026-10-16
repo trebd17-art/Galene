@@ -1,6 +1,6 @@
 """Pitch-preserving retime from an explicit Git revision; never compound previous runs.
 Usage: python scripts/retime-education-videos.py --source-ref REF --work-dir PATH
-Requires ffmpeg with libx264 and rubberband, and ffprobe. Work directory stays outside the site.
+Requires ffmpeg with libx264 and atempo, and ffprobe. Work directory stays outside the site.
 """
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -32,7 +32,7 @@ def convert(slug):
     old_duration=float(probe(source)['format']['duration'])
     output=work/(slug+'.mp4');log=work/(slug+'.log')
     print('START',slug,flush=True)
-    audio_filter=f'rubberband=tempo={args.speed}:pitch=1,apad,atrim=duration={old_duration/args.speed:.9f}'
+    audio_filter=f'atempo={args.speed},apad,atrim=duration={old_duration/args.speed:.9f}'
     ready=work/(slug+'-ready.mp4')
     if args.reuse_rendered_video and output.exists():
         tag=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format_tags=comment','-of','json',str(output)]))
@@ -57,6 +57,6 @@ results=[]
 with ThreadPoolExecutor(max_workers=2) as pool:
     for future in as_completed([pool.submit(convert,slug) for slug in slugs]):
         results.append(future.result());(work/'progress.json').write_text(json.dumps(results,indent=2)+'\n')
-manifest={'sourceRevision':revision,'relativeSpeed':args.speed,'audioFilter':f'rubberband=tempo={args.speed}:pitch=1','visualFilter':f'setpts=(PTS-STARTPTS)/{args.speed}','videos':sorted(results,key=lambda item:item['slug'])}
+manifest={'sourceRevision':revision,'relativeSpeed':args.speed,'audioFilter':f'atempo={args.speed}','visualFilter':f'setpts=(PTS-STARTPTS)/{args.speed}','videos':sorted(results,key=lambda item:item['slug'])}
 (root/'media/education-video-retiming.json').write_text(json.dumps(manifest,indent=2)+'\n')
 print('COMPLETE',len(results),'videos',flush=True)

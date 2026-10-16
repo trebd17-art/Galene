@@ -27,12 +27,12 @@
     $('learningVideoTitle').textContent=details.title;
     $('learningVideoDescription').textContent=`Watch the ${details.length} animation, or read the lesson below. Captions are included in the video.`;
     const base=`media/${details.slug}`;
-    $('learningVideoDownload').href=base+'.mp4?v=tempo115-20261016';
+    $('learningVideoDownload').href=base+'.mp4?v=speech115-20261016';
     $('learningVideoDownload').textContent='Download video (MP4)';
     $('learningVideoTranscript').href=base+'.txt';
     if((video.dataset.lesson||'alarm')!==lesson.id){
-      video.querySelector('source').src=base+'.mp4?v=tempo115-20261016';
-      video.querySelector('track').src=base+'.vtt?v=tempo115-20261016';
+      video.querySelector('source').src=base+'.mp4?v=speech115-20261016';
+      video.querySelector('track').src=base+'.vtt?v=speech115-20261016';
       video.poster=base+'.png';video.dataset.lesson=lesson.id;video.load();
     }
   }

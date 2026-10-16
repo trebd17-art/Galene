@@ -1,7 +1,7 @@
 {
   "sourceRevision": "f43d0bb148157051dc83698868b69dddfd0c4d52",
   "relativeSpeed": 1.15,
-  "audioFilter": "rubberband=tempo=1.15:pitch=1",
+  "audioFilter": "atempo=1.15",
   "visualFilter": "setpts=(PTS-STARTPTS)/1.15",
   "videos": [
     {
@@ -9,105 +9,136 @@
       "sourceDuration": 98.4,
       "duration": 85.6,
       "sourceSha256": "dafd6218265658168736471e17aeca520bfdf59283f48869f83e4c1976e6e43c",
-      "outputSha256": "8c1150eaf74437b555565298abedd28e0b0a61f44af1b863de909e99eb680edb"
+      "outputSha256": "72eb478111833442913246e6b4f8e8a515dabfafff06a7c28e3e3abf2689674d",
+      "losslessVoiceSha256": "1055f94b4ff6a431133146bbe1663d106c28232116b714c570d1730d9351a8fa",
+      "encodedVideoSha256": "e3b859b7b5a8d2566d1af44e1211cf07aa3519e0f7ebf54e1a588ae9e957b38a"
     },
     {
       "slug": "avoidance-and-getting-support",
       "sourceDuration": 112.833333,
       "duration": 98.133333,
       "sourceSha256": "bbff34a904ad43d050c6d95bde2e868412bffae7e03aff75127be2ad32821a7e",
-      "outputSha256": "26b570c3dee7583172f17e8cafe11b53cd0f9f10a1efb816e9e85e63759aa6fd"
+      "outputSha256": "9d6e79557020012ba08742604956c0c8f77b74af84263b6ecd8d07bf7edb4cf1",
+      "losslessVoiceSha256": "a86d9411b48d00959aa3fde2758a60ae33b82490857214ea5f2661303e1ae4a2",
+      "encodedVideoSha256": "8c0fd80373fc143a365a469e683456852b4fe8cee32962e3618ab97528b6d1f2"
     },
     {
       "slug": "building-a-gentle-wind-down",
       "sourceDuration": 98.8,
       "duration": 85.933333,
       "sourceSha256": "927ce1b263893937f2a59eda0fcd3f31117c0208045b5195b15fb965001e6dfe",
-      "outputSha256": "64bc05c68f29199624820f7d0d622dd2a37cff06a1700b57001e8b6eb3cbb26e"
+      "outputSha256": "f2a5dd41f9e2b3f9248100b4b87ec1041130ca27f5591a1eacec89125d0e9851",
+      "losslessVoiceSha256": "74f965fa768739c593a987d6b01d0145e0a5eded97a9265df715cb20805204ad",
+      "encodedVideoSha256": "c3f69747f6709ee78fa36424c7ea179cbb65398833f9b4237c5fc85d5d1cdfc2"
     },
     {
       "slug": "facts-predictions-and-uncertainty",
       "sourceDuration": 92.841,
       "duration": 80.733333,
       "sourceSha256": "84c2724c3b3b185fc9ecf9a550c501a0df522dee3a1e9673ab6d0302872f1617",
-      "outputSha256": "76c81d03912fe668ca6ae98b7bdb7838f411360b213b42eec2958685364d5625"
+      "outputSha256": "3fc07131160fb986723a8e242dabaec6db6a097581c813ac5d8c9c95410052da",
+      "losslessVoiceSha256": "dc34b35fc983579c358739582aaf4ea32f69aae86947cde4a63a2895a175e966",
+      "encodedVideoSha256": "b2d6dd1897fdade9ac3da83f3a368c2530464ef6074c18c305cfe2cd30b5a6d2"
     },
     {
       "slug": "making-room-for-uncertainty",
       "sourceDuration": 102.033333,
       "duration": 88.733333,
       "sourceSha256": "38c605ad361335f26275a5a6c45a6807607e74682fba6408bf6ea3a74efa4978",
-      "outputSha256": "3b83ea4689fc076f8888dbad322fcd47ad8df645e5a4799fbcd827d2f371ef68"
+      "outputSha256": "1e1d2bdd0c92fa17b452ed513a2edd8fd9cccbb2f5a9df25de317e9bff099e6d",
+      "losslessVoiceSha256": "331c451069cd00089ccfc8eabb55215cd872f12904b558fd187383ecb84063b7",
+      "encodedVideoSha256": "869ee66a1e11d0431a732a913425d6e2d582cc27509ea2eb47fe33d326fed508"
     },
     {
       "slug": "making-sense-of-physical-sensations",
       "sourceDuration": 106.5,
       "duration": 92.633333,
       "sourceSha256": "8dddec7210118560bbb3132be546e4d025830f107bf022bc8373182e45a9bde5",
-      "outputSha256": "5dfd7ae2d153a19cf3ad5cdea036a01e27bff875d177ea31e64d72839ce20cdd"
+      "outputSha256": "ce5f9c8bba78390a2748ed3506746dc52b906d98bd76125a7e37a97688d072e8",
+      "losslessVoiceSha256": "646bafbb6e7d3f08d8cedd0c04187ef54297908099ed7ff94fc3fbb58d97ca61",
+      "encodedVideoSha256": "f298d92e90ca42b01b57797a3459c5f91773ac87a4af883b366f808e7f5a111c"
     },
     {
       "slug": "noticing-your-stress-signals",
       "sourceDuration": 98.347,
       "duration": 85.533333,
       "sourceSha256": "86084b993daca010f557198856b9ce11540235f15ca70c5a4424857e500ef090",
-      "outputSha256": "ca1c29bc558a4175ab8bf8e10b6506beaf68c858ce352af9e8c418601e94b9a6"
+      "outputSha256": "34989f74e17b081760dfead655c9c1dc42da5554edad88e35d12795aa25af2e4",
+      "losslessVoiceSha256": "a3d85838d4280b4c582d3649eed50d3887981b3bd9e309f4f1705e83ef3649e2",
+      "encodedVideoSha256": "f81d298aa2756c3406b903641ef698b67fd062b547f45a09d1d7a0c14aeace5c"
     },
     {
       "slug": "planning-or-a-worry-loop",
       "sourceDuration": 102.0,
       "duration": 88.733333,
       "sourceSha256": "20825f069ebebecea06b2d982338225ed956ac88bb4508748f375867fe58ac36",
-      "outputSha256": "ecd6df4f6537aa755717f2152fb386f7e5a714af26bbd6b10bf115ca1fde1272"
+      "outputSha256": "e13d1e554fd8dc323ec84dac187c1957030aac5e5236dea183bc70eb55b0a981",
+      "losslessVoiceSha256": "8f928348d9ce810612aee5c73cbe78e14f4ac727225e5a421d0e17b955b65bd2",
+      "encodedVideoSha256": "0eb82334fc9b4e449deda1a0620d23a55d0693b56e43a9e8a71943bbed75921d"
     },
     {
       "slug": "protecting-a-little-space",
       "sourceDuration": 100.634,
       "duration": 87.533333,
       "sourceSha256": "c9b31827ff1169ca53144ecea921029d0b8f0541ca6975f1336d8a6839ded170",
-      "outputSha256": "a4411de427f936e4c9de57f015e5a0fccb3be921b26d765bd14f51c7d740a3b4"
+      "outputSha256": "3aab1b7ec5318e40a80c9cdce1626b2d036dffbba74281b9ec84926c0380ccbb",
+      "losslessVoiceSha256": "c6aa1299e95d088299bd6a67116e02e6634c548de2daeefd2d7060ed16b97424",
+      "encodedVideoSha256": "622fa74b6186e68d328ff1e895c37500fa59054cb825c5e92c8a79d1d0475cef"
     },
     {
       "slug": "recovering-from-a-setback",
       "sourceDuration": 94.666667,
       "duration": 82.333333,
       "sourceSha256": "61d31b4c345574ab03553314c32a140c8a7af3d6cc4864e30148b8535dd73dd2",
-      "outputSha256": "564e2632f32ade9ef3da5d2347ff190468075a571094f3f9704241428537aa60"
+      "outputSha256": "f04a8e78a0ae7e844eeb1e250508bbb6d70b70ac07b2d8507d4d313ad57a635c",
+      "losslessVoiceSha256": "a76cecf4c7af7e2b9339f9eea1a223758781466076b75534dea8569daabe3717",
+      "encodedVideoSha256": "722a093f6830337731139d2e6a2ee56e163dbe01d419e2891589e824e66d5708"
     },
     {
       "slug": "rest-and-connection-belong-in-the-plan",
       "sourceDuration": 100.2,
       "duration": 87.166667,
       "sourceSha256": "b4ae8bf0f83a7c682cd184e13ee50710ebe850227662d4b4309d93a4703f536b",
-      "outputSha256": "d25d65989640077480205bb608acd8b556e097e33731f9231bec28b970f3ea9a"
+      "outputSha256": "a18b464b85cd6e8eb7f88d977d289a4aadc0291468433f8206602b6b71b35ec1",
+      "losslessVoiceSha256": "c1a265f9c03ee5eaa85405ad98fd710d8442c82fc5f19c2c7fadd0d487e2e057",
+      "encodedVideoSha256": "caba8ff311f71419afbb9792a2da3350d5630654219417daf697a52f7664c398"
     },
     {
       "slug": "rest-without-chasing-perfect-sleep",
       "sourceDuration": 100.682,
       "duration": 87.566667,
       "sourceSha256": "200865e426cd489fcb3f0a2ffb2288dbb2e242182f49d617a5c95f623d02a5cc",
-      "outputSha256": "92c189ce4ea45a8d603638a1528675f806199ffc4bff90c65a440736b774d2fe"
+      "outputSha256": "2af23b83ad10b8d22d5964b3207ae0342067c3b3e25fa7d9fbfc3279a7f33422",
+      "losslessVoiceSha256": "567433b6f18d5399772d9602863711c36989c743ed378d47def59920f383b116",
+      "encodedVideoSha256": "23dcde1ef652cc609736ff18ee15861848afea43f11eb91622e66b06e41d615d"
     },
     {
       "slug": "start-smaller-than-you-think",
       "sourceDuration": 95.6,
       "duration": 83.166667,
       "sourceSha256": "b9fa9bbfbf33b8aec837c1cf3cd88b512f19b8e33437bebf1887874d793d27c6",
-      "outputSha256": "abf8cf2628f59b21ee867d261b8e2c140140931eb590b6f205d1501572119fd7"
+      "outputSha256": "d30221ba78996d88002d4a78850ff9433dea60b238b57efa88696dba06048a9a",
+      "losslessVoiceSha256": "e214507538fe8ad463537fd5ae06e7a26509ad670d9e3520ed64d588086d1ed6",
+      "encodedVideoSha256": "3a460c405ce293c3cc63f73a5b1440b191da4d466d3adc9b3be688a6189348a7"
     },
     {
       "slug": "understanding-anxiety-alarm-response",
       "sourceDuration": 102.213,
       "duration": 88.9,
       "sourceSha256": "66af31c5bf250725bf5047d74944c7feeaf71db9b047fb94157f493671a62b85",
-      "outputSha256": "5add8378556bbbe487dd89d6e6ecd3f482698bbd9bcfad6a8db0aa7b8df8ac68"
+      "outputSha256": "8da03df9c2d54221511d372f139d039c13897afd5e1d73bda54f8725a915771e",
+      "losslessVoiceSha256": "60440421b3e797bf2b346ecee09208e58d834fe52e59bf6de3e7420cb7e0673f",
+      "encodedVideoSha256": "ced601ee8d06e2c6aa05b1e7efc9a900f46dea87b83443059f00ebc2055a02f8"
     },
     {
       "slug": "when-thoughts-follow-you-to-bed",
       "sourceDuration": 100.182,
       "duration": 87.133333,
       "sourceSha256": "73af33e5e62cf63d1b98fd959460700cda86107aa54846921cd0e5a4abe5e0a5",
-      "outputSha256": "76213207ae6a269d8f69727dbb2a6fb2b4e6029c10eea0ef288201adaaf91fc2"
+      "outputSha256": "07b45b4dbd3c9888342f62cd98ba19b6a3599141b6fca79893e9c44b566e150a",
+      "losslessVoiceSha256": "da699781f82fc880b30e0b2dc5e4ebbd86806acd8ef1f515118021e63f49ed38",
+      "encodedVideoSha256": "6945c2639d66c697f708b6c0e1e97969f99524b7f3a9ba5185f99c7291ccc4a7"
     }
-  ]
+  ],
+  "audioSource": "Original lossless mono narration, with the previously approved soft EQ and loudness treatment; encoded to stereo AAC at 192 kbps."
 }

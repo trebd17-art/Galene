@@ -1,6 +1,6 @@
 # Education video timing update
 
-All 15 exports run at 1.15× the preceding versions’ tempo. Audio uses Rubber Band time stretching with pitch factor 1.0. Visual frames, existing burned-in captions, transitions, and source-slide holds follow the same 1/1.15 timeline. Optional WebVTT cue times use the same ratio, rounded to milliseconds. Scripts, source text, illustrations, and posters are unchanged.
+All 15 exports run at 1.15× the preceding versions’ tempo. Audio is rebuilt from the original uncompressed mono narration using pitch-preserving speech tempo processing (`atempo=1.15`), the approved gentle EQ and loudness treatment, and 192 kbps AAC encoding. This replaces the previous Rubber Band pass, which could introduce a phasey quality. Visual frames, existing burned-in captions, transitions, and source-slide holds follow the same 1/1.15 timeline. Optional WebVTT cue times use the same ratio, rounded to milliseconds. Scripts, source text, illustrations, and posters are unchanged.
 
 The change is baked into the MP4s; playback remains at 1.0× in the app. Updated asset URLs prevent the previous video or subtitle files being reused from browser cache.
 
@@ -25,3 +25,5 @@ The change is baked into the MP4s; playback remains at 1.0× in the app. Updated
 Source revision: `f43d0bb148157051dc83698868b69dddfd0c4d52`.
 
 Reproduction: `python scripts/retime-education-videos.py --source-ref f43d0bb148157051dc83698868b69dddfd0c4d52 --work-dir /tmp/steadiermind-retime`. Keep this explicit source revision to avoid compounding the speed change. The script produces exports, captions, and a timing manifest; app duration labels and the twelve-video catalog must also match the resulting durations. Verification: `python tests/education_retiming_smoke.py` and `python tests/education_smoke.py`.
+
+For the current audio, follow the retiming step with `python scripts/refresh-education-audio.py --voice-root /path/to/original/steadiermind-video --work-dir /tmp/steadiermind-speech`. The original lossless narration assets are required. This copies the encoded video without re-encoding, leaves subtitles and scene timing intact, and refreshes output hashes in the timing manifest.
