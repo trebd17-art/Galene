@@ -66,7 +66,8 @@
     pond:{name:'Pattern Pond',intro:'Study the row of pond creatures. Hide it when you are ready, then tap the creatures in the same order. You can look again anytime.',lesson:'Breaking a pattern into small groups can make it easier to remember.'},
     garden:{name:'Pocket Garden',intro:'Build a little daily plan using a limited number of space tokens. Match the goal without filling every moment.',lesson:'A manageable plan can leave room for rest and connection.'}
   };
-  let key=null,state=null;
+  let key=null,state=null,meadowResetTimer=null;
+  function clearMeadowReset(){clearTimeout(meadowResetTimer);meadowResetTimer=null;}
   const storeKey=()=>`simpleGame_${key}`;
   const progress=()=>steadierMindGameProgress[storeKey()] || {unlocked:0,completed:[],draft:null};
   function element(tag,text,cls){const e=document.createElement(tag);e.textContent=text;if(cls)e.className=cls;return e;}
@@ -89,6 +90,7 @@
     render(config.intro);persist();
   }
   function render(message){
+    clearMeadowReset();
     const config=games[key],p=progress();
     $('simpleGameTitle').textContent=config.name;$('simpleGameIntro').textContent=config.intro;
     $('simpleGameProgress').textContent=`Level ${state.level+1} of 5`;
@@ -113,10 +115,17 @@
         state.revealed.push(index);
         if(state.revealed.length===2){state.moves++;if(state.cards[state.revealed[0]]===state.cards[state.revealed[1]]){state.matched.push(...state.revealed);state.revealed=[];}}
         if(state.matched.length===state.cards.length){win();return;}
-        render(state.revealed.length===2?'Different cards. Take a look, then choose Try another pair.':'Take your time finding a pair.');persist();
-      });b.disabled=state.won||state.matched.includes(index);b.setAttribute('aria-label',`Card ${index+1}: ${visible?icon:'face down'}`);grid.append(b);
+        render(state.revealed.length===2?'Different cards. They’ll turn back over automatically.':'Take your time finding a pair.');persist();
+      });b.disabled=state.won||state.revealed.length===2||state.matched.includes(index);b.setAttribute('aria-label',`Card ${index+1}: ${visible?icon:'face down'}`);grid.append(b);
     });board.append(grid);
-    if(state.revealed.length===2)board.append(button('Try another pair',()=>{state.revealed=[];render();persist();},'secondary'));
+    if(state.revealed.length===2&&!document.hidden){
+      const pendingState=state;
+      meadowResetTimer=setTimeout(()=>{
+        meadowResetTimer=null;
+        if(key!=='meadow'||state!==pendingState||!document.querySelector('#simpleGame.active')||document.hidden)return;
+        state.revealed=[];render('Take your time finding a pair.');persist();
+      },1000);
+    }
   }
   function renderDetective(board){
     if(state.won){board.append(element('p',`You explored ${state.level+3} sentences. ${state.correct} matched on the first try.`));return;}
@@ -175,4 +184,10 @@
   };
   window.nextSimpleGame=function(){if(state?.won&&$('simpleGameRetry').hidden)newLevel(state.level===4?0:state.level+1);};
   window.restartSimpleGame=function(){if(state)newLevel(state.level);};
+  const navigate=showScreen;
+  window.showScreen=function(screen){if(screen!=='simpleGame')clearMeadowReset();return navigate.apply(this,arguments);};
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden)clearMeadowReset();
+    else if(key==='meadow'&&state?.revealed.length===2&&document.querySelector('#simpleGame.active'))render();
+  });
 })();
