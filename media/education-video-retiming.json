@@ -1,0 +1,113 @@
+{
+  "sourceRevision": "f43d0bb148157051dc83698868b69dddfd0c4d52",
+  "relativeSpeed": 1.15,
+  "audioFilter": "rubberband=tempo=1.15:pitch=1",
+  "visualFilter": "setpts=(PTS-STARTPTS)/1.15",
+  "videos": [
+    {
+      "slug": "a-more-supportive-inner-voice",
+      "sourceDuration": 98.4,
+      "duration": 85.6,
+      "sourceSha256": "dafd6218265658168736471e17aeca520bfdf59283f48869f83e4c1976e6e43c",
+      "outputSha256": "8c1150eaf74437b555565298abedd28e0b0a61f44af1b863de909e99eb680edb"
+    },
+    {
+      "slug": "avoidance-and-getting-support",
+      "sourceDuration": 112.833333,
+      "duration": 98.133333,
+      "sourceSha256": "bbff34a904ad43d050c6d95bde2e868412bffae7e03aff75127be2ad32821a7e",
+      "outputSha256": "26b570c3dee7583172f17e8cafe11b53cd0f9f10a1efb816e9e85e63759aa6fd"
+    },
+    {
+      "slug": "building-a-gentle-wind-down",
+      "sourceDuration": 98.8,
+      "duration": 85.933333,
+      "sourceSha256": "927ce1b263893937f2a59eda0fcd3f31117c0208045b5195b15fb965001e6dfe",
+      "outputSha256": "64bc05c68f29199624820f7d0d622dd2a37cff06a1700b57001e8b6eb3cbb26e"
+    },
+    {
+      "slug": "facts-predictions-and-uncertainty",
+      "sourceDuration": 92.841,
+      "duration": 80.733333,
+      "sourceSha256": "84c2724c3b3b185fc9ecf9a550c501a0df522dee3a1e9673ab6d0302872f1617",
+      "outputSha256": "76c81d03912fe668ca6ae98b7bdb7838f411360b213b42eec2958685364d5625"
+    },
+    {
+      "slug": "making-room-for-uncertainty",
+      "sourceDuration": 102.033333,
+      "duration": 88.733333,
+      "sourceSha256": "38c605ad361335f26275a5a6c45a6807607e74682fba6408bf6ea3a74efa4978",
+      "outputSha256": "3b83ea4689fc076f8888dbad322fcd47ad8df645e5a4799fbcd827d2f371ef68"
+    },
+    {
+      "slug": "making-sense-of-physical-sensations",
+      "sourceDuration": 106.5,
+      "duration": 92.633333,
+      "sourceSha256": "8dddec7210118560bbb3132be546e4d025830f107bf022bc8373182e45a9bde5",
+      "outputSha256": "5dfd7ae2d153a19cf3ad5cdea036a01e27bff875d177ea31e64d72839ce20cdd"
+    },
+    {
+      "slug": "noticing-your-stress-signals",
+      "sourceDuration": 98.347,
+      "duration": 85.533333,
+      "sourceSha256": "86084b993daca010f557198856b9ce11540235f15ca70c5a4424857e500ef090",
+      "outputSha256": "ca1c29bc558a4175ab8bf8e10b6506beaf68c858ce352af9e8c418601e94b9a6"
+    },
+    {
+      "slug": "planning-or-a-worry-loop",
+      "sourceDuration": 102.0,
+      "duration": 88.733333,
+      "sourceSha256": "20825f069ebebecea06b2d982338225ed956ac88bb4508748f375867fe58ac36",
+      "outputSha256": "ecd6df4f6537aa755717f2152fb386f7e5a714af26bbd6b10bf115ca1fde1272"
+    },
+    {
+      "slug": "protecting-a-little-space",
+      "sourceDuration": 100.634,
+      "duration": 87.533333,
+      "sourceSha256": "c9b31827ff1169ca53144ecea921029d0b8f0541ca6975f1336d8a6839ded170",
+      "outputSha256": "a4411de427f936e4c9de57f015e5a0fccb3be921b26d765bd14f51c7d740a3b4"
+    },
+    {
+      "slug": "recovering-from-a-setback",
+      "sourceDuration": 94.666667,
+      "duration": 82.333333,
+      "sourceSha256": "61d31b4c345574ab03553314c32a140c8a7af3d6cc4864e30148b8535dd73dd2",
+      "outputSha256": "564e2632f32ade9ef3da5d2347ff190468075a571094f3f9704241428537aa60"
+    },
+    {
+      "slug": "rest-and-connection-belong-in-the-plan",
+      "sourceDuration": 100.2,
+      "duration": 87.166667,
+      "sourceSha256": "b4ae8bf0f83a7c682cd184e13ee50710ebe850227662d4b4309d93a4703f536b",
+      "outputSha256": "d25d65989640077480205bb608acd8b556e097e33731f9231bec28b970f3ea9a"
+    },
+    {
+      "slug": "rest-without-chasing-perfect-sleep",
+      "sourceDuration": 100.682,
+      "duration": 87.566667,
+      "sourceSha256": "200865e426cd489fcb3f0a2ffb2288dbb2e242182f49d617a5c95f623d02a5cc",
+      "outputSha256": "92c189ce4ea45a8d603638a1528675f806199ffc4bff90c65a440736b774d2fe"
+    },
+    {
+      "slug": "start-smaller-than-you-think",
+      "sourceDuration": 95.6,
+      "duration": 83.166667,
+      "sourceSha256": "b9fa9bbfbf33b8aec837c1cf3cd88b512f19b8e33437bebf1887874d793d27c6",
+      "outputSha256": "abf8cf2628f59b21ee867d261b8e2c140140931eb590b6f205d1501572119fd7"
+    },
+    {
+      "slug": "understanding-anxiety-alarm-response",
+      "sourceDuration": 102.213,
+      "duration": 88.9,
+      "sourceSha256": "66af31c5bf250725bf5047d74944c7feeaf71db9b047fb94157f493671a62b85",
+      "outputSha256": "5add8378556bbbe487dd89d6e6ecd3f482698bbd9bcfad6a8db0aa7b8df8ac68"
+    },
+    {
+      "slug": "when-thoughts-follow-you-to-bed",
+      "sourceDuration": 100.182,
+      "duration": 87.133333,
+      "sourceSha256": "73af33e5e62cf63d1b98fd959460700cda86107aa54846921cd0e5a4abe5e0a5",
+      "outputSha256": "76213207ae6a269d8f69727dbb2a6fb2b4e6029c10eea0ef288201adaaf91fc2"
+    }
+  ]
+}

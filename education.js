@@ -4,21 +4,21 @@
   const $=id=>document.getElementById(id), lessons=window.steadierMindLessons, paths=window.steadierMindLearningPaths;
   let current=null,choice=null;
   const lessonVideos={
-    alarm:{slug:'understanding-anxiety-alarm-response',title:'Understanding Anxiety’s Alarm Response',length:'1 minute 42 second'},
-    sensations:{slug:'making-sense-of-physical-sensations',title:'Making Sense of Physical Sensations',length:'1 minute 47 second'},
-    support:{slug:'avoidance-and-getting-support',title:'Avoidance and Getting Support',length:'1 minute 53 second'},
-    facts:{"slug":"facts-predictions-and-uncertainty","title":"Facts, predictions, and uncertainty","length":"1 minute 33 second"},
-    loops:{"slug":"planning-or-a-worry-loop","title":"Planning or a worry loop?","length":"1 minute 42 second"},
-    uncertainty:{"slug":"making-room-for-uncertainty","title":"Making room for uncertainty","length":"1 minute 42 second"},
-    smallsteps:{"slug":"start-smaller-than-you-think","title":"Start smaller than you think","length":"1 minute 36 second"},
-    selftalk:{"slug":"a-more-supportive-inner-voice","title":"A more supportive inner voice","length":"1 minute 38 second"},
-    setbacks:{"slug":"recovering-from-a-setback","title":"Recovering from a setback","length":"1 minute 35 second"},
-    winddown:{"slug":"building-a-gentle-wind-down","title":"Building a gentle wind-down","length":"1 minute 39 second"},
-    bedtimeworry:{"slug":"when-thoughts-follow-you-to-bed","title":"When thoughts follow you to bed","length":"1 minute 40 second"},
-    sleepexpectations:{"slug":"rest-without-chasing-perfect-sleep","title":"Rest without chasing perfect sleep","length":"1 minute 41 second"},
-    stresssignals:{"slug":"noticing-your-stress-signals","title":"Noticing your stress signals","length":"1 minute 38 second"},
-    boundaries:{"slug":"protecting-a-little-space","title":"Protecting a little space","length":"1 minute 41 second"},
-    restsupport:{"slug":"rest-and-connection-belong-in-the-plan","title":"Rest and connection belong in the plan","length":"1 minute 40 second"}
+    alarm:{slug:'understanding-anxiety-alarm-response',title:'Understanding Anxiety’s Alarm Response',length:'1 minute 29 second'},
+    sensations:{slug:'making-sense-of-physical-sensations',title:'Making Sense of Physical Sensations',length:'1 minute 33 second'},
+    support:{slug:'avoidance-and-getting-support',title:'Avoidance and Getting Support',length:'1 minute 38 second'},
+    facts:{"slug":"facts-predictions-and-uncertainty","title":"Facts, predictions, and uncertainty","length":"1 minute 21 second"},
+    loops:{"slug":"planning-or-a-worry-loop","title":"Planning or a worry loop?","length":"1 minute 29 second"},
+    uncertainty:{"slug":"making-room-for-uncertainty","title":"Making room for uncertainty","length":"1 minute 29 second"},
+    smallsteps:{"slug":"start-smaller-than-you-think","title":"Start smaller than you think","length":"1 minute 23 second"},
+    selftalk:{"slug":"a-more-supportive-inner-voice","title":"A more supportive inner voice","length":"1 minute 26 second"},
+    setbacks:{"slug":"recovering-from-a-setback","title":"Recovering from a setback","length":"1 minute 22 second"},
+    winddown:{"slug":"building-a-gentle-wind-down","title":"Building a gentle wind-down","length":"1 minute 26 second"},
+    bedtimeworry:{"slug":"when-thoughts-follow-you-to-bed","title":"When thoughts follow you to bed","length":"1 minute 27 second"},
+    sleepexpectations:{"slug":"rest-without-chasing-perfect-sleep","title":"Rest without chasing perfect sleep","length":"1 minute 28 second"},
+    stresssignals:{"slug":"noticing-your-stress-signals","title":"Noticing your stress signals","length":"1 minute 26 second"},
+    boundaries:{"slug":"protecting-a-little-space","title":"Protecting a little space","length":"1 minute 28 second"},
+    restsupport:{"slug":"rest-and-connection-belong-in-the-plan","title":"Rest and connection belong in the plan","length":"1 minute 27 second"}
   };
   function renderVideo(lesson){
     const video=$('learningVideo'),details=lessonVideos[lesson.id];
@@ -27,12 +27,12 @@
     $('learningVideoTitle').textContent=details.title;
     $('learningVideoDescription').textContent=`Watch the ${details.length} animation, or read the lesson below. Captions are included in the video.`;
     const base=`media/${details.slug}`;
-    $('learningVideoDownload').href=base+'.mp4';
+    $('learningVideoDownload').href=base+'.mp4?v=tempo115-20261016';
     $('learningVideoDownload').textContent='Download video (MP4)';
     $('learningVideoTranscript').href=base+'.txt';
     if((video.dataset.lesson||'alarm')!==lesson.id){
-      video.querySelector('source').src=base+'.mp4';
-      video.querySelector('track').src=base+'.vtt';
+      video.querySelector('source').src=base+'.mp4?v=tempo115-20261016';
+      video.querySelector('track').src=base+'.vtt?v=tempo115-20261016';
       video.poster=base+'.png';video.dataset.lesson=lesson.id;video.load();
     }
   }

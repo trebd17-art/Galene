@@ -7,7 +7,9 @@ import threading
 import json
 video_catalog=json.loads((Path(__file__).resolve().parents[1]/'media/education-video-catalog.json').read_text())
 video_lengths={item['lesson']:item['duration'] for item in video_catalog}
-video_lengths.update({'sensations':106.5,'support':112.8})
+retiming=json.loads((Path(__file__).resolve().parents[1]/'media/education-video-retiming.json').read_text())
+original_slugs={'alarm':'understanding-anxiety-alarm-response','sensations':'making-sense-of-physical-sensations','support':'avoidance-and-getting-support'}
+video_lengths.update({lesson:next(item['duration'] for item in retiming['videos'] if item['slug']==slug) for lesson,slug in original_slugs.items()})
 server = ThreadingHTTPServer(('127.0.0.1',0),partial(SimpleHTTPRequestHandler,directory=str(Path(__file__).resolve().parents[1])))
 threading.Thread(target=server.serve_forever,daemon=True).start()
 with sync_playwright() as p:
@@ -30,7 +32,8 @@ with sync_playwright() as p:
     assert video.evaluate('(v)=>v.paused')
     page.evaluate('document.getElementById("learningVideo").play()')
     page.wait_for_function('document.getElementById("learningVideo").currentTime > 0.5')
-    assert 90 <= video.evaluate('(v)=>v.duration') <= 120
+    assert abs(video.evaluate('(v)=>v.duration')-video_lengths['alarm'])<.1
+    assert video.evaluate('(v)=>v.playbackRate')==1
     assert video.evaluate('(v)=>[v.videoWidth,v.videoHeight]') == [1920,1080]
     captions=page.request.get(f'http://127.0.0.1:{server.server_port}/'+video.locator('track').get_attribute('src'))
     assert captions.ok and captions.text().startswith('WEBVTT')
@@ -66,7 +69,7 @@ with sync_playwright() as p:
                 page.locator('#learningVideoDownload').click()
             download=result.value
             assert download.failure() is None
-            assert download.suggested_filename==source.rsplit('/',1)[-1]
+            assert download.suggested_filename==source.rsplit('/',1)[-1].split('?',1)[0]
             video.evaluate('(v)=>v.pause()')
         assert page.locator('#learningLessonTitle').inner_text()==lesson['title']
         if lesson['id'] in {item['lesson'] for item in video_catalog}:
