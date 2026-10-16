@@ -3297,3 +3297,53 @@ dialog.reward-celebration::backdrop { background: rgba(20,42,39,.55); }
 .explore-screen progress::-webkit-progress-value { background:linear-gradient(90deg,#70c7c0,#9b83c7);border-radius:20px; }
 .explore-screen progress::-moz-progress-bar { background:linear-gradient(90deg,#70c7c0,#9b83c7);border-radius:20px; }
 #weekly.explore-screen .explore-stat-card:nth-of-type(3) { background:linear-gradient(135deg,#d6f6ed,#dff0ff 60%,#e8e4ff); }
+
+/* Carry Explore Tools' pastel palette through the remaining app screens.
+   Play-board feedback and the dim sleep player keep their functional colors. */
+:root{--app-lavender:linear-gradient(135deg,#f1e8ff,#fff3e7);--app-mint:linear-gradient(135deg,#d6f6ed,#dff0ff 60%,#e8e4ff);--app-gold:linear-gradient(135deg,#ffe8a9,#ffeed9 50%,#f8dff2);--app-text:#4c3b62;--app-muted:#526276;--app-border:#dedbea;--app-action:#665075}
+body:not(.sleep-mode){background:linear-gradient(155deg,#e8e1f0,#dbeee7 60%,#f5e6d8)}
+.phone:not(.sleep-mode){background:#faf7fb;box-shadow:0 18px 50px #49395b24}
+.screen:where(:not(#sleepSession):not(.explore-screen)){background-color:#faf7fb;color:var(--app-text)}
+.screen:where(:not(#sleepSession):not(.explore-screen)) :is(h1,h2,h3){color:var(--app-text)}
+.screen:where(:not(#sleepSession)) :is(.intro,.learning-note,.starter-muted,.simple-game-privacy,.mood-privacy){color:var(--app-muted)}
+/* Existing Explore pages retain their individual pastel card treatments. */
+.screen:where(:not(#sleepSession):not(.explore-screen)) :is(.card,.premium-card,.saved-entry,.starter-card){background:linear-gradient(135deg,#fffdf8,#f5f2fc);border:1px solid var(--app-border);box-shadow:0 7px 20px #314a6b0d}
+.screen:where(:not(#sleepSession):not(.explore-screen)) :is(.starter-card,.learning-question,.mood-influences,.today-focus-box,.breathing-box){background:var(--app-mint);border-color:#cce1df;color:#244f62}
+/* Controls use deep plum for contrast; stateful game tiles retain their colors. */
+.screen:where(:not(#sleepSession):not(#mainMenu):not(.game-menu-screen):not(.simple-game-screen):not(.calm-focus-screen):not(.grounding-game-screen):not(.centered-puzzle):not(.thought-sort-game-screen):not(.anchor-game-screen)) button:where(:not(.secondary):not(.text-back):not(.learning-lesson-link):not(.learning-text-button):not(.emergency-tool-card):not(.emotion-btn)){background:var(--app-action);color:white;box-shadow:0 4px 12px #49395b14}
+.screen:where(:not(#sleepSession)) button.secondary{background:#eae3f2;color:var(--app-text);border-color:var(--app-border);box-shadow:none}
+.screen:where(:not(#sleepSession)) button.text-back{background:transparent;color:#634e70;box-shadow:none}
+.screen:where(:not(#sleepSession)) :is(input:not([type=range]):not([type=checkbox]):not([type=radio]),select,textarea){background:#fff;color:#344f61;border-color:#b9acc6}
+.screen:where(:not(#sleepSession)) :is(input,textarea)::placeholder{color:#657080;opacity:1}
+.screen:where(:not(#sleepSession)) :is(input[type=checkbox],input[type=radio],input[type=range],progress){accent-color:#805b89}
+.screen:where(:not(#sleepSession)) :is(button,input,textarea,select,summary,a):focus-visible{outline:3px solid #805b89;outline-offset:3px}
+/* Home matches the colorful Explore cards beneath it. */
+#mainMenu.calm-home{background:#faf7fb;color:var(--app-text)}
+#mainMenu .daily-priority-card{background:var(--app-lavender);border-color:var(--app-border);box-shadow:0 7px 20px #314a6b0d}
+#mainMenu .home-start-btn{background:var(--app-action)}
+#mainMenu .home-quick-actions button{background:linear-gradient(135deg,#fff0bc,#ffe6e1);border-color:#ead4b4;color:var(--app-text)}
+#mainMenu .home-quick-actions button:nth-child(2){background:var(--app-mint);border-color:#cce1df}
+#mainMenu .home-quick-actions button:nth-child(3){background:var(--app-lavender);border-color:var(--app-border)}
+#mainMenu .home-quick-actions svg{color:#805b89}
+#mainMenu .home-settings{background:#eae3f2;color:var(--app-text)}
+#mainMenu :is(.home-eyebrow,.home-intro,.priority-body p){color:var(--app-muted)}
+#mainMenu .home-explore{border-color:var(--app-border)}
+/* Tool menus and reflection details repeat the same three card colors. */
+#tools .emergency-tool-card{background:var(--app-lavender);border-color:var(--app-border);color:var(--app-text)}
+#tools .emergency-tool-card:nth-child(2n){background:var(--app-mint)}
+#tools .emergency-tool-card:nth-child(3n){background:var(--app-gold)}
+#tools .emergency-tool-card small{color:var(--app-muted)}
+#journal .reflection-details{background:var(--app-lavender);border:1px solid var(--app-border);border-radius:20px;padding:16px}
+#journal .saved-entry{background:#ffffffc9}
+#journal .reflection-history-question{color:#76577e}
+#assessment .starter-options label:has(input:checked){background:#eee3f5;border-color:#805b89}
+#dashboard .premium-card:nth-of-type(3n+1){background:var(--app-gold)}
+#dashboard .premium-card:nth-of-type(3n+2){background:var(--app-mint)}
+#dashboard .premium-card:nth-of-type(3n){background:var(--app-lavender)}
+/* Keep the original colorful Rewards cards and their floating totals. */
+#rewards .rewards-points-card{background:var(--app-gold)}
+#rewards .rewards-activity-card{background:var(--app-mint)}
+#rewards .rewards-badge.is-earned{background:linear-gradient(135deg,#fff0bc,#ffe6e1);border-color:#e8c58c}
+#rewards .rewards-guide{background:var(--app-lavender)}
+dialog.reward-celebration{background:linear-gradient(135deg,#fff6dc,#f8eafb);border-color:#d9badd;color:var(--app-text)}
+#rewardContinue{background:var(--app-action);color:white}
