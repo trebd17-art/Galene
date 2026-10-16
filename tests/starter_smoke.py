@@ -77,6 +77,14 @@ with sync_playwright() as p:
     assert page.evaluate('steadierMindJournalEntries.filter(e=>e.routineId).length') == 1
     if page.locator('#rewardCelebration').evaluate('(el) => el.open'):
         page.locator('#rewardContinue').click()
+    page.evaluate('showScreen("mainMenu")')
+    assert page.locator('#mainMenu #homePlanCTA').inner_text() == 'View My Plan →'
+    page.locator('#mainMenu #homePlanCTA').click()
+    assert page.locator('#dashboard').is_visible()
+    page.evaluate('showScreen("mainMenu")')
+    page.locator('#mainMenu .daily-priority-card').click()
+    assert page.locator('#dashboard').is_visible()
+    page.evaluate('showScreen("starterRoutine")')
     page.locator('#routinePanel button', has_text='View My Plan').click()
     assert 'Overthinking' in page.locator('#profileFocusTitle').inner_text()
     assert not page.locator('#profilePreferences').evaluate('(el)=>el.open')
@@ -98,6 +106,12 @@ with sync_playwright() as p:
     assert page.locator('#starterRoutine').is_visible()
     page.evaluate('showScreen("dashboard")')
     assert 'Continue' in page.locator('#profileRoutineCTA').inner_text()
+    page.evaluate('showScreen("mainMenu")')
+    assert page.locator('#mainMenu #homePlanCTA').inner_text() == 'Continue My Routine →'
+    page.locator('#mainMenu #homePlanCTA').click()
+    assert page.locator('#starterRoutine').is_visible()
+    page.evaluate('showScreen("dashboard")')
+
     page.locator('#profilePreferences summary').click()
     page.locator('#profilePreferences button').click()
     assert page.locator('#assessment').is_visible()

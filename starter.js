@@ -250,6 +250,7 @@
       usingRoutineTool = false; stopBreathingExercise();
     }
     previousShowScreen(screenId);
+    if (screenId === 'mainMenu') refreshHomeCardV50();
     if (screenId === 'assessment') renderSetup();
     if (screenId === 'starterResult') renderResult();
     if (screenId === 'starterRoutine') renderRoutine();
@@ -262,24 +263,30 @@
     if (!hasBuiltPlan()) return;
     const btn = document.querySelector('#mainMenu #homePlanCTA');
     const pending = state.routine && !state.routine.finished;
-    btn.textContent = pending ? 'Continue My Routine →' : 'Start My Routine →';
-    btn.onclick = event => { event.stopPropagation(); startStarterRoutine(); };
-    document.querySelector('#mainMenu .daily-priority-card').onclick = () => startStarterRoutine();
+    const finished = state.routine && state.routine.finished;
+    btn.textContent = pending ? 'Continue My Routine →' : finished ? 'View My Plan →' : 'Start My Routine →';
+    btn.onclick = event => { event.stopPropagation(); openHomeRoutine(); };
+    document.querySelector('#mainMenu .daily-priority-card').onclick = openHomeRoutine;
   };
   // Legacy refresh timers must finish by applying the current routine action.
   const oldTruePlanRefresh = refreshTruePlanState;
   refreshTruePlanState = function () { oldTruePlanRefresh(); refreshHomeCardV50(); };
   const oldBuildContinueRefresh = refreshBuildContinuePlanCard;
   refreshBuildContinuePlanCard = function () { oldBuildContinueRefresh(); refreshHomeCardV50(); };
+  function openHomeRoutine() {
+    if (!hasBuiltPlan()) showScreen('assessment');
+    else if (state.routine && state.routine.finished) showScreen('dashboard');
+    else startStarterRoutine();
+  }
   document.addEventListener('click', event => {
     if (event.target.closest('#mainMenu .daily-priority-card')) {
       event.preventDefault(); event.stopImmediatePropagation();
-      if (hasBuiltPlan()) startStarterRoutine(); else showScreen('assessment');
+      openHomeRoutine();
     }
   }, true);
   handleHomePlanCTA = function (event) {
     if (event) event.stopPropagation();
-    if (hasBuiltPlan()) startStarterRoutine(); else showScreen('assessment');
+    openHomeRoutine();
   };
   document.addEventListener('DOMContentLoaded', function () {
     try {
