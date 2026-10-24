@@ -506,8 +506,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if(document.getElementById("splash")){
     setTimeout(() => {
-      showScreen("welcome");
-    }, 3000);
+      showScreen(window.steadierMindEntryIntent ? "auth" : "welcome");
+    }, window.steadierMindEntryIntent ? 0 : 3000);
   }
 });
 

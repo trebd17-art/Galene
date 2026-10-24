@@ -94,14 +94,14 @@ test('service worker displays generic push safely and focuses the app on tap',as
     location:{origin:'https://steadiermind.example'},
     addEventListener(type,handler){listeners[type]=handler;},
     registration:{async showNotification(title,options){shown.push({title,...options});}},
-    clients:{async matchAll(){return [{url:'https://steadiermind.example/?existing',async focus(){focused=true;}}];},async openWindow(){opened=true;}}
+    clients:{async matchAll(){return [{url:'https://steadiermind.example/app?existing',async focus(){focused=true;}}];},async openWindow(){opened=true;}}
   };
   runInNewContext(readFileSync(new URL('../sw.js',import.meta.url),'utf8'),{self,URL});
   let task;
   listeners.push({data:{json(){return {title:'Untrusted',body:'One manageable step is enough.',url:'https://evil.test'};}},waitUntil(p){task=p;}});
   await task;
   assert.equal(shown[0].title,'SteadierMind');assert.equal(shown[0].silent,true);
-  assert.equal(shown[0].data.url,'https://steadiermind.example/?reminder=daily');
+  assert.equal(shown[0].data.url,'https://steadiermind.example/app?reminder=daily');
   listeners.notificationclick({notification:{close(){closed=true;},data:{url:'https://evil.test'}},waitUntil(p){task=p;}});
   await task;assert.ok(focused&&closed);assert.equal(opened,false);
   listeners.push({data:{json(){throw Error('Bad payload');}},waitUntil(p){task=p;}});await task;

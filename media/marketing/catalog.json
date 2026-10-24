@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "a-small-pause",
+    "title": "A small pause",
+    "duration": 20,
+    "width": 1080,
+    "height": 1920,
+    "captions": "Burned in and WebVTT",
+    "audio": "Silent stereo AAC; designed for sound-off viewing",
+    "exampleContent": true
+  },
+  {
+    "slug": "one-manageable-step",
+    "title": "One manageable step",
+    "duration": 24,
+    "width": 1080,
+    "height": 1920,
+    "captions": "Burned in and WebVTT",
+    "audio": "Silent stereo AAC; designed for sound-off viewing",
+    "exampleContent": true
+  },
+  {
+    "slug": "your-own-pace",
+    "title": "Your own pace",
+    "duration": 24,
+    "width": 1080,
+    "height": 1920,
+    "captions": "Burned in and WebVTT",
+    "audio": "Silent stereo AAC; designed for sound-off viewing",
+    "exampleContent": true
+  }
+]

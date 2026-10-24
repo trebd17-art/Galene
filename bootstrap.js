@@ -3,9 +3,11 @@
   const status=document.getElementById('bootStatus'),phone=document.querySelector('.phone');
   const ready=document.readyState==='loading'?new Promise(resolve=>document.addEventListener('DOMContentLoaded',resolve,{once:true})):Promise.resolve();
   try{
+    const intent=new URLSearchParams(location.search).get('start');
+    window.steadierMindEntryIntent=['routine','grounding','worry'].includes(intent)?intent:'';
     window.steadierMindInitializing=true;
     await steadierMindJournalArchive.initialize();await ready;
-    const scripts=['app.js','starter.js?v=20261016-anxiety-goal','breathing.js?v=20261016-first-impressions','grounding.js','worry.js?v=20261016-first-impressions','sleep.js','reflection.js','mood.js','games.js','centered.js','new-games.js?v=20261016-meadow-auto-reset','education-content.js','education-sources.js','education.js?v=20261016-first-impressions','privacy.js?v=20261016-push-reminders','rewards.js','feedback.js','data-transfer.js','journal-history.js','reminders.js?v=20261016-push-reminders'];
+    const scripts=['app.js?v=20261024-entry','starter.js?v=20261016-anxiety-goal','breathing.js?v=20261016-first-impressions','grounding.js','worry.js?v=20261016-first-impressions','sleep.js','reflection.js','mood.js','games.js','centered.js','new-games.js?v=20261016-meadow-auto-reset','education-content.js','education-sources.js','education.js?v=20261016-first-impressions','privacy.js?v=20261016-push-reminders','rewards.js','feedback.js','data-transfer.js','journal-history.js','reminders.js?v=20261016-push-reminders','entry.js?v=20261024'];
     for(const src of scripts)await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=src;script.onload=resolve;script.onerror=()=>reject(Error('App files could not load. Check the connection and retry.'));document.body.append(script);});
     document.dispatchEvent(new Event('DOMContentLoaded'));window.steadierMindInitializing=false;phone.hidden=false;status.hidden=true;
     document.getElementById('journalStorageStatus').textContent=steadierMindJournalArchive.pending?'Journal archive update is pending; a local recovery copy is retained. Export a backup or retry saving.':steadierMindJournalArchive.available?'Journal entries use IndexedDB in this browser. Keep backups; browser storage is not a guaranteed archive.':'IndexedDB is unavailable. Journal entries are using local storage in this browser; keep backups.';

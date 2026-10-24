@@ -18,3 +18,29 @@
   for = "/.netlify/functions/reminders"
   [headers.values]
     Cache-Control = "no-store"
+
+# Keep the app on its original origin; the public homepage is the marketing page.
+[[redirects]]
+  from = "/"
+  to = "/landing.html"
+  status = 200
+  force = true
+
+# A stable app URL avoids Netlify's optional pretty-URL handling of index.html.
+[[redirects]]
+  from = "/app"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/app/"
+  to = "/app"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/app"
+  status = 301
+  force = true

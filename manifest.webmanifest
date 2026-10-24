@@ -3,7 +3,7 @@
   "name": "SteadierMind",
   "short_name": "SteadierMind",
   "description": "A little space for everyday wellbeing.",
-  "start_url": "/",
+  "start_url": "/app",
   "scope": "/",
   "display": "standalone",
   "background_color": "#fffdf5",
